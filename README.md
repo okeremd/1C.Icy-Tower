@@ -10,7 +10,7 @@ We are going to implement the well-known action and platform game Icy Tower. We 
 
 Description of the Icy Tower
 =============================
-Icy tower is a single player action and platform game which user controls the character for jumping on platforms quickly. Player's purpose is, not to fall behind the speed of the ascending system for a certain time. This causes the character to be placed to the outside of the screen which ends the game.
+Icy tower is a single player platform game which user controls the character for jumping on platforms quickly. Game starts at the bottom of the icy tower, and the player tries to jump to the bars at the above without falling and getting more points by sliding at the walls which is on the leftmost and rightmost of the screen. The player has to maintain a speed that must be higher than the speed of the game screen goes up.
 
 The gamespace is a vertical area which continuously moving up and contains platforms. The character can jump on those platforms to move up. The platforms will have different types of instances such as thin, hardly visible, slippery.
 
