@@ -1,18 +1,15 @@
-# 1C.Icy-Tower
+# Icy Tower
 
-Icy Tower game for CS 319 project
+:zap: Icy Tower game for CS 319 project, Group 1C. :zap:
 
-**Group Members:** Cansu Yıldırım, Berke Soysal, Ozan Kerem Devamlı, Tunçberk Çevik
-
-Description of Project
-=======================
-We are going to implement the well-known action and platform game Icy Tower. We are going to use JavaFX to implement this game with using the principles of Object Oriented Software Engineering.
-
-Description of the Icy Tower
+Project Description
 =============================
 
 ![Gameplay screenshot of Icy Tower](http://i1-games.softpedia-static.com/screenshots/Icy-Tower_1.jpg)
 
+We are going to implement the well-known action and platform game Icy Tower. We are going to use JavaFX to implement this game with using the principles of Object Oriented Software Engineering.
+
+**About Icy Tower**
 
 Icy tower is a single player platform game which user controls the character for jumping on platforms quickly. Game starts at the bottom of the icy tower, and the player tries to jump to the bars at the above without falling and getting more points by sliding at the walls which is on the leftmost and rightmost of the screen. The player has to maintain a speed that must be higher than the speed of the game screen goes up.
 
@@ -22,7 +19,14 @@ The player will have a score that depends on the altitude and level. There will 
 
 **A reference for the original game:** http://gaming.wikia.com/wiki/Icy_Tower
 
-Meeting Hours
+**Group Members** :bulb:
+=====================
+* Cansu Yıldırım
+* Berke Soysal 
+* Ozan Kerem Devamlı
+* Tunçberk Çevik
+
+Meeting Hours :watch:
 =============
 | Day       | Time          |   
 | ------------- |:-------------:| 
