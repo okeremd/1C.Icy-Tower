@@ -9,6 +9,7 @@ Project Description
 
 We are going to implement the well-known action and platform game Icy Tower. We are going to use JavaFX to implement this game with using the principles of Object Oriented Software Engineering.
 
+
 **About Icy Tower**
 
 Icy tower is a single player platform game which user controls the character for jumping on platforms quickly. Game starts at the bottom of the icy tower, and the player tries to jump to the bars at the above without falling and getting more points by sliding at the walls which is on the leftmost and rightmost of the screen. The player has to maintain a speed that must be higher than the speed of the game screen goes up.
