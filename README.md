@@ -25,7 +25,7 @@ The player will have a score that depends on the altitude and level. There will 
 * Cansu Yıldırım
 * Berke Soysal 
 * Ozan Kerem Devamlı
-* Tunçberk Çevik
+* Tunçberk Çevik (?)
 
 Meeting Hours :watch:
 =============
