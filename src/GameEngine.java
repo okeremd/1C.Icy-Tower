@@ -1,3 +1,6 @@
+import java.util.Timer;
+import javafx.scene.image.Image;
+
 public class GameEngine {
 
 	private MapGenerator mapgen;

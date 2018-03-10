@@ -1,5 +1,11 @@
 public class Wall extends GameObject {
 
-	private int IMAGE_NO;
+    private final int IMAGE_NO = 33; // final :/
 
+    public Wall() {
+    }
+
+    public int getIMAGE_NO() {
+        return IMAGE_NO;
+    }
 }

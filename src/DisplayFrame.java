@@ -1,9 +1,12 @@
+import javafx.embed.swing.JFXPanel;
+import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent;
+
 public class DisplayFrame {
 
-	private int FRAME_HEIGHT;
-	private int FRAME_WIDTH;
-	private JPanel Layout;
-	private JFrame Frame;
+	private final int FRAME_HEIGHT = 600;
+	private final int FRAME_WIDTH = 600;
+	private JFXPanel Layout;
 
 	public DisplayFrame() {
 		// TODO - implement DisplayFrame.DisplayFrame
@@ -23,7 +26,7 @@ public class DisplayFrame {
 	 * 
 	 * @param lay
 	 */
-	public void setDisplayLayout(JPanel lay) {
+	public void setDisplayLayout(JFXPanel lay) {
 		// TODO - implement DisplayFrame.setDisplayLayout
 		throw new UnsupportedOperationException();
 	}

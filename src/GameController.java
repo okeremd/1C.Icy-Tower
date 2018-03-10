@@ -1,6 +1,10 @@
-public class GameController {
 
-	public void moveLeft() {
+public class GameController{
+
+    public GameController() {
+    }
+
+    public void moveLeft() {
 		// TODO - implement GameController.moveLeft
 		throw new UnsupportedOperationException();
 	}

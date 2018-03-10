@@ -1,3 +1,5 @@
+import javafx.scene.image.Image;
+
 public class Settings {
 
 	private CharacterManager cm;

@@ -1,12 +1,8 @@
 public class StartManager {
 
-	private int DIF_BUTTON_NO;
+	private final int DIF_BUTTON_NO = 3;
 
-	/**
-	 * 
-	 * @param diff
-	 */
-	public void startGame(int diff) {
+	public void startGame() {
 		// TODO - implement StartManager.startGame
 		throw new UnsupportedOperationException();
 	}

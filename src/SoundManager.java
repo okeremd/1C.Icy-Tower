@@ -1,13 +1,15 @@
+import javafx.scene.media.AudioClip;
+
 public class SoundManager {
 
 	private int volume;
-	private AudioFormat[] musics;
+	private AudioClip[] musics;
 
 	/**
 	 * 
 	 * @param musics
 	 */
-	public void setMusics(AudioFormat[] musics) {
+	public void setMusics(javafx.scene.media.AudioClip[] musics) {
 		this.musics = musics;
 	}
 

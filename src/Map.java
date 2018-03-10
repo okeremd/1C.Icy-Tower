@@ -1,9 +1,17 @@
+import javafx.scene.image.Image;
+import javafx.geometry.Point2D;
+
 public class Map {
 
 	private GameObject[] gameObjects;
 	private Character character;
+	private int level;
 
-	/**
+    public Map() {
+
+    }
+
+    /**
 	 * 
 	 * @param images
 	 */

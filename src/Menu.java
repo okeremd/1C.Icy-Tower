@@ -1,10 +1,13 @@
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.image.Image;
+
 public class Menu {
 
 	private Settings settings;
 	private FileManager fm;
 	private GameEngine ge;
 	private int MENU_BUTTON_NO;
-	private JPanel MenuLayout;
+	private JFXPanel MenuLayout;
 	private DisplayFrame CreditsLayout;
 	private DisplayFrame HowToPlayLayout;
 	private DisplayFrame HighScoresLayout;

@@ -2,7 +2,11 @@ public class PauseManager {
 
 	private SoundManager sm;
 
-	/**
+    public PauseManager(SoundManager sm) {
+        this.sm = sm;
+    }
+
+    /**
 	 * 
 	 * @param volume
 	 */

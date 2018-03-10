@@ -1,13 +1,15 @@
+import javafx.scene.input.KeyCode;
+
 public class ButtonManager {
 
-	private keyCode[] Buttons;
-	private int BUTTONPAGE_BUTTON_NO;
+	private KeyCode[] Buttons;
+	private final int BUTTONPAGE_BUTTON_NO = 2;
 
 	/**
 	 * 
 	 * @param keys
 	 */
-	public void setButtons(keyCode[] keys) {
+	public void setButtons(KeyCode[] keys) {
 		// TODO - implement ButtonManager.setButtons
 		throw new UnsupportedOperationException();
 	}

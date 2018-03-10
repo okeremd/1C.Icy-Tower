@@ -1,4 +1,9 @@
+import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
+
 public class FileManager {
+
+    private final String PATH = "~/";
 
 	public Image[] ReadCharacterPreviews() {
 		// TODO - implement FileManager.ReadCharacterPreviews
@@ -14,7 +19,7 @@ public class FileManager {
 		throw new UnsupportedOperationException();
 	}
 
-	public AudioFormat[] ReadMusics() {
+	public AudioClip[] ReadMusics() {
 		// TODO - implement FileManager.ReadMusics
 		throw new UnsupportedOperationException();
 	}

@@ -1,6 +1,9 @@
 public class MenuController {
 
-	/**
+    public MenuController() {
+    }
+
+    /**
 	 * 
 	 * @param level
 	 */
