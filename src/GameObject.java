@@ -2,6 +2,10 @@ import javafx.scene.image.Image;
 
 public abstract class GameObject {
 
+	public GameObject() {
+		
+	}
+	
     public GameObject(Image[] images) {
         this.images = images;
     }
