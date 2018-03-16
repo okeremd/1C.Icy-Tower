@@ -15,6 +15,7 @@ public class Menu {
 
 	public Menu() {
 		// TODO - implement Menu.Menu
+		ge = new GameEngine();
 		throw new UnsupportedOperationException();
 	}
 
