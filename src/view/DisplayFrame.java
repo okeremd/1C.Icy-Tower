@@ -19,7 +19,8 @@ public class DisplayFrame extends Application {
 	CreditsFrame cf;
 	ExitFrame ef;
 	SettingsFrame sf;
-	SoundSettingsFrame ssf;
+	HighScoreFrame hsf;
+	HowToPlayFrame htpf;
 	Button playbutton, scorebutton, howtobutton, settingsbutton, creditsbutton, exitbutton;
 	public static void main(String[] args) {
 		launch(args);
@@ -95,6 +96,30 @@ public class DisplayFrame extends Application {
 				System.out.println("ERROR");
 			}
 		});
+		scorebutton.setOnMouseClicked(event -> {
+			try {
+				hsf = new HighScoreFrame(primaryStage);
+				hsf.getBackToSettingsButton().setOnMouseClicked(event1 -> {
+					load(primaryStage);
+				});
+			}catch (Exception e){
+				System.out.println("ERROR");
+			}
+		});
+
+		howtobutton.setOnMouseClicked(event -> {
+			try{
+				htpf = new HowToPlayFrame(primaryStage);
+				htpf.getBackbutton().setOnMouseClicked(event1 -> {
+					load(primaryStage);
+				});
+			}catch (Exception e){
+				System.out.println("ERROR");
+			}
+		});
+
+
+
 	}
 	/**
 	 * 
