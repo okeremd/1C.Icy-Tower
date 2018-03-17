@@ -14,11 +14,9 @@ import javafx.stage.Stage;
 
 import java.nio.file.Paths;
 
-public class HowToPlayFrame extends Application {
+public class HowToPlayFrame {
     Button backbutton;
 
-
-    @Override
     public HowToPlayFrame(Stage primaryStage)throws Exception {
         primaryStage.setTitle("Icy Tower");
 

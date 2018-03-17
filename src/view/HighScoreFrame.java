@@ -14,18 +14,33 @@ import javafx.stage.Stage;
 import java.nio.file.Paths;
 
 
-public class HighScoreFrame extends Application{
+public class HighScoreFrame{
 
     private Image backgroundImage;
+    Button backToSettingsButton;
 
-    public void start(Stage primaryStage) throws Exception {
+    public HighScoreFrame(Stage primaryStage) throws Exception {
+        load(primaryStage);
+    }
 
+    private void setStageUnResizable(Stage primaryStage) {
+        primaryStage.setMaxHeight(600);
+        primaryStage.setMaxWidth(800);
+        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(800);
+    }
+
+    public Button getBackToSettingsButton() {
+        return backToSettingsButton;
+    }
+
+    public void load(Stage primaryStage){
         backgroundImage = new Image(Paths.get("images/background/backgrounds.png").toUri().toString(),true);
 
         //primaryStage.setFullScreen(true);
         setStageUnResizable(primaryStage);
 
-        Button backToSettingsButton = new Button("Back to Menu");
+        backToSettingsButton = new Button("Back to Menu");
 
         backToSettingsButton.setTranslateX(160);
         backToSettingsButton.setTranslateY(200);
@@ -63,16 +78,6 @@ public class HighScoreFrame extends Application{
 
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
 
-    private void setStageUnResizable(Stage primaryStage) {
-        primaryStage.setMaxHeight(600);
-        primaryStage.setMaxWidth(800);
-        primaryStage.setMinHeight(600);
-        primaryStage.setMinWidth(800);
-    }
-    public static void main(String[] args)
-    {
-        launch(args);
     }
 }
