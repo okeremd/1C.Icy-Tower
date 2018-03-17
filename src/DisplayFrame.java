@@ -18,7 +18,7 @@ public class DisplayFrame extends Application {
 	private final int FRAME_WIDTH = 600;
 	private JFXPanel Layout;
 	JFrame frame;
-	
+
 	Stage stage;
 	Scene menuscene, creditscene, howtoscene, scorescene;
 
