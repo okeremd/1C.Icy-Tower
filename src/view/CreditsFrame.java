@@ -1,3 +1,5 @@
+package view;
+
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,19 +13,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import java.nio.file.Paths;
 
-public class CreditsFrame extends Application {
-
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+public class CreditsFrame {
+    Button backbutton;
+    public CreditsFrame(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Icy Tower");
-
-
         VBox creditslayout = new VBox(10);
-        Button backbutton = new Button("Back to Menu");
+        backbutton = new Button("Back to Menu");
         backbutton.setMinSize(30, 30);
         backbutton.setTranslateX(420);
         backbutton.setTranslateY(215);
@@ -53,8 +48,9 @@ public class CreditsFrame extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.show();
-
-
+    }
+    public Button getBackbutton(){
+        return backbutton;
     }
 }
 

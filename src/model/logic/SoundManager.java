@@ -6,12 +6,14 @@ public class SoundManager {
 
 	private int volume;
 	private AudioClip[] musics;
+	private int current;
+
 
 	/**
 	 * 
 	 * @param musics
 	 */
-	public void setMusics(javafx.scene.media.AudioClip[] musics) {
+	public void setMusics(AudioClip[] musics) {
 		this.musics = musics;
 	}
 
