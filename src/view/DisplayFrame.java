@@ -4,20 +4,20 @@ import javafx.application.Application;
 import javafx.embed.swing.JFXPanel;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javax.swing.*;
+import java.nio.file.Paths;
 
 public class DisplayFrame extends Application {
 
-	private final int FRAME_HEIGHT = 600;
-	private final int FRAME_WIDTH = 600;
+	private final int FRAME_HEIGHT = 700;
+	private final int FRAME_WIDTH = 500;
 	private JFXPanel Layout;
 	JFrame frame;
 
@@ -41,6 +41,7 @@ public class DisplayFrame extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Icy Tower");
 
+		//MenuLayout
 		VBox menulayout = new VBox(10);
 		Button playbutton = new Button("Play Game");
 		playbutton.setMinSize(80,50);
@@ -56,7 +57,12 @@ public class DisplayFrame extends Application {
         exitbutton.setMinSize(80,50);
 //		menulayout.getChildren().addAll(playbutton,scorebutton,howtobutton,settingsbutton,creditsbutton,exitbutton);
 //		menulayout.setAlignment(Pos.CENTER);
+
 		GridPane pane = new GridPane();
+		Image menuimage = new Image(Paths.get("~/images/background/menubackground.jpg").toUri().toString(),true);
+		//Image menuimage = new Image("/images/background/menubackground.jpg");
+		ImageView view1 = new ImageView(menuimage);
+		pane.getChildren().add(view1);
 		pane.setHgap(10);
 		pane.setVgap(10);
 		pane.add(playbutton, 0, 0);
@@ -69,9 +75,12 @@ public class DisplayFrame extends Application {
         pane.addRow(3);
         pane.setLayoutX(500);
         pane.setLayoutY(280);
-		Scene scene = new Scene(pane, 700, 500);
+		Scene scene = new Scene(pane, FRAME_HEIGHT, FRAME_WIDTH);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+
+
+
 		
 	}
 	/**
