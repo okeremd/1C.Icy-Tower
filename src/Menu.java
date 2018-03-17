@@ -17,7 +17,7 @@ public class Menu {
 		// TODO - implement Menu.Menu
 		ge = new GameEngine();
 		throw new UnsupportedOperationException();
-		fm = new FileManager();
+
 	}
 
 	/**

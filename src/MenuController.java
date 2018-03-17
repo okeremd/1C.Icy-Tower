@@ -12,7 +12,7 @@ public class MenuController {
 		throw new UnsupportedOperationException();
 	}
 
-	public void shotHowToPlayScreen() {
+	public void showHowToPlayScreen() {
 		// TODO - implement MenuController.shotHowToPlayScreen
 		throw new UnsupportedOperationException();
 	}
