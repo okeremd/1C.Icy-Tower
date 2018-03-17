@@ -1,3 +1,5 @@
+package model.logic;
+
 public class PauseManager {
 
 	private SoundManager sm;

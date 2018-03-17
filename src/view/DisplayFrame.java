@@ -1,3 +1,5 @@
+package view;
+
 import javafx.application.Application;
 import javafx.embed.swing.JFXPanel;
 import javafx.geometry.Pos;
@@ -11,7 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javax.swing.*;
-
 
 public class DisplayFrame extends Application {
 
@@ -42,18 +43,36 @@ public class DisplayFrame extends Application {
 
 		VBox menulayout = new VBox(10);
 		Button playbutton = new Button("Play Game");
+		playbutton.setMinSize(80,50);
 		Button scorebutton = new Button("High Scores");
+        scorebutton.setMinSize(80,50);
 		Button howtobutton = new Button("How to Play");
+        howtobutton.setMinSize(80,50);
 		Button settingsbutton = new Button("Settings");
+        settingsbutton.setMinSize(80,50);
 		Button creditsbutton = new Button("Credits");
+        creditsbutton.setMinSize(80,50);
 		Button exitbutton = new Button("Exit");
-		menulayout.getChildren().addAll(playbutton,scorebutton,howtobutton,settingsbutton,creditsbutton,exitbutton);
-		menulayout.setAlignment(Pos.CENTER);
-		TilePane pane = new TilePane();
-		pane.getChildren().add(menulayout);
+        exitbutton.setMinSize(80,50);
+//		menulayout.getChildren().addAll(playbutton,scorebutton,howtobutton,settingsbutton,creditsbutton,exitbutton);
+//		menulayout.setAlignment(Pos.CENTER);
+		GridPane pane = new GridPane();
+		pane.setHgap(10);
+		pane.setVgap(10);
+		pane.add(playbutton, 0, 0);
+        pane.add(scorebutton, 0, 1);
+        pane.add(howtobutton, 0, 2);
+        pane.add(settingsbutton, 1, 0);
+        pane.add(creditsbutton, 1, 1);
+        pane.add(exitbutton, 1, 2);
+        pane.addColumn(2);
+        pane.addRow(3);
+        pane.setLayoutX(500);
+        pane.setLayoutY(280);
 		Scene scene = new Scene(pane, 700, 500);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		
 	}
 	/**
 	 * 

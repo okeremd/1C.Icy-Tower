@@ -1,3 +1,5 @@
+package model.logic;
+
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 
@@ -9,17 +11,17 @@ import java.util.Scanner;
 public class FileManager {
 
     private final String PATH = "~/";
-	private final int NUMBER_OF_CHARS = 5;
+	private final int NUMBER_OF_CHARACTERS = 5;
 	private Scanner sc;
 	private File file;
 
 	public Image[] ReadCharacterPreviews() throws FileNotFoundException{
-		// TODO - implement FileManager.ReadCharacterPreviews
-		Image[] ims = new Image[NUMBER_OF_CHARS];
-		for(int i = 0; i < NUMBER_OF_CHARS ; i++){
-			ims[i] = (new Image(Paths.get(PATH + "src/prev" + i).toUri().toString()));
+		
+		Image[] images = new Image[NUMBER_OF_CHARACTERS];
+		for(int i = 0; i < NUMBER_OF_CHARACTERS ; i++){
+			images[i] = (new Image(Paths.get(PATH + "src/prev" + i).toUri().toString()));
 		}
-		return ims;
+		return images;
 	}
 
 	/**

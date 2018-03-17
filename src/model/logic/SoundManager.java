@@ -1,3 +1,5 @@
+package model.logic;
+
 import javafx.scene.media.AudioClip;
 
 public class SoundManager {

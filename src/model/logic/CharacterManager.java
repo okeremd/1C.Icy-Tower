@@ -1,3 +1,5 @@
+package model.logic;
+
 import javafx.scene.image.Image;
 
 public class CharacterManager{

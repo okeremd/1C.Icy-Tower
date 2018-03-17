@@ -1,3 +1,5 @@
+package model.logic;
+
 public class StartManager {
 
 	private final int DIF_BUTTON_NO = 3;

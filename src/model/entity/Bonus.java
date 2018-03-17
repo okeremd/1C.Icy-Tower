@@ -1,3 +1,5 @@
+package model.entity;
+
 public class Bonus extends GameObject {
 
 	private final int IMAGE_NO = 3;
