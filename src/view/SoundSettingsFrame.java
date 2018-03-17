@@ -18,15 +18,15 @@ import java.nio.file.Paths;
 public class SoundSettingsFrame{
 
     private Image backgroundImage;
-
-    public void SoundSettingsFrame(Stage primaryStage) {
+    Button backToSettingsButton;
+    public SoundSettingsFrame(Stage primaryStage) {
 
         backgroundImage = new Image(Paths.get("images/background/backgrounds.png").toUri().toString(),true);
 
         //primaryStage.setFullScreen(true);
         setStageUnResizable(primaryStage);
 
-        Button backToSettingsButton = new Button("Back to Settings");
+        backToSettingsButton = new Button("Back to Settings");
 
         backToSettingsButton.setTranslateX(330);
         backToSettingsButton.setTranslateY(250);
@@ -69,6 +69,9 @@ public class SoundSettingsFrame{
         slider.setTranslateX(60);
         slider.setTranslateY(-50);
 
+        slider.setOnMouseDragged(event -> {
+            // ToDo menu controller methods
+        });
         settings.setTranslateX(30);
         settings.setTranslateY(-200);
 
@@ -92,5 +95,9 @@ public class SoundSettingsFrame{
         primaryStage.setMaxWidth(800);
         primaryStage.setMinHeight(600);
         primaryStage.setMinWidth(800);
+    }
+
+    public Button getBackToSettingsButton() {
+        return backToSettingsButton;
     }
 }

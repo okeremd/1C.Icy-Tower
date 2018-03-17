@@ -15,6 +15,7 @@ import java.nio.file.Paths;
 
 public class CreditsFrame {
     Button backbutton;
+
     public CreditsFrame(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Icy Tower");
         VBox creditslayout = new VBox(10);

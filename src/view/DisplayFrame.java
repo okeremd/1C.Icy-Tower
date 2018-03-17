@@ -2,12 +2,8 @@ package view;
 
 import javafx.application.Application;
 import javafx.embed.swing.JFXPanel;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -88,9 +84,17 @@ public class DisplayFrame extends Application {
 				System.out.println("ERROR");
 			}
 		});
+		settingsbutton.setOnMouseClicked(event -> {
+			try{
+				sf = new SettingsFrame(primaryStage);
+				sf.getBackToSettingsButton().setOnMouseClicked(event1 -> {
+					load(primaryStage);
+				});
 
-
-
+			}catch (Exception e){
+				System.out.println("ERROR");
+			}
+		});
 	}
 	/**
 	 * 

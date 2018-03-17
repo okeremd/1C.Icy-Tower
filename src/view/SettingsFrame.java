@@ -18,31 +18,48 @@ import java.nio.file.Paths;
 
 public class SettingsFrame{
 
+    Button backToSettingsButton, soundSettings, characterSettings, buttonSettings;
+    SoundSettingsFrame ssf;
+    ButtonSettings bf;
     private Image backgroundImage;
 
-        public void SettingFrame(Stage primaryStage) throws Exception {
 
+    public SettingsFrame(Stage primaryStage) throws Exception {
+        backToSettingsButton = new Button("Back to Settings");
+        load(primaryStage);
+    }
+
+    private void setStageUnResizable(Stage primaryStage) {
+        primaryStage.setMaxHeight(600);
+        primaryStage.setMaxWidth(800);
+        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(800);
+    }
+
+
+    public Button getBackToSettingsButton() {
+        return backToSettingsButton;
+    }
+
+    public void load(Stage primaryStage){
         backgroundImage = new Image(Paths.get("images/background/backgrounds.png").toUri().toString(),true);
 
         //primaryStage.setFullScreen(true);
         setStageUnResizable(primaryStage);
 
-        Button backToSettingsButton = new Button("Back to Settings");
-
         backToSettingsButton.setTranslateX(330);
         backToSettingsButton.setTranslateY(250);
-
-        Button soundSettings = new Button("Sound Settings");
+        soundSettings = new Button("Sound Settings");
         soundSettings.setMinHeight(60);
         soundSettings.setMinWidth(120);
         soundSettings.setTranslateY(-60);
         soundSettings.setTranslateX(30);
-        Button characterSettings = new Button( "Character Settings");
+        characterSettings = new Button( "Character Settings");
         characterSettings.setTranslateY(30);
         characterSettings.setTranslateX(30);
         characterSettings.setMinHeight(60);
         characterSettings.setMinWidth(120);
-        Button buttonSettings = new Button("Button Settings");
+        buttonSettings = new Button("Button Settings");
         buttonSettings.setTranslateY(120);
         buttonSettings.setTranslateX(30);
         buttonSettings.setMinHeight(60);
@@ -50,9 +67,6 @@ public class SettingsFrame{
         Text settings = new Text("Settings");
 
         settings.setFont(Font.font("Settings", FontWeight.BOLD, 40));
-
-
-
 
         settings.setTranslateX(30);
         settings.setTranslateY(-170);
@@ -70,13 +84,14 @@ public class SettingsFrame{
 
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
 
-    private void setStageUnResizable(Stage primaryStage) {
-        primaryStage.setMaxHeight(600);
-        primaryStage.setMaxWidth(800);
-        primaryStage.setMinHeight(600);
-        primaryStage.setMinWidth(800);
+        soundSettings.setOnMouseClicked(event -> {
+            ssf = new SoundSettingsFrame(primaryStage);
+            ssf.backToSettingsButton.setOnMouseClicked(event1 -> {
+                load(primaryStage);
+            });
+        });
+
     }
 
 }
