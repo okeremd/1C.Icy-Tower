@@ -60,10 +60,10 @@ public class DisplayFrame extends Application {
 //		menulayout.setAlignment(Pos.CENTER);
 
 		GridPane pane = new GridPane();
-		Image menuimage = new Image(Paths.get("~/images/background/menubackground.jpg").toUri().toString(),true);
-		//Image menuimage = new Image("/images/background/menubackground.jpg");
-		ImageView view1 = new ImageView(menuimage);
-		pane.getChildren().add(view1);
+		Image menuimage = new Image(Paths.get("images/background/menu.jpg").toUri().toString(),true);
+
+		//ImageView view1 = new ImageView(menuimage);
+		//pane.getChildren().add(view1);
 		pane.setHgap(10);
 		pane.setVgap(10);
 		pane.add(playbutton, 0, 0);
@@ -72,14 +72,14 @@ public class DisplayFrame extends Application {
         pane.add(settingsbutton, 1, 0);
         pane.add(creditsbutton, 1, 1);
         pane.add(exitbutton, 1, 2);
-        pane.addColumn(2);
-        pane.addRow(3);
-        pane.setLayoutX(500);
-        pane.setLayoutY(280);
-		Scene scene = new Scene(pane, FRAME_HEIGHT, FRAME_WIDTH);
-		primaryStage.setScene(scene);
+        Pane bigpane = new Pane();
+        bigpane.getChildren().add(pane);
+        Scene scene = new Scene(bigpane, FRAME_HEIGHT, FRAME_WIDTH);
+        bigpane.setBackground(new Background(new BackgroundImage(menuimage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(scene.getWidth(), scene.getHeight(), true, true, true, true))));
+        pane.setLayoutX(scene.getWidth() - 200);
+        pane.setLayoutY(scene.getHeight() - 300);
+        primaryStage.setScene(scene);
 		primaryStage.show();
-
 
 
 
