@@ -1,3 +1,5 @@
+package model.entity;
+
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 

@@ -1,5 +1,8 @@
+package view;
+
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import model.entity.Map;
 
 public class GameFrame{
 

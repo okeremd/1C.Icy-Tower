@@ -1,3 +1,7 @@
+package model.logic;
+
+import model.entity.Map;
+
 import javafx.scene.image.Image;
 
 public class MapGenerator {

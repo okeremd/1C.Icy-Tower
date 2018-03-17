@@ -1,3 +1,5 @@
+package model.logic;
+
 public class CollisionManager {
 
 	public CollisionManager() {

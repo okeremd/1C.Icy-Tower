@@ -1,3 +1,6 @@
+package model.entity;
+
+
 public class Camera {
 
 	private double speed;

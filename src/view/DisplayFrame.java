@@ -1,3 +1,5 @@
+package view;
+
 import javafx.application.Application;
 import javafx.embed.swing.JFXPanel;
 import javafx.geometry.Pos;
@@ -11,7 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javax.swing.*;
-
 
 public class DisplayFrame extends Application {
 
