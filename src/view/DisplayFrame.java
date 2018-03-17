@@ -30,12 +30,6 @@ public class DisplayFrame extends Application {
 
 	public DisplayFrame() {
 
-		//CreditsLayout
-		VBox creditsLayout = new VBox(20);
-		Button backbutton = new Button("Back to Menu");
-		Label label1 = new Label("Credits: \n1c");
-		creditsLayout.getChildren().addAll(label1, backbutton);
-		creditscene = new Scene(creditsLayout,200,200);
 	}
 
 	@Override
