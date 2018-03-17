@@ -1,8 +1,7 @@
 package model.logic;
-
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.image.Image;
-import view.*;
+
 
 public class Menu {
 
@@ -11,9 +10,9 @@ public class Menu {
 	private GameEngine ge;
 	private int MENU_BUTTON_NO;
 	private JFXPanel MenuLayout;
-	private DisplayFrame CreditsLayout;
-	private DisplayFrame HowToPlayLayout;
-	private DisplayFrame HighScoresLayout;
+	private view.DisplayFrame CreditsLayout;
+	private view.DisplayFrame HowToPlayLayout;
+	private view.DisplayFrame HighScoresLayout;
 	private StartManager sm;
 
 	public Menu() {

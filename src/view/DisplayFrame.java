@@ -24,6 +24,10 @@ public class DisplayFrame extends Application {
 	Stage stage;
 	Scene menuscene, creditscene, howtoscene, scorescene;
 
+	public static void main(String[] args) {
+		launch(args);
+	}
+
 	public DisplayFrame() {
 
 		//CreditsLayout
@@ -32,9 +36,6 @@ public class DisplayFrame extends Application {
 		Label label1 = new Label("Credits: \n1c");
 		creditsLayout.getChildren().addAll(label1, backbutton);
 		creditscene = new Scene(creditsLayout,200,200);
-	}
-	public static void main(String[] args) {
-		launch(args);
 	}
 
 	@Override
@@ -81,7 +82,7 @@ public class DisplayFrame extends Application {
 
 
 
-		
+
 	}
 	/**
 	 * 
