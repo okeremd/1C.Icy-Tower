@@ -13,21 +13,27 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import java.nio.file.Paths;
 
-public class CreditsFrame {
-    Button backbutton;
+public class ButtonSettings extends Application {
 
-    public CreditsFrame(Stage primaryStage) throws Exception {
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Icy Tower");
+
+
         VBox creditslayout = new VBox(10);
-        backbutton = new Button("Back to Menu");
+        Button backbutton = new Button("Back to Menu");
         backbutton.setMinSize(30, 30);
         backbutton.setTranslateX(420);
         backbutton.setTranslateY(215);
-        Text text = new Text("Credits");
+        Text text = new Text("Button Settings");
         Text text2 = new Text("Ozan Kerem Devamlı \nBerke Soysal \nCansu Yıldırım");
         text.setTranslateX(250);
         text.setTranslateY(50);
-        text.setFont(Font.font("Credits", FontWeight.BOLD, 60));
+        text.setFont(Font.font("T", FontWeight.BOLD, 40));
         text2.setFont(new Font(30));
         text2.setTranslateX(225);
         text2.setTranslateY(70);
@@ -49,9 +55,8 @@ public class CreditsFrame {
 
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-    public Button getBackbutton(){
-        return backbutton;
+
+
     }
 }
 
