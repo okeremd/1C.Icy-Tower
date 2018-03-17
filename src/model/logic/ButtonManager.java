@@ -1,3 +1,5 @@
+package model.logic;
+
 import javafx.scene.input.KeyCode;
 
 public class ButtonManager {

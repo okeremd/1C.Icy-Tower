@@ -1,5 +1,9 @@
+package model.logic;
+
 import java.util.Timer;
 import javafx.scene.image.Image;
+import view.GameFrame;
+import model.entity.Camera;
 
 public class GameEngine {
 

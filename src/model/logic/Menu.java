@@ -1,5 +1,8 @@
+package model.logic;
+
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.image.Image;
+import view.*;
 
 public class Menu {
 
