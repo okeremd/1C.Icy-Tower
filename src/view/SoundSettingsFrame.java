@@ -16,13 +16,12 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
 
-public class SoundSettingsFrame extends Application{
+public class SoundSettingsFrame{
 
     private Image backgroundImage;
     private ImageView imageView;
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void SoundSettingsFrame(Stage primaryStage) {
 
         //primaryStage.setFullScreen(true);
         setStageUnResizable(primaryStage);
@@ -91,10 +90,5 @@ public class SoundSettingsFrame extends Application{
         primaryStage.setMaxWidth(800);
         primaryStage.setMinHeight(600);
         primaryStage.setMinWidth(800);
-    }
-
-    public static void main(String[] args)
-    {
-        launch(args);
     }
 }

@@ -16,12 +16,11 @@ import javafx.scene.control.Button;
 import java.nio.file.Paths;
 
 
-public class SettingsFrame extends Application{
+public class SettingsFrame{
 
     private Image backgroundImage;
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+        public void SettingFrame(Stage primaryStage) throws Exception {
 
         backgroundImage = new Image(Paths.get("images/background/backgrounds.png").toUri().toString(),true);
 
@@ -80,8 +79,4 @@ public class SettingsFrame extends Application{
         primaryStage.setMinWidth(800);
     }
 
-    public static void main(String[] args)
-    {
-        launch(args);
-    }
 }
