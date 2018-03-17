@@ -7,6 +7,7 @@ public class Wooden extends Bar {
     private double breaktime;
     private final int IMAGE_NO = 1;
 
+    public Wooden(){}
 
     public Wooden(Image[] images) {
         super(images);
