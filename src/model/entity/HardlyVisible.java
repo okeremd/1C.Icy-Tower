@@ -7,6 +7,8 @@ public class HardlyVisible extends Bar {
 	private double opacity;
 	private final int IMAGE_NO = 2;
 
+	public HardlyVisible(){}
+
     public HardlyVisible(Image[] images) {
         super(images);
     }

@@ -12,13 +12,11 @@ public class ButtonManager {
 	 * @param keys
 	 */
 	public void setButtons(KeyCode[] keys) {
-		// TODO - implement ButtonManager.setButtons
-		throw new UnsupportedOperationException();
+		Buttons = keys;
 	}
 
-	public void getButtons() {
-		// TODO - implement ButtonManager.getButtons
-		throw new UnsupportedOperationException();
+	public KeyCode[] getButtons() {
+		return Buttons;
 	}
 
 }

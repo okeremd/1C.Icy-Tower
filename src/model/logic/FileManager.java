@@ -23,7 +23,7 @@ public class FileManager {
 		}
 		return images;
 	}
-	
+
 	public Image[] ReadOneCharacter(int index) {
 		Image[] images = new Image[IMGS_OF_ONE_CHARACTER];
 		for(int i = 0; i < IMGS_OF_ONE_CHARACTER; i++){

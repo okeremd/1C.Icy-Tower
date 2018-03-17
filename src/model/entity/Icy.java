@@ -7,6 +7,8 @@ public class Icy extends Bar {
 	private double slipperiness;
 	private int IMAGE_NO;
 
+	public Icy(){ }
+
     public Icy(Image[] images) {
         super(images);
     }

@@ -7,6 +7,8 @@ public class Sticky extends Bar {
 	private double stickyness;
 	private final int IMAGE_NO = 1;
 
+	public Sticky(){}
+
     public Sticky(Image[] images) {
         super(images);
     }

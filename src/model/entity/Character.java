@@ -11,6 +11,8 @@ public class Character extends GameObject {
 	private int jumpPower;
 	private final int IMAGE_NO = 5;
 
+	public Character(){}
+
     public Character(Image[] images) {
         super(images);
     }

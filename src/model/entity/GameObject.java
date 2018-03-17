@@ -4,17 +4,15 @@ import javafx.scene.image.Image;
 
 public abstract class GameObject {
 
-	public GameObject() {
-		
-	}
+    private Image[] images;
+    private int posX;
+    private int posY;
+
+    public GameObject() { }
 	
     public GameObject(Image[] images) {
         this.images = images;
     }
-
-    private Image[] images;
-    private int posX;
-	private int posY;
 
     public Image[] getImages() {
         return images;

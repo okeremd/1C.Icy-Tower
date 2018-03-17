@@ -6,6 +6,8 @@ public class Bar extends GameObject {
 
 	private int width;
 
+	public Bar(){ }
+
     public Bar(Image[] images) {
         super(images);
     }
