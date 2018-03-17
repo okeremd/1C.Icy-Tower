@@ -72,6 +72,7 @@ public class DisplayFrame extends Application {
 		Scene scene = new Scene(pane, 700, 500);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		
 	}
 	/**
 	 * 
