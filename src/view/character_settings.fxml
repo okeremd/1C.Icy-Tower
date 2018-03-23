@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.CharacterSettingsController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CharacterSettingsController">
+   <children>
+      <TextArea layoutX="204.0" layoutY="29.0" prefHeight="56.0" prefWidth="174.0" text="Character Settings" />
+      <ImageView fitHeight="143.0" fitWidth="99.0" layoutX="55.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="150.0" fitWidth="99.0" layoutX="242.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="150.0" fitWidth="99.0" layoutX="414.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="422.0" layoutY="336.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="159.0" text="Back to Menu" />
+      <Button layoutX="69.0" layoutY="242.0" mnemonicParsing="false" text="Select" />
+      <Button layoutX="255.0" layoutY="242.0" mnemonicParsing="false" text="Select" />
+      <Button layoutX="428.0" layoutY="242.0" mnemonicParsing="false" text="Select" />
+   </children>
 </AnchorPane>
