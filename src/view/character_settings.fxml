@@ -1,20 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CharacterSettingsController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CharacterSettingsController">
    <children>
-      <TextArea layoutX="204.0" layoutY="29.0" prefHeight="56.0" prefWidth="174.0" text="Character Settings" />
-      <ImageView fitHeight="143.0" fitWidth="99.0" layoutX="55.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="143.0" fitWidth="99.0" layoutX="84.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="150.0" fitWidth="99.0" layoutX="242.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="150.0" fitWidth="99.0" layoutX="414.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="422.0" layoutY="336.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="159.0" text="Back to Menu" />
-      <Button layoutX="69.0" layoutY="242.0" mnemonicParsing="false" text="Select" />
-      <Button layoutX="255.0" layoutY="242.0" mnemonicParsing="false" text="Select" />
-      <Button layoutX="428.0" layoutY="242.0" mnemonicParsing="false" text="Select" />
+      <Button fx:id="backToMainMenuButton" layoutX="676.0" layoutY="546.0" mnemonicParsing="false" onAction="#openMainMenuScene" text="Back To Menu" />
+
+      <Button onAction="#backToSettings" layoutX="550.0" layoutY="546.0" mnemonicParsing="false" text="Back to Settings" />
+      <Button layoutX="324.0" layoutY="288.0" mnemonicParsing="false" text="Select" />
+      <Button layoutX="398.0" layoutY="288.0" mnemonicParsing="false" text="Select" />
+      <Button layoutX="478.0" layoutY="288.0" mnemonicParsing="false" text="Select" />
+      <Text layoutX="321.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Character Settings">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="89.0" fitWidth="79.0" layoutX="321.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/images/character1.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="89.0" fitWidth="79.0" layoutX="393.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/images/character1.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="89.0" fitWidth="79.0" layoutX="474.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/images/character2.PNG" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

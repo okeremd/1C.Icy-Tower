@@ -23,8 +23,7 @@ public class GameFrame {
         anchorPane.setStyle("-fx-background-color: #b0e0ff");
 
         gameCharacter = new ImageView(
-                new Image(Paths.get("images/mainCharacter/mainCharacter1.PNG").
-                toUri().toString()));
+                new Image(GameFrame.class.getResourceAsStream("/images/character1.PNG")));
 
         setGameCharacterProperties();
 

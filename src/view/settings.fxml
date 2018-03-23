@@ -4,9 +4,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="view.SettingsController">
-    <Button layoutX="600.0" layoutY="530.0" mnemonicParsing="false" onAction="#openMainMenuScene" text="Back To Main Menu" />
+   <Button fx:id="backToMainMenuButton" layoutX="676.0" layoutY="546.0" mnemonicParsing="false" onAction="#openMainMenuScene" text="Back To Menu" />
    <VBox layoutX="340.0" layoutY="180.0" prefHeight="175.0" prefWidth="121.0" spacing="50.0">
       <children>
          <Button mnemonicParsing="false" onAction="#openSoundSettings" text="Sound Settings" />
@@ -14,5 +16,9 @@
          <Button mnemonicParsing="false" onAction="#openButtonSettings" text="Button Settings" />
       </children>
    </VBox>
-
+   <Text layoutX="321.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
+      <font>
+         <Font size="25.0" />
+      </font>
+   </Text>
 </AnchorPane>

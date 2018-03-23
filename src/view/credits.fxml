@@ -5,21 +5,32 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="view.CreditsController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CreditsController">
    <children>
-      <AnchorPane layoutX="186.0" layoutY="93.0" prefHeight="212.0" prefWidth="163.0">
+      <AnchorPane layoutX="324.0" layoutY="145.0" prefHeight="212.0" prefWidth="163.0">
          <children>
-            <Text layoutX="33.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Berke Soysal" />
-            <Text layoutX="29.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cansu Yıldırım" />
-            <Text layoutX="28.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ozan Keem Devamlı" />
+            <Text layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ozan Keem Devamlı">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Berke Soysal">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="-8.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cansu Yıldırım">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
-      <Text layoutX="210.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Credits">
+      <Text layoutX="347.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Credits">
          <font>
-            <Font size="38.0" />
+            <Font size="25.0" />
          </font>
       </Text>
-      <Button onAction="#openMainMenuScene" layoutX="600.0" layoutY="530.0" mnemonicParsing="false" text="Back To Main Menu" />
+      <Button fx:id="backToMainMenuButton" layoutX="676.0" layoutY="546.0" mnemonicParsing="false" onAction="#openMainMenuScene" text="Back To Menu" />
    </children>
 </AnchorPane>

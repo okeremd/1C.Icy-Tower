@@ -24,4 +24,9 @@ public class SettingsController extends MainController {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(MainController.getInstance().getButtonSettingsScene());
     }
+
+    public void backToSettings(ActionEvent actionEvent) {
+        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        primaryStage.setScene(MainController.getInstance().getSettingsScene());
+    }
 }

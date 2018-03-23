@@ -1,4 +1,4 @@
 package view;
 
-public class CharacterSettingsController extends MainController {
+public class CharacterSettingsController extends SettingsController {
 }

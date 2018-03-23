@@ -19,16 +19,33 @@ public class Display extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         Scene mainMenuScene = initializeScene("main_menu.fxml");
-        mainMenuScene.getStylesheets().add(this.getClass().getResource("style.css").toExternalForm());
+        //Set background via css
+        mainMenuScene.getStylesheets().add(this.getClass().getResource("styleMainMenu.css").toExternalForm());
 
         Scene howToPlayScene = initializeScene("how_to_play.fxml");
+        howToPlayScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
+
         Scene creditsScene = initializeScene("credits.fxml");
+        creditsScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
+
         Scene exitScene = initializeScene("exit.fxml");
+        exitScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
+
         Scene settingsScene = initializeScene("settings.fxml");
+        settingsScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
+
         Scene highScoreScene = initializeScene("high_scores.fxml");
+        highScoreScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
+
         Scene soundSettingsScene = initializeScene("sound_settings.fxml");
+        soundSettingsScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
+
         Scene buttonSettingsScene = initializeScene("button_settings.fxml");
+        buttonSettingsScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
+
         Scene characterSettingsScene = initializeScene("character_settings.fxml");
+        characterSettingsScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
+
         Scene playScene = GameFrame.getScene();
 
         MainController.getInstance().setMainMenuScene(mainMenuScene);

@@ -8,10 +8,11 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SoundSettingsController">
-    <Button layoutX="600.0" layoutY="530.0" mnemonicParsing="false" onAction="#openMainMenuScene" text="Back To Main Menu" />
-   <VBox layoutX="350.0" layoutY="100.0" prefHeight="344.0" prefWidth="168.0" spacing="150.0">
+       <VBox layoutX="316.0" layoutY="106.0" prefHeight="344.0" prefWidth="168.0" spacing="100.0">
       <children>
          <ChoiceBox prefWidth="150.0">
              <items>
@@ -25,9 +26,16 @@
          <Slider />
       </children>
       <padding>
-         <Insets top="30.0" />
+         <Insets top="100.0" />
       </padding>
    </VBox>
-   <Button onAction="#backToSettings" layoutX="476.0" layoutY="530.0" mnemonicParsing="false" text="Back to Settings" />
+    <Button fx:id="backToMainMenuButton" layoutX="676.0" layoutY="546.0" mnemonicParsing="false" onAction="#openMainMenuScene" text="Back To Menu" />
+
+    <Button layoutX="550.0" layoutY="546.0" mnemonicParsing="false" onAction="#backToSettings" text="Back to Settings" />
+    <Text layoutX="321.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sound Settings">
+      <font>
+          <Font size="25.0" />
+      </font>
+   </Text>
 
 </AnchorPane>
