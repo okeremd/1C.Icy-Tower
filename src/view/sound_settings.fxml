@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SoundSettingsController">
+    <Button layoutX="600.0" layoutY="530.0" mnemonicParsing="false" onAction="#openMainMenuScene" text="Back To Main Menu" />
+   <VBox layoutX="350.0" layoutY="100.0" prefHeight="344.0" prefWidth="168.0" spacing="150.0">
+      <children>
+         <ChoiceBox prefWidth="150.0">
+             <items>
+                 <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Song 1" />
+                    <String fx:value="Song 2" />
+                     <String fx:value="Song 3" />
+                </FXCollections>
+             </items>
+         </ChoiceBox>
+         <Slider />
+      </children>
+      <padding>
+         <Insets top="30.0" />
+      </padding>
+   </VBox>
+
+</AnchorPane>

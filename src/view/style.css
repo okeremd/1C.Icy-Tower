@@ -1,0 +1,9 @@
+.root{
+    -fx-background-image: url("menu.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 800 600;
+    -fx-background-position: center center;
+}
+#anchor {
+    -fx-background-color: blue;
+}
