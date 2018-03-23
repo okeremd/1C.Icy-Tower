@@ -13,7 +13,7 @@ public class MainController {
     private static Scene settingsScene;
     private static Scene creditsScene;
     private static Scene exitScene;
-
+    private static Scene playScene;
     // Setting scenes
     private static Scene soundSettingsScene;
     private static Scene buttonSettingsScene;
@@ -117,4 +117,10 @@ public class MainController {
         MainController.characterSettingsScene = characterSettingsScene;
     }
 
+    public Scene getPlayScene() {
+        return playScene;
+    }
+    public void setPlayScene(Scene scene){
+        playScene = scene;
+    }
 }

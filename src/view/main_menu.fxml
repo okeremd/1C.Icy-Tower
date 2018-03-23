@@ -6,7 +6,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="anchor" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainMenuController">
+<AnchorPane id="anchor" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainMenuController">
    <children>
       <GridPane layoutX="516.0" layoutY="404.0" prefHeight="139.0" prefWidth="200.0">
         <columnConstraints>
@@ -19,7 +20,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" text="Play Game" />
+            <Button mnemonicParsing="false" onAction="#openPlayScene" text="Play Game" />
             <Button mnemonicParsing="false" onAction="#openSettingsScene" text="Settings" GridPane.columnIndex="1" />
             <Button mnemonicParsing="false" onAction="#openHowToPlayScene" text="How To Play" GridPane.rowIndex="1" />
             <Button mnemonicParsing="false" onAction="#openCreditsScene" text="Credits" GridPane.columnIndex="1" GridPane.rowIndex="1" />
