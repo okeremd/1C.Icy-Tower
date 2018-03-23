@@ -8,8 +8,8 @@ import javafx.stage.Stage;
 
 public class Display extends Application {
 
-    public static final int SCENE_WIDTH = 800;
-    public static final int SCENE_HEIGHT = 600;
+    private static final int SCENE_WIDTH = 800;
+    private static final int SCENE_HEIGHT = 600;
 
     public static void main(String[] args) {
         launch(args);
