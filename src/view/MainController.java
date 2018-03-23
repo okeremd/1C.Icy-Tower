@@ -14,19 +14,24 @@ public class MainController {
     private static Scene creditsScene;
     private static Scene exitScene;
 
-
-
+    // Setting scenes
     private static Scene soundSettingsScene;
+    private static Scene buttonSettingsScene;
+    private static Scene characterSettingsScene;
 
     //Singleton Pattern
     private static MainController mainController;
     protected MainController() {
         // Exists only to defeat instantiation.
     }
+
     public static MainController getInstance() {
+
         if (mainController == null) {
+
             mainController = new MainController();
         }
+
         return mainController;
     }
 
@@ -94,6 +99,22 @@ public class MainController {
 
     public static void setSoundSettingsScene(Scene soundSettingsScene) {
         MainController.soundSettingsScene = soundSettingsScene;
+    }
+
+    public static Scene getButtonSettingsScene() {
+        return buttonSettingsScene;
+    }
+
+    public static void setButtonSettingsScene(Scene buttonSettingsScene) {
+        MainController.buttonSettingsScene = buttonSettingsScene;
+    }
+
+    public static Scene getCharacterSettingsScene() {
+        return characterSettingsScene;
+    }
+
+    public static void setCharacterSettingsScene(Scene characterSettingsScene) {
+        MainController.characterSettingsScene = characterSettingsScene;
     }
 
 }
