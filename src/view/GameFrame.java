@@ -4,7 +4,10 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 import java.nio.file.Paths;
 
@@ -14,6 +17,7 @@ public class GameFrame {
     private static ImageView gameCharacter;
     private ImageView bar;
     private ImageView wall;
+    public static MediaPlayer mediaplayer;
 
     public static Scene getScene() {
 
@@ -37,5 +41,19 @@ public class GameFrame {
         gameCharacter.setLayoutY(500);
         gameCharacter.setFitHeight(80);
         gameCharacter.setFitWidth(50);
+    }
+
+    public static void setSong(String song){
+
+        Media media = new Media(Paths.get("music/" + song + ".mp3").toUri().toString());
+        mediaplayer = new MediaPlayer(media);
+        mediaplayer.setAutoPlay(true);
+
+        mediaplayer.setOnEndOfMedia(new Runnable() {
+            public void run() {
+                mediaplayer.seek(Duration.ZERO);
+            }
+        });
+        mediaplayer.play();
     }
 }

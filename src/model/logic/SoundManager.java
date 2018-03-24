@@ -1,37 +1,53 @@
 package model.logic;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Slider;
 import javafx.scene.media.AudioClip;
 
 public class SoundManager {
 
 	private int volume;
-	private AudioClip[] musics;
 	private int current;
+	private Slider volumeslider;
+	private ComboBox<String> musichoice;
+	view.GameFrame gameframe;
 
-
-	/**
-	 * 
-	 * @param musics
-	 */
-	public void setMusics(AudioClip[] musics) {
-		this.musics = musics;
+	//combo box
+	public void musicChoices() {
+		musichoice = new ComboBox<String>();
+		musichoice.getItems().addAll("Song1","Song2", "Song3");
+		musichoice.valueProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				setMusic(newValue);
+			}
+		});
+	}
+	private void setMusic(String song) {
+		if(song.equals("Song 1"))
+			gameframe.setSong("audio0");
+		else if (song.equals("Song 2"))
+			gameframe.setSong("audio1");
+		else
+			gameframe.setSong("audio2");
 	}
 
-	/**
-	 * 
-	 * @param index
-	 */
-	public void setCurrent(int index) {
-		// TODO - implement SoundManager.setCurrent
-		throw new UnsupportedOperationException();
-	}
+	private void volumeSlider() {
 
-	/**
-	 * 
-	 * @param volume
-	 */
-	public void setVolume(int volume) {
-		this.volume = volume;
+		volumeslider = new Slider();
+		volumeslider.valueProperty().addListener(new ChangeListener<Number>() {
+			public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
+				int newvolume = new_val.intValue();
+				volumeslider.setValue(newvolume);
+				gameframe.mediaplayer.setVolume(newvolume);
+
+			}
+		});
+	}
+	public int getVolume(){
+		return volume;
 	}
 
 }
