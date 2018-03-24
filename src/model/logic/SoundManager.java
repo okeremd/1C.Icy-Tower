@@ -10,7 +10,7 @@ public class SoundManager {
     private int currentsong;
     private double currentvolume;
     private ArrayList<Media> sounds;
-    private final int SOUND_NO = 2;
+    private final int SOUND_NO = 3;
 
     private static SoundManager soundManager;
 
@@ -41,10 +41,15 @@ public class SoundManager {
     }
 
     public Media getSelectedSong() {
-        return sounds.get(0);
+        return sounds.get(currentsong);
     }
 
     public double getVolume() {
         return currentvolume;
     }
+
+    public void setSong(int song) {
+        currentsong = song;
+    }
+
 }
