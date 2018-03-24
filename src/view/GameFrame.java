@@ -15,6 +15,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.entity.Character;
+import model.logic.SoundManager;
 
 import java.nio.file.Paths;
 import java.util.concurrent.atomic.AtomicReference;
@@ -39,6 +40,7 @@ public class GameFrame extends Application{
 
         AnchorPane anchorPane = new AnchorPane();
         Scene scene = new Scene(anchorPane, 800, 600);
+        playSong();
 
         character = new Character();
 
@@ -88,12 +90,12 @@ public class GameFrame extends Application{
         gameCharacter.setFitWidth(50);
     }
 
-    public static void setSong(String song){
+    public static void playSong(){
 
-       Media media = new Media(Paths.get("music/" + song + ".mp3").toUri().toString());
+        Media media = SoundManager.getInstance().getSelectedSong();
         mediaplayer = new MediaPlayer(media);
         mediaplayer.setAutoPlay(true);
-
+        mediaplayer.setVolume(SoundManager.getInstance().getVolume());
         mediaplayer.setOnEndOfMedia(() -> mediaplayer.seek(Duration.ZERO));
         mediaplayer.play();
     }

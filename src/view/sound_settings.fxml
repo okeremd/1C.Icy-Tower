@@ -23,7 +23,7 @@
                 </FXCollections>
              </items>
          </ChoiceBox>
-         <Slider fx:id="vslider" layoutX="26.0" layoutY="32.0" majorTickUnit="50" max="200" minorTickCount="0" showTickLabels="true" showTickMarks="true" />
+         <Slider fx:id="soundSlider" layoutX="26.0" layoutY="32.0" majorTickUnit="50" max="200" minorTickCount="0" showTickLabels="true" showTickMarks="true" />
       </children>
       <padding>
          <Insets top="100.0" />
