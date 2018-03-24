@@ -20,6 +20,6 @@
                <Font size="25.0" />
            </font>
        </Text>
-      <TextArea fx:id="ButtonText"  layoutX="307.0" layoutY="199.0" prefHeight="217.0" prefWidth="243.0" text="left                  &lt;-&#10;right                -&gt;&#10;jump             space&#10;&#10;&#10;left                   A&#10;right                D&#10;jump               W" />
+      <TextArea fx:id="ButtonText" layoutX="307.0" layoutY="202.0" prefHeight="217.0" prefWidth="243.0" text="left                  &lt;-&#10;right                -&gt;&#10;jump             space&#10;&#10;&#10;left                   A&#10;right                D&#10;jump               W" />
    </children>
 </AnchorPane>

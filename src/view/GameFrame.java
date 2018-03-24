@@ -33,6 +33,7 @@ public class GameFrame {
 
         anchorPane.getChildren().add(gameCharacter);
 
+
         return scene;
     }
 
@@ -45,7 +46,7 @@ public class GameFrame {
 
     public static void setSong(String song){
 
-       Media media = new Media(Paths.get("music/" + song + ".mp3").toUri().toString());
+        Media media = new Media(Paths.get("music/" + song + ".mp3").toUri().toString());
         mediaplayer = new MediaPlayer(media);
         mediaplayer.setAutoPlay(true);
 

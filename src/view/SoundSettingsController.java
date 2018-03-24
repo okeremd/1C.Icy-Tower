@@ -25,8 +25,8 @@ public class SoundSettingsController extends SettingsController  {
     }
     //combo box
     public void musicChoices() {
-        musichoice = new ComboBox<String>();
-        musichoice.getItems().addAll("Song1","Song2", "Song3");
+        musichoice = new ComboBox<>();
+        musichoice.getItems().addAll("Song 1","Song 2", "Song 3");
         musichoice.valueProperty().addListener((observable, oldValue, newValue) -> setMusic(newValue));
     }
     private void setMusic(String song) {
