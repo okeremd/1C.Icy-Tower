@@ -22,6 +22,12 @@ import java.util.concurrent.atomic.AtomicReference;
 
 
 public class GameFrame extends Application{
+
+    public static final int GAME_LEFT_LIMIT = -280;
+    public static final int GAME_RIGHT_LIMIT = 280;
+    public static final int ACCELERATION = 10;
+    public static final int INITIAL_CHARACTER_SPEED = 20;
+
     private enum DIRECTION{
         LEFT,
         RIGHT,
@@ -34,7 +40,7 @@ public class GameFrame extends Application{
     private ImageView bar;
     private ImageView wall;
     public static MediaPlayer mediaplayer;
-
+    private int characterMoveSpeed= INITIAL_CHARACTER_SPEED;
 
     public void start(Stage gameStage) {
 
@@ -55,11 +61,16 @@ public class GameFrame extends Application{
         setGameCharacterProperties();
 
         DIRECTION direction = DIRECTION.NONE;
+
         Timeline moveCharacterLeft = new Timeline(new KeyFrame(
-                Duration.millis(500),
+                Duration.millis(70),
                 ae -> moveCharacterLeft(gameCharacter)));
         moveCharacterLeft.setCycleCount(Animation.INDEFINITE);
 
+        Timeline moveCharacterRight = new Timeline(new KeyFrame(
+                Duration.millis(70),
+                ae -> moveCharacterRight(gameCharacter)));
+        moveCharacterLeft.setCycleCount(Animation.INDEFINITE);
 
 
         anchorPane.getChildren().add(gameCharacter);
@@ -69,13 +80,25 @@ public class GameFrame extends Application{
 
             if(keyPress == KeyCode.LEFT)
             {
-
-                System.out.println("left");
                 moveCharacterLeft.play();
+            }
+            else if(keyPress == KeyCode.RIGHT)
+            {
+                moveCharacterRight.play();
             }
         });
         scene.setOnKeyReleased((KeyEvent e) -> {
-            moveCharacterLeft.stop();
+            KeyCode keyPress = e.getCode();
+            if(keyPress == KeyCode.LEFT)
+            {
+                moveCharacterLeft.stop();
+            }
+            if(keyPress == KeyCode.RIGHT)
+            {
+                moveCharacterRight.stop();
+            }
+
+            characterMoveSpeed=INITIAL_CHARACTER_SPEED;
         });
 
         gameStage.setScene(scene);
@@ -100,7 +123,18 @@ public class GameFrame extends Application{
         mediaplayer.play();
     }
 
-    private static void moveCharacterLeft(ImageView gameCharacter){
-        gameCharacter.setTranslateX(gameCharacter.getTranslateX()- 10);
+    private void moveCharacterLeft(ImageView gameCharacter){
+        characterMoveSpeed += ACCELERATION;
+        if(gameCharacter.getTranslateX() - characterMoveSpeed> GAME_LEFT_LIMIT)
+            gameCharacter.setTranslateX(gameCharacter.getTranslateX() - characterMoveSpeed);
+        else
+            gameCharacter.setTranslateX(GAME_LEFT_LIMIT);
+    }
+    private void moveCharacterRight(ImageView gameCharacter){
+        characterMoveSpeed += ACCELERATION;
+        if(gameCharacter.getTranslateX() + characterMoveSpeed < GAME_RIGHT_LIMIT)
+            gameCharacter.setTranslateX(gameCharacter.getTranslateX() + characterMoveSpeed);
+        else
+            gameCharacter.setTranslateX(GAME_RIGHT_LIMIT);
     }
 }
