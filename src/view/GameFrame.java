@@ -49,11 +49,7 @@ public class GameFrame {
         mediaplayer = new MediaPlayer(media);
         mediaplayer.setAutoPlay(true);
 
-        mediaplayer.setOnEndOfMedia(new Runnable() {
-            public void run() {
-                mediaplayer.seek(Duration.ZERO);
-            }
-        });
+        mediaplayer.setOnEndOfMedia(() -> mediaplayer.seek(Duration.ZERO));
         mediaplayer.play();
     }
 }

@@ -1,11 +1,7 @@
 package view;
 
-import javafx.beans.value.ChangeListener ;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
 import javafx.scene.media.Media;
@@ -21,21 +17,17 @@ public class SoundSettingsController extends SettingsController  {
     view.GameFrame gameframe;
     @FXML private Slider vslider;
     SoundManager sounds;
-    //private ArrayList<Media> songsmedia;
+    private ArrayList<Media> songsmedia;
 
     public SoundSettingsController(){
-        
+        sounds = new SoundManager();
+        songsmedia = sounds.getSounds();
     }
     //combo box
     public void musicChoices() {
         musichoice = new ComboBox<String>();
         musichoice.getItems().addAll("Song1","Song2", "Song3");
-        musichoice.valueProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                setMusic(newValue);
-            }
-        });
+        musichoice.valueProperty().addListener((observable, oldValue, newValue) -> setMusic(newValue));
     }
     private void setMusic(String song) {
         if(song.equals("Song 1"))
@@ -46,20 +38,14 @@ public class SoundSettingsController extends SettingsController  {
             gameframe.setSong("audio2");
     }
 
-    public void volumeSlider() {
 
-        vslider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            int newvolume = newValue.intValue();
+    public void initialize() {
+        vslider.valueProperty().addListener((ov, old_val, new_val) -> {
+            int newvolume = new_val.intValue();
             vslider.setValue(newvolume);
-            GameFrame.mediaplayer.setVolume(newvolume);});
-        /*vslider.valueProperty().addListener(new ChangeListener<Number>() {
-            public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
-                int newvolume = new_val.intValue();
-                vslider.setValue(newvolume);
-                view.GameFrame.mediaplayer.setVolume(newvolume);
+            view.GameFrame.mediaplayer.setVolume(newvolume);
 
-            }
-        });*/
+        });
     }
 
 

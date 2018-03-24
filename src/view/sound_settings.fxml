@@ -14,7 +14,7 @@
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SoundSettingsController">
        <VBox layoutX="316.0" layoutY="106.0" prefHeight="344.0" prefWidth="168.0" spacing="100.0">
       <children>
-         <ChoiceBox prefWidth="150.0" onAction="#musicChoices">
+         <ChoiceBox onAction="#musicChoices" prefWidth="150.0">
              <items>
                  <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Song 1" />
@@ -29,9 +29,9 @@
          <Insets top="100.0" />
       </padding>
    </VBox>
-    <Button fx:id="backToMainMenuButton" layoutX="676.0" layoutY="546.0" mnemonicParsing="false" onAction="#openMainMenuScene" text="Back To Menu" />
+    <Button fx:id="backToMainMenuButton" layoutX="654.0" layoutY="546.0" mnemonicParsing="false" onAction="#openMainMenuScene" text="Back To Menu" />
 
-    <Button layoutX="550.0" layoutY="546.0" mnemonicParsing="false" onAction="#backToSettings" text="Back to Settings" />
+    <Button layoutX="488.0" layoutY="546.0" mnemonicParsing="false" onAction="#backToSettings" text="Back to Settings" />
     <Text layoutX="321.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sound Settings">
       <font>
           <Font size="25.0" />
