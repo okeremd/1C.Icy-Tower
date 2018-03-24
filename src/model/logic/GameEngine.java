@@ -18,6 +18,11 @@ public class GameEngine {
 	private boolean gamePaused;
 	private int difficulty;
 
+	//TODO this class should initialize a display and then maintain the game process
+	//TODO let game engine initialize a game character, map that contains game objects
+	//TODO then let view module display it.
+	//TODO then process should continue throughout the gametime
+
 	public GameEngine() {
 		// TODO - implement GameEngine.GameEngine
 		throw new UnsupportedOperationException();
@@ -81,7 +86,10 @@ public class GameEngine {
 	}
 
 	public void startGame() {
-		// TODO - implement GameEngine.startGame
+		// TODO
+		// intialize the game here
+		// initializeMap()
+		//
 		throw new UnsupportedOperationException();
 	}
 

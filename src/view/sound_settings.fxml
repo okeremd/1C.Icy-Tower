@@ -14,7 +14,7 @@
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SoundSettingsController">
        <VBox layoutX="316.0" layoutY="106.0" prefHeight="344.0" prefWidth="168.0" spacing="100.0">
       <children>
-         <ChoiceBox onAction="#musicChoices" prefWidth="150.0">
+         <ChoiceBox fx:id="selectSongBox" onAction="#changeSelectedSong" prefWidth="150.0">
              <items>
                  <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Song 1" />
@@ -23,7 +23,7 @@
                 </FXCollections>
              </items>
          </ChoiceBox>
-         <Slider fx:id="vslider" layoutX="26.0" layoutY="32.0" majorTickUnit="50" max="200" minorTickCount="0" showTickLabels="true" showTickMarks="true" />
+         <Slider fx:id="soundSlider" layoutX="26.0" layoutY="32.0" majorTickUnit="50" max="200" minorTickCount="0" showTickLabels="true" showTickMarks="true" />
       </children>
       <padding>
          <Insets top="100.0" />

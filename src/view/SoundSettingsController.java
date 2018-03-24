@@ -1,53 +1,50 @@
 package view;
 
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
 import javafx.scene.media.Media;
-import javafx.stage.Stage;
 import model.logic.SoundManager;
-
 import java.util.ArrayList;
 
 public class SoundSettingsController extends SettingsController  {
-    private int volume;
-    private int current;
-    private ComboBox<String> musichoice;
-    view.GameFrame gameframe;
-    @FXML private Slider vslider;
+    public static final double SLIDERLIMIT = 200.0;
+
+    @FXML
+    private ChoiceBox<FXCollections> selectSongBox;
+
+    @FXML
+    private Slider soundSlider;
+
     SoundManager sounds;
     private ArrayList<Media> songsmedia;
 
     public SoundSettingsController(){
-        sounds = new SoundManager();
-        songsmedia = sounds.getSounds();
-    }
-    //combo box
-    public void musicChoices() {
-        musichoice = new ComboBox<>();
-        musichoice.getItems().addAll("Song 1","Song 2", "Song 3");
-        musichoice.valueProperty().addListener((observable, oldValue, newValue) -> setMusic(newValue));
-    }
-    private void setMusic(String song) {
-        if(song.equals("Song 1"))
-            gameframe.setSong("audio0");
-        else if (song.equals("Song 2"))
-            gameframe.setSong("audio1");
-        else
-            gameframe.setSong("audio2");
+
     }
 
-
+    @FXML
     public void initialize() {
-        vslider.valueProperty().addListener((ov, old_val, new_val) -> {
-            int newvolume = new_val.intValue();
-            vslider.setValue(newvolume);
-            view.GameFrame.mediaplayer.setVolume(newvolume);
+        soundSlider.valueProperty().addListener((ov, old_val, new_val) -> {
 
+            int newvolume = new_val.intValue();
+            double volumeNormalized = newvolume/ SLIDERLIMIT;
+            SoundManager.getInstance().setVolume(volumeNormalized);
         });
     }
 
+    public void changeSelectedSong(ActionEvent actionEvent){
+
+        int selectedSong = selectSongBox.getSelectionModel().getSelectedIndex();
+        System.out.println(selectedSong);
+        SoundManager.getInstance().setSong(selectedSong);
+    }
 
 
 }

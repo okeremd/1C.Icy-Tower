@@ -116,11 +116,12 @@ public class MainController {
     public static void setCharacterSettingsScene(Scene characterSettingsScene) {
         MainController.characterSettingsScene = characterSettingsScene;
     }
-
+/*
     public Scene getPlayScene() {
         return playScene;
     }
-    public void setPlayScene(Scene scene){
+    public Scene setPlayScene(Scene scene){
         playScene = scene;
     }
+*/
 }
