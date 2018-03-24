@@ -46,7 +46,7 @@ public class Display extends Application {
         Scene characterSettingsScene = initializeScene("character_settings.fxml");
         characterSettingsScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
 
-        Scene playScene = GameFrame.getScene();
+        //Scene playScene = GameFrame.getScene();
 
         MainController.getInstance().setMainMenuScene(mainMenuScene);
         MainController.getInstance().setHowToPlayScene(howToPlayScene);
@@ -57,7 +57,8 @@ public class Display extends Application {
         MainController.getInstance().setSoundSettingsScene(soundSettingsScene);
         MainController.getInstance().setButtonSettingsScene(buttonSettingsScene);
         MainController.getInstance().setCharacterSettingsScene(characterSettingsScene);
-        MainController.getInstance().setPlayScene(playScene);
+
+        //MainController.getInstance().setPlayScene(playScene);
         primaryStage.setTitle("Icy Tower");
         primaryStage.setScene(mainMenuScene);
         primaryStage.show();

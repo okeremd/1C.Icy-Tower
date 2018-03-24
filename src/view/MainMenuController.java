@@ -38,6 +38,8 @@ public class MainMenuController extends MainController {
     }
     public void openPlayScene(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(MainController.getInstance().getPlayScene());
+        primaryStage.close();
+        GameFrame gameFrame = new GameFrame();
+        gameFrame.start(primaryStage);
     }
 }
