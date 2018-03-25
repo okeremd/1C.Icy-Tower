@@ -93,8 +93,13 @@ public class Map {
 	}
 
 	public void updateCharacter() {
-		// TODO - implement Map.updateCharacter
-		throw new UnsupportedOperationException();
+		//gravity
+		if(gameCharacter.getPosY()>0)
+		{
+			System.out.println(gameCharacter.getPosY());
+			gameCharacter.setPosY(gameCharacter.getPosY()-10);
+			System.out.println(gameCharacter.getPosY());
+		}
 	}
 
 	public void createLevel(int type, int numOfBars){
@@ -152,6 +157,16 @@ public class Map {
 
 	}
 	public void jump(){
+
+		int jumpSpeed=200;
+		int jumpInitial=100;
+		int negJumpSpeed = - jumpSpeed;
+		gameCharacter.setPosY(gameCharacter.getPosY() + jumpInitial);
+		jumpInitial-=10;
+		jumpSpeed-=jumpInitial;
+		System.out.println(gameCharacter.getPosX());
+
+
 
 	}
 

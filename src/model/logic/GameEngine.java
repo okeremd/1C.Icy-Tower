@@ -41,6 +41,7 @@ public class GameEngine {
 	}
 
 	public Pane convertMapToPane(){
+		map.updateCharacter();
 		pane.getChildren().clear();
 		for(GameObject g: map.getGameObjects()){
 			int xsofar = 0;
@@ -85,10 +86,11 @@ public class GameEngine {
 
 		map.moveRight();
 	}
-	public void jumpCharacter(){
+	public void jumpCharacter() {
 
 		map.jump();
 	}
+
 
 	public void stopMoveCharacterLeft(){
 
@@ -101,6 +103,7 @@ public class GameEngine {
 	}
 
 	public void stopJump(){
+
 		map.stopMoveJump();
 	}
 

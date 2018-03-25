@@ -55,13 +55,11 @@ public class GameFrame extends Application{
 
         gameController = new GameController(scene, kc, gameEngine);
 
-        timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                updateFrame();
-            }
-        };
-        timer.start();
+        Timeline timeline = new Timeline(new KeyFrame(
+                Duration.millis(50),
+                ae -> updateFrame()));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
 
         gameStage.setScene(scene);
         gameStage.setTitle("Icy Tower");
@@ -89,6 +87,7 @@ public class GameFrame extends Application{
 
     private void updateFrame(){
         gameEngine.convertMapToPane();
+
     }
 
 }
