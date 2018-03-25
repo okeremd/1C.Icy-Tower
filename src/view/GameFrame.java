@@ -1,6 +1,8 @@
 package view;
 
+import controller.GameController;
 import javafx.animation.Animation;
+import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -15,6 +17,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.entity.Character;
+import model.logic.GameEngine;
 import model.logic.SoundManager;
 
 import java.nio.file.Paths;
@@ -22,75 +25,57 @@ import java.util.concurrent.atomic.AtomicReference;
 
 
 public class GameFrame extends Application{
-    private enum DIRECTION{
-        LEFT,
-        RIGHT,
-        UP,
-        NONE
-    }
 
-    private static Character character;
+
+    private GameEngine gameEngine;
+    private GameController gameController;
+    private AnimationTimer timer;
+    Scene scene;
+    /*private static Character character;
     private static ImageView gameCharacter;
     private ImageView bar;
     private ImageView wall;
-    public static MediaPlayer mediaplayer;
-
+    */
+    public MediaPlayer mediaplayer;
 
     public void start(Stage gameStage) {
-
-        AnchorPane anchorPane = new AnchorPane();
-        Scene scene = new Scene(anchorPane, 800, 600);
+        //AnchorPane anchorPane = new AnchorPane();
         playSong();
 
-        character = new Character();
+        KeyCode[] kc = createKeycode();
 
-        //TODO initialize game character
+        gameEngine = new GameEngine();
+        Image[] charIms = new Image[1];
 
+        charIms[0] = new Image(Paths.get(("./images/mainCharacter/mainCharacter1.PNG")).toUri().toString());
 
-        anchorPane.setStyle("-fx-background-color: #b0e0ff");
+        gameEngine.setCurrentCharactersImages(charIms);
 
-        gameCharacter = new ImageView(
-                new Image(GameFrame.class.getResourceAsStream("/images/character1.PNG")));
+        scene = new Scene(gameEngine.convertMapToPane(), 800, 600);
 
-        setGameCharacterProperties();
+        gameController = new GameController(scene, kc, gameEngine);
 
-        DIRECTION direction = DIRECTION.NONE;
-        Timeline moveCharacterLeft = new Timeline(new KeyFrame(
-                Duration.millis(500),
-                ae -> moveCharacterLeft(gameCharacter)));
-        moveCharacterLeft.setCycleCount(Animation.INDEFINITE);
-
-
-
-        anchorPane.getChildren().add(gameCharacter);
-
-        scene.setOnKeyPressed((KeyEvent e) -> {
-            KeyCode keyPress = e.getCode();
-
-            if(keyPress == KeyCode.LEFT)
-            {
-
-                System.out.println("left");
-                moveCharacterLeft.play();
-            }
-        });
-        scene.setOnKeyReleased((KeyEvent e) -> {
-            moveCharacterLeft.stop();
-        });
+        Timeline timeline = new Timeline(new KeyFrame(
+                Duration.millis(50),
+                ae -> updateFrame()));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
 
         gameStage.setScene(scene);
         gameStage.setTitle("Icy Tower");
         gameStage.show();
     }
 
-    private static void setGameCharacterProperties() {
-        gameCharacter.setLayoutX(400);
-        gameCharacter.setLayoutY(500);
-        gameCharacter.setFitHeight(80);
-        gameCharacter.setFitWidth(50);
+    private KeyCode[] createKeycode() {
+        KeyCode[] kc = new KeyCode[4];
+        kc[0] = KeyCode.LEFT;
+        kc[1] = KeyCode.RIGHT;
+        kc[2] = KeyCode.UP;
+        kc[3] = KeyCode.P;
+        return kc;
     }
 
-    public static void playSong(){
+    public void playSong(){
 
         Media media = SoundManager.getInstance().getSelectedSong();
         mediaplayer = new MediaPlayer(media);
@@ -100,7 +85,9 @@ public class GameFrame extends Application{
         mediaplayer.play();
     }
 
-    private static void moveCharacterLeft(ImageView gameCharacter){
-        gameCharacter.setTranslateX(gameCharacter.getTranslateX()- 10);
+    private void updateFrame(){
+        gameEngine.convertMapToPane();
+
     }
+
 }
