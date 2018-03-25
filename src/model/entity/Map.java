@@ -17,6 +17,7 @@ public class Map {
 	private Character gameCharacter;
 	private int level;
 	private Random rand;
+	private int force;
 
 	private int characterMoveSpeed = INITIAL_CHARACTER_SPEED;
 
@@ -94,12 +95,14 @@ public class Map {
 
 	public void updateCharacter() {
 		//gravity
-		if(gameCharacter.getPosY()>0)
+		if(gameCharacter.getPosY()>0 || force>0)
 		{
 			System.out.println(gameCharacter.getPosY());
-			gameCharacter.setPosY(gameCharacter.getPosY()-10);
+			gameCharacter.setPosY(gameCharacter.getPosY()-10+force);
 			System.out.println(gameCharacter.getPosY());
 		}
+
+		force-=30;
 	}
 
 	public void createLevel(int type, int numOfBars){
@@ -158,13 +161,7 @@ public class Map {
 	}
 	public void jump(){
 
-		int jumpSpeed=200;
-		int jumpInitial=100;
-		int negJumpSpeed = - jumpSpeed;
-		gameCharacter.setPosY(gameCharacter.getPosY() + jumpInitial);
-		jumpInitial-=10;
-		jumpSpeed-=jumpInitial;
-		System.out.println(gameCharacter.getPosX());
+		force=100;
 
 
 
