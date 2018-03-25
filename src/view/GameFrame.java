@@ -17,6 +17,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.entity.Character;
+import model.logic.ButtonManager;
 import model.logic.GameEngine;
 import model.logic.SoundManager;
 
@@ -67,11 +68,8 @@ public class GameFrame extends Application{
     }
 
     private KeyCode[] createKeycode() {
-        KeyCode[] kc = new KeyCode[4];
-        kc[0] = KeyCode.LEFT;
-        kc[1] = KeyCode.RIGHT;
-        kc[2] = KeyCode.UP;
-        kc[3] = KeyCode.P;
+
+        KeyCode[] kc = ButtonManager.getInstance().getButtons();
         return kc;
     }
 

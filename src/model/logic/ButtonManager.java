@@ -4,19 +4,26 @@ import javafx.scene.input.KeyCode;
 
 public class ButtonManager {
 
-	private KeyCode[] Buttons;
-	private final int BUTTONPAGE_BUTTON_NO = 2;
+	private KeyCode[] buttons;
+	private static ButtonManager buttonManager;
 
-	/**
-	 * 
-	 * @param keys
-	 */
+	public ButtonManager(){
+		buttons = new KeyCode[4];
+
+	}
+	public static ButtonManager getInstance(){
+		if(buttonManager== null)
+			buttonManager = new ButtonManager();
+		return buttonManager;
+
+	}
 	public void setButtons(KeyCode[] keys) {
-		Buttons = keys;
+		buttons = keys;
 	}
 
 	public KeyCode[] getButtons() {
-		return Buttons;
+
+		return buttons;
 	}
 
 }

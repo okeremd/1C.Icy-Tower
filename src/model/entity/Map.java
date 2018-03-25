@@ -6,7 +6,7 @@ import java.util.Random;
 
 import java.util.ArrayList;
 
-public class Map {
+public class  Map {
 
 	public static final int GAME_LEFT_LIMIT = 50;
 	public static final int GAME_RIGHT_LIMIT = 630;

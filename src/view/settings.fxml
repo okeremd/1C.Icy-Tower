@@ -3,22 +3,21 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-
-<?import javafx.scene.text.Text?>
 <?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="view.SettingsController">
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SettingsController">
    <Button fx:id="backToMainMenuButton" layoutX="676.0" layoutY="546.0" mnemonicParsing="false" onAction="#openMainMenuScene" text="Back To Menu" />
-   <VBox layoutX="340.0" layoutY="180.0" prefHeight="175.0" prefWidth="121.0" spacing="50.0">
+   <VBox layoutX="315.0" layoutY="170.0" prefHeight="272.0" prefWidth="236.0" spacing="50.0">
       <children>
-         <Button mnemonicParsing="false" onAction="#openSoundSettings" text="Sound Settings" />
-         <Button mnemonicParsing="false" onAction="#openCharacterSettings" text="Character Settings" />
-         <Button mnemonicParsing="false" onAction="#openButtonSettings" text="Button Settings" />
+         <Button mnemonicParsing="false" onAction="#openSoundSettings" prefHeight="50.0" prefWidth="194.0" text="Sound Settings" />
+         <Button mnemonicParsing="false" onAction="#openCharacterSettings" prefHeight="50.0" prefWidth="194.0" text="Character Settings" />
+         <Button mnemonicParsing="false" onAction="#openButtonSettings" prefHeight="50.0" prefWidth="194.0" text="Button Settings" />
       </children>
    </VBox>
-   <Text layoutX="321.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
+   <Text layoutX="340.0" layoutY="134.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings" wrappingWidth="148.916015625">
       <font>
-         <Font size="25.0" />
+         <Font size="36.0" />
       </font>
    </Text>
 </AnchorPane>
