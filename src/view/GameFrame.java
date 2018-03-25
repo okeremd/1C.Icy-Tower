@@ -1,6 +1,8 @@
 package view;
 
+import controller.GameController;
 import javafx.animation.Animation;
+import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -15,6 +17,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.entity.Character;
+import model.logic.GameEngine;
 import model.logic.SoundManager;
 
 import java.nio.file.Paths;
@@ -23,96 +26,53 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class GameFrame extends Application{
 
-    public static final int GAME_LEFT_LIMIT = -280;
-    public static final int GAME_RIGHT_LIMIT = 280;
-    public static final int ACCELERATION = 10;
-    public static final int INITIAL_CHARACTER_SPEED = 20;
 
-    private enum DIRECTION{
-        LEFT,
-        RIGHT,
-        UP,
-        NONE
-    }
-
-    private static Character character;
+    private GameEngine gameEngine;
+    private GameController gameController;
+    private AnimationTimer timer;
+    Scene scene;
+    /*private static Character character;
     private static ImageView gameCharacter;
     private ImageView bar;
     private ImageView wall;
+    */
     public static MediaPlayer mediaplayer;
-    private int characterMoveSpeed= INITIAL_CHARACTER_SPEED;
 
     public void start(Stage gameStage) {
-
-        AnchorPane anchorPane = new AnchorPane();
-        Scene scene = new Scene(anchorPane, 800, 600);
+        //AnchorPane anchorPane = new AnchorPane();
         playSong();
+        KeyCode[] kc = new KeyCode[4];
+        kc[0] = KeyCode.LEFT;
+        kc[1] = KeyCode.RIGHT;
+        kc[2] = KeyCode.UP;
+        kc[3] = KeyCode.P;
+        gameEngine = new GameEngine();
+        Image[] charIms = new Image[1];
+        charIms[0] = new Image(Paths.get(("./images/mainCharacter/mainCharacter1.PNG")).toUri().toString());
+        gameEngine.setCurrentCharactersImages(charIms);
+        scene = new Scene(gameEngine.convertMapToPane(), 800, 600);
+        gameController = new GameController(scene, kc, gameEngine);
 
-        character = new Character();
-
-        //TODO initialize game character
-
-
-        anchorPane.setStyle("-fx-background-color: #b0e0ff");
-
-        gameCharacter = new ImageView(
-                new Image(GameFrame.class.getResourceAsStream("/images/character1.PNG")));
-
-        setGameCharacterProperties();
-
-        DIRECTION direction = DIRECTION.NONE;
-
-        Timeline moveCharacterLeft = new Timeline(new KeyFrame(
-                Duration.millis(70),
-                ae -> moveCharacterLeft(gameCharacter)));
-        moveCharacterLeft.setCycleCount(Animation.INDEFINITE);
-
-        Timeline moveCharacterRight = new Timeline(new KeyFrame(
-                Duration.millis(70),
-                ae -> moveCharacterRight(gameCharacter)));
-        moveCharacterLeft.setCycleCount(Animation.INDEFINITE);
-
-
-        anchorPane.getChildren().add(gameCharacter);
-
-        scene.setOnKeyPressed((KeyEvent e) -> {
-            KeyCode keyPress = e.getCode();
-
-            if(keyPress == KeyCode.LEFT)
-            {
-                moveCharacterLeft.play();
+        timer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                updateFrame();
             }
-            else if(keyPress == KeyCode.RIGHT)
-            {
-                moveCharacterRight.play();
-            }
-        });
-        scene.setOnKeyReleased((KeyEvent e) -> {
-            KeyCode keyPress = e.getCode();
-            if(keyPress == KeyCode.LEFT)
-            {
-                moveCharacterLeft.stop();
-            }
-            if(keyPress == KeyCode.RIGHT)
-            {
-                moveCharacterRight.stop();
-            }
-
-            characterMoveSpeed=INITIAL_CHARACTER_SPEED;
-        });
+        };
+        timer.start();
 
         gameStage.setScene(scene);
         gameStage.setTitle("Icy Tower");
         gameStage.show();
     }
 
-    private static void setGameCharacterProperties() {
+/*    private static void setGameCharacterProperties() {
         gameCharacter.setLayoutX(400);
         gameCharacter.setLayoutY(500);
         gameCharacter.setFitHeight(80);
         gameCharacter.setFitWidth(50);
     }
-
+*/
     public static void playSong(){
 
         Media media = SoundManager.getInstance().getSelectedSong();
@@ -123,7 +83,11 @@ public class GameFrame extends Application{
         mediaplayer.play();
     }
 
-    private void moveCharacterLeft(ImageView gameCharacter){
+    private void updateFrame(){
+        gameEngine.convertMapToPane();
+    }
+
+ /*   private void moveCharacterLeft(ImageView gameCharacter){
         characterMoveSpeed += ACCELERATION;
         if(gameCharacter.getTranslateX() - characterMoveSpeed> GAME_LEFT_LIMIT)
             gameCharacter.setTranslateX(gameCharacter.getTranslateX() - characterMoveSpeed);
@@ -136,5 +100,6 @@ public class GameFrame extends Application{
             gameCharacter.setTranslateX(gameCharacter.getTranslateX() + characterMoveSpeed);
         else
             gameCharacter.setTranslateX(GAME_RIGHT_LIMIT);
-    }
+    }*/
+
 }

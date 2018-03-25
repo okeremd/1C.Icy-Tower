@@ -1,28 +1,49 @@
 package controller;
 
-public class GameController{
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import model.logic.GameEngine;
 
-    public GameController() {
+public class GameController{
+	Scene sc;
+	GameEngine gameEngine;
+    public GameController(Scene scene, KeyCode[] keyCode, GameEngine gameEngine) {
+    	sc = scene;
+    	this.gameEngine = gameEngine;
+    	sc.setOnKeyPressed(event -> {
+    		if(event.getCode() == keyCode[0]){
+    			moveLeft();
+			}
+			else if(event.getCode() == keyCode[1]){
+				moveRight();
+			}
+			else if(event.getCode() == keyCode[2]){
+				jump();
+			}
+			else if(event.getCode() == keyCode[3]){
+				pause();
+			}
+		});
     }
 
     public void moveLeft() {
-		// TODO - implement GameController.moveLeft
-		throw new UnsupportedOperationException();
+		gameEngine.moveCharacterLeft();
 	}
 
 	public void moveRight() {
-		// TODO - implement GameController.moveRight
-		throw new UnsupportedOperationException();
+		gameEngine.moveCharacterRight();
 	}
 
 	public void jump() {
-		// TODO - implement GameController.jump
-		throw new UnsupportedOperationException();
+		gameEngine.jumpCharacter();
 	}
 
 	public void pause() {
-		// TODO - implement GameController.pause
-		throw new UnsupportedOperationException();
+		gameEngine.pauseGame();
+	}
+
+	public void stop(){
+
 	}
 
 }

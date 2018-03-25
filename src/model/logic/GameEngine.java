@@ -1,8 +1,15 @@
 package model.logic;
 
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.Timer;
+
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import model.entity.Camera;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.*;
+import model.entity.*;
 
 public class GameEngine {
 
@@ -17,26 +24,33 @@ public class GameEngine {
 	private boolean gameFinished;
 	private boolean gamePaused;
 	private int difficulty;
-
+	private Map map;
+	private Pane pane;
 	//TODO this class should initialize a display and then maintain the game process
 	//TODO let game engine initialize a game character, map that contains game objects
 	//TODO then let view module display it.
 	//TODO then process should continue throughout the gametime
 
 	public GameEngine() {
-		// TODO - implement GameEngine.GameEngine
-		throw new UnsupportedOperationException();
+		map = new Map();
+		pane = new Pane();
+		BackgroundImage backgroundImage = new BackgroundImage(new Image(Paths.get( "./images/gameObject/gameBack.png").toUri().toString()), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+		pane.setBackground(new Background(backgroundImage));
+
 	}
 
-	/**
-	 * 
-	 * @param difficulty
-	 * @param charImages
-	 * @param buttons
-	 */
-	public GameEngine(int difficulty, Image[] charImages, char[] buttons) {
-		// TODO - implement GameEngine.GameEngine
-		throw new UnsupportedOperationException();
+	public Pane convertMapToPane(){
+		pane.getChildren().clear();
+		for(GameObject g: map.getGameObjects()){
+			ImageView add = new ImageView(g.getImages()[0]);
+			add.setTranslateX(g.getPosX());
+			add.setTranslateY(g.getPosY());
+			pane.getChildren().add(add);
+		}
+		return pane;
+	}
+	public GameEngine(int difficulty, KeyCode[] buttons) {
+
 	}
 
 	/**
@@ -44,8 +58,18 @@ public class GameEngine {
 	 * @param images
 	 */
 	public void setCurrentCharactersImages(Image[] images) {
-		// TODO - implement GameEngine.setCurrentCharactersImages
-		throw new UnsupportedOperationException();
+		map.setCurrentCharactersImages(images);
+	}
+
+	public void moveCharacterLeft(){
+		map.moveLeft();
+	}
+
+	public void moveCharacterRight(){
+		map.moveRight();
+	}
+	public void jumpCharacter(){
+		map.jump();
 	}
 
 	/**

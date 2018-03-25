@@ -8,21 +8,31 @@ import java.util.ArrayList;
 
 public class Map {
 
+	public static final int GAME_LEFT_LIMIT = 50;
+	public static final int GAME_RIGHT_LIMIT = 630;
+	public static final int ACCELERATION = 10;
+	public static final int INITIAL_CHARACTER_SPEED = 20;
+
 	private ArrayList<GameObject> gameObjects;
-	private Character character;
+	private Character gameCharacter;
 	private int level;
 	private Random rand;
+
+	private int characterMoveSpeed = INITIAL_CHARACTER_SPEED;
 
     public Map() {
 		gameObjects = new ArrayList<>();
 		rand = new Random();
-		character = new Character();
+		gameCharacter = new Character();
+		gameCharacter.setPosX(280);
+		gameCharacter.setPosY(450);
 		level = 0;
+		gameObjects.add(gameCharacter);
     }
 
     public Map(Map map){
     	this.gameObjects = map.gameObjects;
-    	this.character = map.character;
+    	this.gameCharacter = map.gameCharacter;
     	this.level = map.level;
 	}
     /**
@@ -30,7 +40,7 @@ public class Map {
 	 * @param images
 	 */
 	public void setCurrentCharactersImages(Image[] images) {
-		character.setImages(images);
+		gameCharacter.setImages(images);
 	}
 
 	/**
@@ -55,6 +65,10 @@ public class Map {
 	public void createFullWidthLevel() {
 		// TODO - implement Map.createFullWidthLevel
 		throw new UnsupportedOperationException();
+	}
+
+	public ArrayList<GameObject> getGameObjects() {
+		return gameObjects;
 	}
 
 	public void createBonus() {
@@ -110,6 +124,26 @@ public class Map {
 				gameObjects.add(bar);
 			}
 		}
+	}
+
+	public void moveLeft(){
+//		characterMoveSpeed += ACCELERATION;
+		if(gameCharacter.getPosX() - characterMoveSpeed> GAME_LEFT_LIMIT)
+			gameCharacter.setPosX(gameCharacter.getPosX() - characterMoveSpeed);
+		else
+			gameCharacter.setPosX(GAME_LEFT_LIMIT);
+	}
+
+	public void moveRight(){
+//		characterMoveSpeed += ACCELERATION;
+		if(gameCharacter.getPosX() + characterMoveSpeed< GAME_RIGHT_LIMIT)
+			gameCharacter.setPosX(gameCharacter.getPosX() + characterMoveSpeed);
+		else
+			gameCharacter.setPosX(GAME_RIGHT_LIMIT);
+	}
+
+	public void jump(){
+
 	}
 
 }
