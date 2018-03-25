@@ -14,21 +14,21 @@
       <ImageView fitHeight="150.0" fitWidth="99.0" layoutX="414.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="backToMainMenuButton" layoutX="676.0" layoutY="546.0" mnemonicParsing="false" onAction="#openMainMenuScene" text="Back To Menu" />
 
-      <Button onAction="#backToSettings" layoutX="550.0" layoutY="546.0" mnemonicParsing="false" text="Back to Settings" />
-      <Button layoutX="324.0" layoutY="288.0" mnemonicParsing="false" text="Select" />
-      <Button layoutX="398.0" layoutY="288.0" mnemonicParsing="false" text="Select" />
-      <Button layoutX="478.0" layoutY="288.0" mnemonicParsing="false" text="Select" />
-      <Text layoutX="321.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Character Settings">
+      <Button layoutX="550.0" layoutY="546.0" mnemonicParsing="false" onAction="#backToSettings" text="Back to Settings" />
+      <Button fx:id="ch1" layoutX="297.0" layoutY="288.0" mnemonicParsing="false" text="Select" />
+      <Button fx:id="ch2" layoutX="387.0" layoutY="288.0" mnemonicParsing="false" text="Select" />
+      <Button fx:id="ch3" layoutX="477.0" layoutY="288.0" mnemonicParsing="false" text="Select" />
+      <Text layoutX="269.0" layoutY="124.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Character Settings">
          <font>
-            <Font size="25.0" />
+            <Font size="36.0" />
          </font>
       </Text>
-      <ImageView fitHeight="89.0" fitWidth="79.0" layoutX="321.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="89.0" fitWidth="79.0" layoutX="297.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@/images/character1.PNG" />
          </image>
       </ImageView>
-      <ImageView fitHeight="89.0" fitWidth="79.0" layoutX="393.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="89.0" fitWidth="79.0" layoutX="387.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@/images/character1.PNG" />
          </image>

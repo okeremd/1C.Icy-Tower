@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.entity.Character;
 import model.logic.ButtonManager;
+import model.logic.CharacterManager;
 import model.logic.GameEngine;
 import model.logic.SoundManager;
 
@@ -46,9 +47,8 @@ public class GameFrame extends Application{
         KeyCode[] kc = createKeycode();
 
         gameEngine = new GameEngine();
-        Image[] charIms = new Image[1];
 
-        charIms[0] = new Image(Paths.get(("./images/mainCharacter/mainCharacter1.PNG")).toUri().toString());
+        Image[] charIms = characterImage();
 
         gameEngine.setCurrentCharactersImages(charIms);
 
@@ -85,6 +85,13 @@ public class GameFrame extends Application{
 
     private void updateFrame(){
         gameEngine.convertMapToPane();
+
+    }
+
+    private Image[] characterImage(){
+
+        Image[] charIms = CharacterManager.getInstance().getCurrent();
+        return charIms;
 
     }
 

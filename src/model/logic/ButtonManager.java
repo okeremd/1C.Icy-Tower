@@ -9,6 +9,10 @@ public class ButtonManager {
 
 	public ButtonManager(){
 		buttons = new KeyCode[4];
+		buttons[0] = KeyCode.LEFT;
+		buttons[1] = KeyCode.RIGHT;
+		buttons[2] = KeyCode.SPACE;
+		buttons[3] = KeyCode.P;
 
 	}
 	public static ButtonManager getInstance(){
