@@ -2,6 +2,8 @@ package model.entity;
 
 import javafx.scene.image.Image;
 import javafx.geometry.Point2D;
+
+import java.util.Iterator;
 import java.util.Random;
 
 import java.util.ArrayList;
@@ -78,10 +80,11 @@ public class  Map {
 	}
 
 	public void updateObjects() {
-		for(GameObject obj: gameObjects){
-			if(obj.getPosY() < level){
-				gameObjects.remove(obj);
-			}
+		Iterator<GameObject> iter = gameObjects.iterator();
+		while(iter.hasNext()){
+			GameObject obj = iter.next();
+
+			obj.setPosY(obj.getPosY()-1);
 		}
 	}
 
@@ -95,14 +98,31 @@ public class  Map {
 
 	public void updateCharacter() {
 		//gravity
-		if(gameCharacter.getPosY()>0 || force>0)
+		if(force>0)
 		{
-			System.out.println(gameCharacter.getPosY());
+			//force decreases as the character goes up, physics 101
 			gameCharacter.setPosY(gameCharacter.getPosY()-10+force);
-			System.out.println(gameCharacter.getPosY());
+			force-=30;
+		}
+		else{
+			//if there is an object that the gameobject can land to
+			for(GameObject gameObject : gameObjects)
+			{
+				if(gameObject != gameCharacter)
+				{
+					if(gameObject.getPosY() == gameCharacter.getPosY())
+						force=0;
+				}
+			}
+			//if there is force going down and the character is not at the bottom
+			if(force!= 0 && gameCharacter.getPosY()!=0)
+			{
+				//let the gravity fall the character
+				gameCharacter.setPosY(gameCharacter.getPosY()+force);
+			}
 		}
 
-		force-=30;
+
 	}
 
 	public void createLevel(int type, int numOfBars){
@@ -162,9 +182,12 @@ public class  Map {
 	public void jump(){
 
 		force=100;
+	}
+	public void gameOver(){
+		if(gameCharacter.getPosY()<-30)
+		{
 
-
-
+		}
 	}
 
 }
