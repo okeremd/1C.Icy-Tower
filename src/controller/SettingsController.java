@@ -1,9 +1,8 @@
-package view;
+package controller;
 
+import controller.MainController;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 

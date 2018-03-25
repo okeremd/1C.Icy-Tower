@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SoundSettingsController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SoundSettingsController">
        <VBox layoutX="354.0" layoutY="104.0" prefHeight="344.0" prefWidth="168.0" spacing="65.0">
       <children>
          <ChoiceBox fx:id="selectSongBox" onAction="#changeSelectedSong" prefHeight="39.0" prefWidth="167.0">

@@ -1,5 +1,6 @@
-package view;
+package controller;
 
+import controller.MainController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 
