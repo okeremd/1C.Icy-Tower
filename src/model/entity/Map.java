@@ -25,8 +25,7 @@ public class Map {
 		rand = new Random();
 		gameCharacter = new Character();
 		gameCharacter.setPosX(280);
-		gameCharacter.setPosY(450);
-		level = 0;
+		level = 1;
 		gameObjects.add(gameCharacter);
     }
 
@@ -48,17 +47,18 @@ public class Map {
 	 * @param diff
 	 */
 	public void createNextAltitudeObjects(int diff) {
+		int numOfBar = rand.nextInt(3) + 1;
 		if(level % 100 < 25){
-			createBar(1);
+			createLevel(1, numOfBar);
 		}
 		else if(level % 100 < 50){
-			createBar(2);
+			createLevel(2, numOfBar);
 		}
 		else if(level % 100 < 75){
-			createBar(3);
+			createLevel(3, numOfBar);
 		}
 		else{
-			createBar(4);
+			createLevel(4, numOfBar);
 		}
 	}
 
@@ -84,45 +84,44 @@ public class Map {
 		}
 	}
 
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
 	public void updateCharacter() {
 		// TODO - implement Map.updateCharacter
 		throw new UnsupportedOperationException();
 	}
 
-	public void createBar(int type){
+	public void createLevel(int type, int numOfBars){
+		Bar bars[] = new Bar[numOfBars];
 		Bar bar;
-		double possibility = rand.nextDouble() % (Math.pow(30, (1/(level))));
-		if(type == 1){
-			if(possibility < 3){
+		int current = 0;
+		double width = 0;
+		while(current < numOfBars) {
+			if (type == 1) {
 				bar = new Icy();
-				possibility = rand.nextDouble() % 5;
-				bar.setWidth(4 + (int)possibility);
-				gameObjects.add(bar);
 			}
-		}
-		if(type == 2){
-			if(possibility < 3){
+			else if (type == 2) {
 				bar = new Sticky();
-				possibility = rand.nextDouble() % 5;
-				bar.setWidth(4 + (int)possibility);
-				gameObjects.add(bar);
 			}
-		}
-		if(type == 3) {
-			if (possibility < 3) {
+			else if (type == 3) {
 				bar = new Wooden();
-				possibility = rand.nextDouble() % 5;
-				bar.setWidth(4 + (int) possibility);
-				gameObjects.add(bar);
 			}
-		}
-		if(type == 4){
-			if(possibility < 3){
+			else{
 				bar = new HardlyVisible();
-				possibility = rand.nextDouble() % 5;
-				bar.setWidth(4 + (int)possibility);
-				gameObjects.add(bar);
 			}
+			width = rand.nextDouble() % 5;
+			bar.setWidth(4 + (int) width);
+			bar.setPosX(rand.nextInt(550) + 50);
+			bar.setPosY(50 * level);
+			gameObjects.add(bar);
+			bars[current] = bar;
+			current++;
 		}
 	}
 

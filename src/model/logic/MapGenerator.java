@@ -15,20 +15,21 @@ public class MapGenerator {
         throw new UnsupportedOperationException();
     }
 
-    /**
-     *
-     * @param difficulty
-     * @param charImages
-     */
-    public MapGenerator(int difficulty, Image[] charImages) {
-        // TODO - implement MapGenerator.MapGenerator
-        throw new UnsupportedOperationException();
+
+    public MapGenerator(Map map) {
+        this.map = map;
     }
 
-	public void updateMap() {
-		// TODO - implement MapGenerator.updateMap
-		throw new UnsupportedOperationException();
+	public void initializeMap() {
+        for(int i = 0; i < 10; i++){
+            map.createNextAltitudeObjects(1);
+            map.setLevel(i+1);
+        }
 	}
+
+	public void updateMap(){
+        map.createNextAltitudeObjects(map.getLevel() % 25);
+    }
 
 
 }

@@ -36,16 +36,31 @@ public class GameEngine {
 		pane = new Pane();
 		BackgroundImage backgroundImage = new BackgroundImage(new Image(Paths.get( "./images/gameObject/gameBack.png").toUri().toString()), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		pane.setBackground(new Background(backgroundImage));
-
+		mapgen = new MapGenerator(map);
+		mapgen.initializeMap();
 	}
 
 	public Pane convertMapToPane(){
 		pane.getChildren().clear();
 		for(GameObject g: map.getGameObjects()){
-			ImageView add = new ImageView(g.getImages()[0]);
-			add.setTranslateX(g.getPosX());
-			add.setTranslateY(g.getPosY());
-			pane.getChildren().add(add);
+			int xsofar = 0;
+			for(int i = 0; i < g.getImages().length; i++) {
+				ImageView add = new ImageView(g.getImages()[i]);
+				add.setTranslateX(g.getPosX()+ xsofar);
+				xsofar += g.getImages()[i].getWidth();
+				add.setTranslateY(500 - g.getPosY());
+				pane.getChildren().add(add);
+				if(g instanceof Bar && i == 0){
+					for(int j = 0; j < ((Bar) g).getWidth(); j++ ){
+						add = new ImageView(g.getImages()[1]);
+						add.setTranslateX(g.getPosX()+ xsofar);
+						xsofar += g.getImages()[1].getWidth();
+						add.setTranslateY(500 - g.getPosY());
+						pane.getChildren().add(add);
+					}
+					i++;
+				}
+			}
 		}
 		return pane;
 	}
@@ -162,6 +177,10 @@ public class GameEngine {
 	public void changeMusic() {
 		// TODO - implement GameEngine.changeMusic
 		throw new UnsupportedOperationException();
+	}
+
+	public Map getMap(){
+		return map;
 	}
 
 }
