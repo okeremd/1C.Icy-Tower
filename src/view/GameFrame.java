@@ -36,21 +36,23 @@ public class GameFrame extends Application{
     private ImageView bar;
     private ImageView wall;
     */
-    public static MediaPlayer mediaplayer;
+    public MediaPlayer mediaplayer;
 
     public void start(Stage gameStage) {
         //AnchorPane anchorPane = new AnchorPane();
         playSong();
-        KeyCode[] kc = new KeyCode[4];
-        kc[0] = KeyCode.LEFT;
-        kc[1] = KeyCode.RIGHT;
-        kc[2] = KeyCode.UP;
-        kc[3] = KeyCode.P;
+
+        KeyCode[] kc = createKeycode();
+
         gameEngine = new GameEngine();
         Image[] charIms = new Image[1];
+
         charIms[0] = new Image(Paths.get(("./images/mainCharacter/mainCharacter1.PNG")).toUri().toString());
+
         gameEngine.setCurrentCharactersImages(charIms);
+
         scene = new Scene(gameEngine.convertMapToPane(), 800, 600);
+
         gameController = new GameController(scene, kc, gameEngine);
 
         timer = new AnimationTimer() {
@@ -66,14 +68,16 @@ public class GameFrame extends Application{
         gameStage.show();
     }
 
-/*    private static void setGameCharacterProperties() {
-        gameCharacter.setLayoutX(400);
-        gameCharacter.setLayoutY(500);
-        gameCharacter.setFitHeight(80);
-        gameCharacter.setFitWidth(50);
+    private KeyCode[] createKeycode() {
+        KeyCode[] kc = new KeyCode[4];
+        kc[0] = KeyCode.LEFT;
+        kc[1] = KeyCode.RIGHT;
+        kc[2] = KeyCode.UP;
+        kc[3] = KeyCode.P;
+        return kc;
     }
-*/
-    public static void playSong(){
+
+    public void playSong(){
 
         Media media = SoundManager.getInstance().getSelectedSong();
         mediaplayer = new MediaPlayer(media);
@@ -86,20 +90,5 @@ public class GameFrame extends Application{
     private void updateFrame(){
         gameEngine.convertMapToPane();
     }
-
- /*   private void moveCharacterLeft(ImageView gameCharacter){
-        characterMoveSpeed += ACCELERATION;
-        if(gameCharacter.getTranslateX() - characterMoveSpeed> GAME_LEFT_LIMIT)
-            gameCharacter.setTranslateX(gameCharacter.getTranslateX() - characterMoveSpeed);
-        else
-            gameCharacter.setTranslateX(GAME_LEFT_LIMIT);
-    }
-    private void moveCharacterRight(ImageView gameCharacter){
-        characterMoveSpeed += ACCELERATION;
-        if(gameCharacter.getTranslateX() + characterMoveSpeed < GAME_RIGHT_LIMIT)
-            gameCharacter.setTranslateX(gameCharacter.getTranslateX() + characterMoveSpeed);
-        else
-            gameCharacter.setTranslateX(GAME_RIGHT_LIMIT);
-    }*/
 
 }

@@ -127,7 +127,7 @@ public class Map {
 	}
 
 	public void moveLeft(){
-//		characterMoveSpeed += ACCELERATION;
+		characterMoveSpeed += ACCELERATION;
 		if(gameCharacter.getPosX() - characterMoveSpeed> GAME_LEFT_LIMIT)
 			gameCharacter.setPosX(gameCharacter.getPosX() - characterMoveSpeed);
 		else
@@ -135,13 +135,23 @@ public class Map {
 	}
 
 	public void moveRight(){
-//		characterMoveSpeed += ACCELERATION;
+		characterMoveSpeed += ACCELERATION;
 		if(gameCharacter.getPosX() + characterMoveSpeed< GAME_RIGHT_LIMIT)
 			gameCharacter.setPosX(gameCharacter.getPosX() + characterMoveSpeed);
 		else
 			gameCharacter.setPosX(GAME_RIGHT_LIMIT);
 	}
 
+	public void stopMoveRight(){
+		characterMoveSpeed = 0;
+	}
+
+	public void stopMoveLeft(){
+		characterMoveSpeed = 0;
+	}
+	public void stopMoveJump(){
+
+	}
 	public void jump(){
 
 	}

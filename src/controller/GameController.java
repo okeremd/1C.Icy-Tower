@@ -24,6 +24,22 @@ public class GameController{
 				pause();
 			}
 		});
+
+    	sc.setOnKeyReleased(event -> {
+			if(event.getCode() == keyCode[0]){
+				stopMoveLeft();
+			}
+			else if(event.getCode() == keyCode[1]){
+				stopMoveRight();
+			}
+			else if(event.getCode() == keyCode[2]){
+				stopJump();
+			}
+			else if(event.getCode() == keyCode[3]){
+				pause();
+			}
+		});
+
     }
 
     public void moveLeft() {
@@ -32,6 +48,18 @@ public class GameController{
 
 	public void moveRight() {
 		gameEngine.moveCharacterRight();
+	}
+
+	public void stopMoveLeft(){
+    	gameEngine.stopMoveCharacterLeft();
+	}
+
+	public void stopMoveRight(){
+    	gameEngine.stopMoveCharacterRight();
+	}
+
+	public void stopJump(){
+    	gameEngine.stopJump();
 	}
 
 	public void jump() {

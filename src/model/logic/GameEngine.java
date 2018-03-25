@@ -62,14 +62,31 @@ public class GameEngine {
 	}
 
 	public void moveCharacterLeft(){
+
 		map.moveLeft();
 	}
 
 	public void moveCharacterRight(){
+
 		map.moveRight();
 	}
 	public void jumpCharacter(){
+
 		map.jump();
+	}
+
+	public void stopMoveCharacterLeft(){
+
+		map.stopMoveLeft();
+	}
+
+	public void stopMoveCharacterRight(){
+
+		map.stopMoveRight();
+	}
+
+	public void stopJump(){
+		map.stopMoveJump();
 	}
 
 	/**
