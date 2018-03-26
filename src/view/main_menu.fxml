@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="anchor" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
+<AnchorPane id="anchor" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
    <children>
       <GridPane layoutX="516.0" layoutY="404.0" prefHeight="139.0" prefWidth="200.0">
         <columnConstraints>
@@ -20,12 +19,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#openPlayScene" text="Play Game" />
-            <Button mnemonicParsing="false" onAction="#openSettingsScene" text="Settings" GridPane.columnIndex="1" />
-            <Button mnemonicParsing="false" onAction="#openHowToPlayScene" text="How To Play" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#openCreditsScene" text="Credits" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#openHighScoreScene" text="High Scores" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" onAction="#openExitScene" text="Exit" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#openPlayScene" prefHeight="39.0" prefWidth="94.0" text="Play Game" />
+            <Button mnemonicParsing="false" onAction="#openSettingsScene" prefHeight="39.0" prefWidth="93.0" text="Settings" GridPane.columnIndex="1" />
+            <Button mnemonicParsing="false" onAction="#openHowToPlayScene" prefHeight="39.0" prefWidth="93.0" text="How To Play" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#openCreditsScene" prefHeight="39.0" prefWidth="94.0" text="Credits" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#openHighScoreScene" prefHeight="39.0" prefWidth="94.0" text="High Scores" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#openExitScene" prefHeight="39.0" prefWidth="94.0" text="Exit" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>

@@ -56,7 +56,7 @@ public class Display extends Application {
         characterSettingsScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
 
         gameOverScene = initializeScene("game_over.fxml");
-        gameOverScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
+        gameOverScene.getStylesheets().add(this.getClass().getResource("gameover.css").toExternalForm());
 
 
         MainController.getInstance().setMainMenuScene(mainMenuScene);
