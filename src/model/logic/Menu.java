@@ -10,14 +10,11 @@ public class Menu {
 	private GameEngine ge;
 	private int MENU_BUTTON_NO;
 	private JFXPanel MenuLayout;
-	private view.DisplayFrame CreditsLayout;
-	private view.DisplayFrame HowToPlayLayout;
-	private view.DisplayFrame HighScoresLayout;
 	private StartManager sm;
 
 	public Menu() {
 		// TODO - implement Menu.Menu
-		ge = new GameEngine();
+		//ge = new GameEngine();
 		throw new UnsupportedOperationException();
 
 	}

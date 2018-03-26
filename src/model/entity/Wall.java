@@ -1,13 +1,14 @@
 package model.entity;
 
+import javafx.scene.image.Image;
+
+import java.nio.file.Paths;
+
 public class Wall extends GameObject {
 
-    private final int IMAGE_NO = 33; // final :/
-
     public Wall() {
-    }
-
-    public int getIMAGE_NO() {
-        return IMAGE_NO;
+        Image[] images = new Image[1]; // wall has 1 image
+        images[0] = new Image(Paths.get("./images/gameObject/wall.png").toUri().toString());
+        super.setImages(images);
     }
 }

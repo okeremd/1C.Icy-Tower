@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ExitController">
+   <children>
+      <Button layoutX="245.0" layoutY="212.0" onAction="#quitGame" mnemonicParsing="false" text="YES" />
+      <Button layoutX="322.0" layoutY="212.0" onAction="#openMainMenuScene" mnemonicParsing="false" text="NO" />
+      <Text layoutX="245.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you want to exit?" />
+   </children>
+</AnchorPane>

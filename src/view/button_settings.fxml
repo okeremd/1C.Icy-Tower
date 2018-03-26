@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ButtonSettingsController">
+   <children>
+       <Button fx:id="backToMainMenuButton" layoutX="676.0" layoutY="546.0" mnemonicParsing="false" onAction="#openMainMenuScene" text="Back To Menu" />
+
+       <Button layoutX="550.0" layoutY="546.0" mnemonicParsing="false" onAction="#backToSettings" text="Back to Settings" />
+      <TextFlow layoutX="244.0" layoutY="64.0" prefHeight="58.0" prefWidth="282.0">
+         <children>
+             <Text smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Button Settings" wrappingWidth="305.916015625">
+                 <font>
+                     <Font size="36.0" />
+                 </font>
+             </Text>
+         </children></TextFlow>
+      <Button fx:id="arrows" layoutX="497.0" layoutY="184.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="85.0" text="Select" />
+      <Button fx:id="awd" layoutX="497.0" layoutY="360.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="85.0" text="Select" />
+      <TextArea fx:id="ButtonText" layoutX="244.0" layoutY="137.0" prefHeight="341.0" prefWidth="245.0" text="left                  &lt;-&#10;right                -&gt;&#10;jump             space&#10;&#10;&#10;left                   A&#10;right                D&#10;jump               W">
+         <font>
+            <Font size="24.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect></TextArea>
+   </children>
+</AnchorPane>

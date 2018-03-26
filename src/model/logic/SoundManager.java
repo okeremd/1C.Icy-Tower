@@ -1,37 +1,55 @@
 package model.logic;
 
-import javafx.scene.media.AudioClip;
+
+import javafx.scene.media.Media;
+
+import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class SoundManager {
+    private int currentsong;
+    private double currentvolume;
+    private ArrayList<Media> sounds;
+    private final int SOUND_NO = 3;
 
-	private int volume;
-	private AudioClip[] musics;
-	private int current;
+    private static SoundManager soundManager;
 
+    private SoundManager(){
+        sounds = new ArrayList<>();
+        for(int no = 0; no < SOUND_NO; no++){
+            sounds.add(new Media(Paths.get("music/audio" + no + ".mp3").toUri().toString()));
+        }
+        currentvolume = 0.5;
+    }
 
-	/**
-	 * 
-	 * @param musics
-	 */
-	public void setMusics(AudioClip[] musics) {
-		this.musics = musics;
-	}
+    public static SoundManager getInstance(){
+        if(soundManager == null)
+        {
+            soundManager = new SoundManager();
+        }
+        return soundManager;
+    }
 
-	/**
-	 * 
-	 * @param index
-	 */
-	public void setCurrent(int index) {
-		// TODO - implement SoundManager.setCurrent
-		throw new UnsupportedOperationException();
-	}
+    public ArrayList<Media> getSounds() {
 
-	/**
-	 * 
-	 * @param volume
-	 */
-	public void setVolume(int volume) {
-		this.volume = volume;
-	}
+        return sounds;
+    }
+
+    public void setVolume(double volume) {
+
+        currentvolume = volume;
+    }
+
+    public Media getSelectedSong() {
+        return sounds.get(currentsong);
+    }
+
+    public double getVolume() {
+        return currentvolume;
+    }
+
+    public void setSong(int song) {
+        currentsong = song;
+    }
 
 }

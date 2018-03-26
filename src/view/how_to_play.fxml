@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.text.Text?>
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HowToPlayController">
+   <children>
+      <Button fx:id="backToMainMenuButton" layoutX="676.0" layoutY="546.0" mnemonicParsing="false" onAction="#openMainMenuScene" text="Back To Menu" />
+      <Pane layoutX="254.0" layoutY="129.0" prefHeight="271.0" prefWidth="328.0">
+         <children>
+            <TextArea fx:id="HowToPlayText" layoutX="-3.0" layoutY="5.0" prefHeight="263.0" prefWidth="344.0" text="Jump to the bars without falling down to the space!!&#10;Hit the wall and jump at the same time, &#10;                       you'll go higher!!&#10;You must be fast!! unless you'll die!!                         &#10;If you saw a balloon, go and take it.&#10;                         you'll go up easily!!&#10;If you saw a bomb, run away!!                         &#10;It will try to kill you.&#10;">
+               <font>
+                  <Font size="14.0" />
+               </font></TextArea>
+         </children>
+      </Pane>
+      <Text layoutX="347.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="How To Play">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

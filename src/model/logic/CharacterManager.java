@@ -2,15 +2,26 @@ package model.logic;
 
 import javafx.scene.image.Image;
 
+import java.nio.file.Paths;
+
 public class CharacterManager{
 
 	private Image[] CharacterPrevs;
 	private Image[] current;
 	private int CHARPAGE_BUTTON_NO;
+	private static CharacterManager characterManager;
 
     public CharacterManager() {
+        current = new Image[1];
+        current[0] = new Image(Paths.get(("./images/mainCharacter/character1.PNG")).toUri().toString());
     }
 
+    public static CharacterManager getInstance(){
+        if(characterManager== null)
+            characterManager = new CharacterManager();
+        return characterManager;
+
+    }
     public Image[] getCharacterPrevs() {
         return CharacterPrevs;
     }
