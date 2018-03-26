@@ -7,17 +7,17 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameOverController">
     <children>
-        <Text layoutX="160.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Over">
+        <Text fill="#3ed31c" layoutX="214.0" layoutY="248.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Over">
             <font>
-                <Font size="55.0" />
+                <Font name="Comic Sans MS Bold" size="72.0" />
             </font>
         </Text>
-        <Text layoutX="178.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Score">
+        <Text fill="#14e0e8" layoutX="223.0" layoutY="312.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Score : " wrappingWidth="163.50146484375">
             <font>
-                <Font size="21.0" />
+                <Font name="Cooper Black" size="36.0" />
             </font>
         </Text>
-        <Button fx:id="backToMainMenuButton" layoutX="676.0" layoutY="546.0" mnemonicParsing="false" onAction="#openMainMenuScene" text="Back To Menu" />
+        <Button fx:id="backToMainMenuButton" layoutX="633.0" layoutY="527.0" mnemonicParsing="false" onAction="#openMainMenuScene" text="Back To Menu" />
 
     </children>
 </AnchorPane>
