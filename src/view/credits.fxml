@@ -7,28 +7,28 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreditsController">
    <children>
-      <AnchorPane layoutX="324.0" layoutY="145.0" prefHeight="212.0" prefWidth="163.0">
+      <AnchorPane layoutX="317.0" layoutY="161.0" prefHeight="212.0" prefWidth="163.0">
          <children>
-            <Text layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ozan Keem Devamlı">
+            <Text layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ozan Kerem Devamlı">
                <font>
-                  <Font size="20.0" />
+                  <Font size="25.0" />
                </font>
             </Text>
-            <Text layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Berke Soysal">
+            <Text layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Berke Soysal">
                <font>
-                  <Font size="20.0" />
+                  <Font size="25.0" />
                </font>
             </Text>
-            <Text layoutX="-8.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cansu Yıldırım">
+            <Text layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cansu Yıldırım" wrappingWidth="207.546875">
                <font>
-                  <Font size="20.0" />
+                  <Font size="25.0" />
                </font>
             </Text>
          </children>
       </AnchorPane>
-      <Text layoutX="347.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Credits">
+      <Text layoutX="354.0" layoutY="135.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Credits">
          <font>
-            <Font size="25.0" />
+            <Font name="System Bold" size="36.0" />
          </font>
       </Text>
       <Button fx:id="backToMainMenuButton" layoutX="676.0" layoutY="546.0" mnemonicParsing="false" onAction="#openMainMenuScene" text="Back To Menu" />

@@ -14,11 +14,11 @@
        <Button fx:id="backToMainMenuButton" layoutX="676.0" layoutY="546.0" mnemonicParsing="false" onAction="#openMainMenuScene" text="Back To Menu" />
 
        <Button layoutX="550.0" layoutY="546.0" mnemonicParsing="false" onAction="#backToSettings" text="Back to Settings" />
-      <TextFlow layoutX="244.0" layoutY="64.0" prefHeight="58.0" prefWidth="282.0">
+      <TextFlow layoutX="244.0" layoutY="79.0" prefHeight="58.0" prefWidth="282.0">
          <children>
              <Text smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Button Settings" wrappingWidth="305.916015625">
                  <font>
-                     <Font size="36.0" />
+                     <Font name="System Bold" size="36.0" />
                  </font>
              </Text>
          </children></TextFlow>

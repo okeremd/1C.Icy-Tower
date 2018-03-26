@@ -18,9 +18,9 @@
       <Button fx:id="ch1" layoutX="297.0" layoutY="288.0" mnemonicParsing="false" text="Select" />
       <Button fx:id="ch2" layoutX="387.0" layoutY="288.0" mnemonicParsing="false" text="Select" />
       <Button fx:id="ch3" layoutX="477.0" layoutY="288.0" mnemonicParsing="false" text="Select" />
-      <Text layoutX="269.0" layoutY="124.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Character Settings">
+      <Text layoutX="260.0" layoutY="124.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Character Settings">
          <font>
-            <Font size="36.0" />
+            <Font name="System Bold" size="36.0" />
          </font>
       </Text>
       <ImageView fitHeight="89.0" fitWidth="79.0" layoutX="297.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
