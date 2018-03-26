@@ -14,6 +14,7 @@ public class Display extends Application {
 
     private Scene mainMenuScene, howToPlayScene, creditsScene, exitScene, settingsScene, highScoreScene,
             soundSettingsScene, buttonSettingsScene, characterSettingsScene, gameOverScene;
+    GameFrame gf;
 
     public static void main(String[] args) {
         launch(args);
@@ -56,6 +57,7 @@ public class Display extends Application {
 
         gameOverScene = initializeScene("game_over.fxml");
         gameOverScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
+
 
         MainController.getInstance().setMainMenuScene(mainMenuScene);
         MainController.getInstance().setHowToPlayScene(howToPlayScene);

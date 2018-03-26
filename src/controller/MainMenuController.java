@@ -38,9 +38,12 @@ public class MainMenuController extends MainController {
     }
     public void openPlayScene(ActionEvent actionEvent){
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.close();
-        primaryStage = new Stage();
+        //primaryStage.close();
+        //primaryStage = new Stage();
         GameFrame gameFrame = new GameFrame();
-        gameFrame.start(primaryStage);
+        primaryStage.setScene(gameFrame.start());
     }
+
+
+
 }

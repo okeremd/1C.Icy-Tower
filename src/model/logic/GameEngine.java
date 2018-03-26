@@ -4,11 +4,16 @@ import java.io.File;
 import java.nio.file.Paths;
 import java.util.Timer;
 
+import controller.MainController;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 import model.entity.*;
 
 public class GameEngine {
@@ -43,10 +48,16 @@ public class GameEngine {
 	public Pane convertMapToPane(){
 		map.updateCharacter();
 		map.updateObjects();
-		if(map.gameOver())
-        {
-            return null;
-        }
+		if(map.gameOver()){
+			Button b = new Button("Main");
+			b.setOnMouseClicked(event -> {
+				Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+				primaryStage.setScene(MainController.getInstance().getMainMenuScene());
+			});
+			pane.getChildren().add(b);
+			return pane;
+		}
+
 		pane.getChildren().clear();
 		for(GameObject g: map.getGameObjects()){
 			int xsofar = 0;

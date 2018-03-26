@@ -15,13 +15,13 @@ public class GameOverController extends MainController{
         System.out.println("hey");
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
 
-        primaryStage.close();
+        //primaryStage.close();
 
-       primaryStage = new Stage();
-       Display display = new Display();
+       //primaryStage = new Stage();
+       //Display display = new Display();
 
         try {
-            display.start(primaryStage);
+          primaryStage.setScene(MainController.getInstance().getMainMenuScene());
         } catch (Exception e) {
             e.printStackTrace();
         }

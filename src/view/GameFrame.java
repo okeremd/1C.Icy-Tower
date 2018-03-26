@@ -2,6 +2,7 @@ package view;
 
 import controller.GameController;
 import controller.GameOverController;
+import controller.MainController;
 import controller.MainMenuController;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
@@ -29,14 +30,16 @@ import java.nio.file.Paths;
 import java.util.concurrent.atomic.AtomicReference;
 
 
-public class GameFrame extends Application{
+public class GameFrame {
 
 
     private GameEngine gameEngine;
     private GameController gameController;
     private AnimationTimer timer;
     Scene scene;
-    private Stage gameStage;
+    Timeline timeline;
+    private Scene gameScene;
+    boolean stopped;
     /*private static Character character;
     private static ImageView gameCharacter;
     private ImageView bar;
@@ -44,11 +47,10 @@ public class GameFrame extends Application{
     */
     public MediaPlayer mediaplayer;
 
-    public void start(Stage gameStage) {
-        this.gameStage = gameStage;
+    public Scene start() {
         //AnchorPane anchorPane = new AnchorPane();
         playSong();
-
+        stopped = false;
         KeyCode[] kc = createKeycode();
 
         gameEngine = new GameEngine();
@@ -57,19 +59,17 @@ public class GameFrame extends Application{
 
         gameEngine.setCurrentCharactersImages(charIms);
 
-        scene = new Scene(gameEngine.convertMapToPane(), 800, 600);
+        gameScene = new Scene(gameEngine.convertMapToPane(), 800, 600);
 
-        gameController = new GameController(scene, kc, gameEngine);
+        gameController = new GameController(gameScene, kc, gameEngine);
 
-        Timeline timeline = new Timeline(new KeyFrame(
+        timeline = new Timeline(new KeyFrame(
                 Duration.millis(50),
                 ae -> updateFrame()));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
 
-        gameStage.setScene(scene);
-        gameStage.setTitle("Icy Tower");
-        gameStage.show();
+        return gameScene;
     }
 
     private KeyCode[] createKeycode() {
@@ -89,13 +89,19 @@ public class GameFrame extends Application{
     }
 
     private void updateFrame(){
-
-        if(gameEngine.convertMapToPane()==null)
+        gameEngine.convertMapToPane();
+        if(gameEngine.getMap().gameOver())
         {
+            timeline.stop();
             mediaplayer.stop();
-            gameStage.setScene(MainMenuController.getInstance().getGameOverScene());
+            System.out.println("gksjhgljd");
+            stopped = true;
         }
 
+    }
+
+    public boolean isStopped(){
+        return stopped;
     }
 
     private Image[] characterImage(){
