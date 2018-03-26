@@ -1,7 +1,7 @@
 package model.entity;
 
 import javafx.scene.image.Image;
-import javafx.geometry.Point2D;
+import model.logic.CollisionManager;
 
 import java.util.Iterator;
 import java.util.Random;
@@ -19,7 +19,8 @@ public class  Map {
 	private Character gameCharacter;
 	private int level;
 	private Random rand;
-	private int force;
+	private int gravity;
+	CollisionManager cm;
 
 	private int characterMoveSpeed = INITIAL_CHARACTER_SPEED;
 
@@ -30,6 +31,8 @@ public class  Map {
 		gameCharacter.setPosX(280);
 		level = 1;
 		gameObjects.add(gameCharacter);
+		gravity = 2;
+		cm = new CollisionManager();
     }
 
     public Map(Map map){
@@ -84,7 +87,7 @@ public class  Map {
 		while(iter.hasNext()){
 			GameObject obj = iter.next();
 
-			obj.setPosY(obj.getPosY()-1);
+			//obj.setPosY(obj.getPosY()-1);
 		}
 	}
 
@@ -98,7 +101,19 @@ public class  Map {
 
 	public void updateCharacter() {
 		//gravity
-		if(force>0)
+
+		if(!gameCharacter.isStanding()){
+			gameCharacter.setVerticalVelocity(gameCharacter.getVerticalVelocity() - gravity);
+			GameObject bar = cm.checkCollision(gameObjects);
+/*			if(bar != null && bar instanceof Bar){
+				gameCharacter.setVerticalVelocity(0);
+				gameCharacter.setStanding(true);
+			}
+*/		}
+		gameCharacter.setPosY(gameCharacter.getPosY() + gameCharacter.getVerticalVelocity());
+
+
+		/*if(force>0)
 		{
 			//force decreases as the character goes up, physics 101
 			gameCharacter.setPosY(gameCharacter.getPosY()-10+force);
@@ -120,7 +135,7 @@ public class  Map {
 				//let the gravity fall the character
 				gameCharacter.setPosY(gameCharacter.getPosY()+force);
 			}
-		}
+		}*/
 
 
 	}
@@ -144,7 +159,7 @@ public class  Map {
 				bar = new HardlyVisible();
 			}
 			width = rand.nextDouble() % 5;
-			bar.setWidth(8 + (int) width);
+			bar.setWidth(12 + (int) width);
 			bar.setPosX(rand.nextInt(550) + 50);
 			bar.setPosY(50 * level);
 			gameObjects.add(bar);
@@ -180,8 +195,10 @@ public class  Map {
 
 	}
 	public void jump(){
-
-		force=100;
+		if(gameCharacter.isStanding()){
+			gameCharacter.setVerticalVelocity(gameCharacter.getJumpPower());
+			gameCharacter.setStanding(false);
+		}
 	}
 	public boolean gameOver(){
 		if(gameCharacter.getPosY()<-30)

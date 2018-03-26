@@ -24,11 +24,5 @@ public class Bar extends GameObject {
 		this.width = width;
 	}
 
-	public int getLeft(){return left; }
 
-	public int getRight(){return right;}
-
-	public int getTop(){return top;}
-
-	public int getBottom(){return bottom;}
 }

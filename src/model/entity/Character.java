@@ -7,22 +7,26 @@ import java.awt.*;
 
 public class Character extends GameObject {
 
-	private Point2D velocity;
+	private int verticalVelocity;
 	private int jumpPower;
 	private final int IMAGE_NO = 5;
+	private boolean standing;
 
-	public Character(){}
+	public Character(){
+	    standing = true;
+	    jumpPower = 30;
+    }
 
     public Character(Image[] images) {
-        super(images);
+	    super(images);
     }
 
-    public Point2D getVelocity() {
-        return velocity;
+    public int getVerticalVelocity() {
+        return verticalVelocity;
     }
 
-    public void setVelocity(Point2D velocity) {
-        this.velocity = velocity;
+    public void setVerticalVelocity(int verticalVelocity) {
+        this.verticalVelocity = verticalVelocity;
     }
 
     public int getJumpPower() {
@@ -35,5 +39,13 @@ public class Character extends GameObject {
 
     public int getIMAGE_NO() {
         return IMAGE_NO;
+    }
+
+    public boolean isStanding(){
+        return standing;
+    }
+
+    public void setStanding(boolean standing){
+	    this.standing = standing;
     }
 }
