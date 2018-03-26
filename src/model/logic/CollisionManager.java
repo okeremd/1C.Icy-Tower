@@ -14,14 +14,8 @@ public class CollisionManager {
 		throw new UnsupportedOperationException();
 	}
 
-	/**
-	 * 
-	 * @param pos1x
-	 * @param pos1y
-	 * @param pos2x
-	 * @param pos2y
-	 */
-	public boolean checkCollision(int pos1x, int pos1y, int pos2x, int pos2y) {
+
+	/*public boolean checkCollision(int pos1x, int pos1y, int pos2x, int pos2y) {
 		int fromX = Math.min(pos1x,pos2x);
 		int fromY = Math.min(pos1y,pos2y);
 		int toX = Math.max(pos1x,pos2x);
@@ -32,9 +26,12 @@ public class CollisionManager {
 
             }
 		}
+		if()
 
         return false;
-	}
+	}*/
+
+
 
 
 }

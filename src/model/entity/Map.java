@@ -50,7 +50,7 @@ public class  Map {
 	 * @param diff
 	 */
 	public void createNextAltitudeObjects(int diff) {
-		int numOfBar = rand.nextInt(3) + 1;
+		int numOfBar = rand.nextInt(1) + 1;
 		if(level % 100 < 25){
 			createLevel(1, numOfBar);
 		}
@@ -144,7 +144,7 @@ public class  Map {
 				bar = new HardlyVisible();
 			}
 			width = rand.nextDouble() % 5;
-			bar.setWidth(4 + (int) width);
+			bar.setWidth(8 + (int) width);
 			bar.setPosX(rand.nextInt(550) + 50);
 			bar.setPosY(50 * level);
 			gameObjects.add(bar);
