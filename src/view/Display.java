@@ -12,42 +12,50 @@ public class Display extends Application {
     private static final int SCENE_WIDTH = 800;
     private static final int SCENE_HEIGHT = 600;
 
+    private Scene mainMenuScene, howToPlayScene, creditsScene, exitScene, settingsScene, highScoreScene,
+            soundSettingsScene, buttonSettingsScene, characterSettingsScene, gameOverScene;
+
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public Display(){
+
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Scene mainMenuScene = initializeScene("main_menu.fxml");
+        mainMenuScene = initializeScene("main_menu.fxml");
         //Set background via css
         mainMenuScene.getStylesheets().add(this.getClass().getResource("styleMainMenu.css").toExternalForm());
 
-        Scene howToPlayScene = initializeScene("how_to_play.fxml");
+        howToPlayScene = initializeScene("how_to_play.fxml");
         howToPlayScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
 
-        Scene creditsScene = initializeScene("credits.fxml");
+        creditsScene = initializeScene("credits.fxml");
         creditsScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
 
-        Scene exitScene = initializeScene("exit.fxml");
+        exitScene = initializeScene("exit.fxml");
         exitScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
 
-        Scene settingsScene = initializeScene("settings.fxml");
+        settingsScene = initializeScene("settings.fxml");
         settingsScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
 
-        Scene highScoreScene = initializeScene("high_scores.fxml");
+        highScoreScene = initializeScene("high_scores.fxml");
         highScoreScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
 
-        Scene soundSettingsScene = initializeScene("sound_settings.fxml");
+        soundSettingsScene = initializeScene("sound_settings.fxml");
         soundSettingsScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
 
-        Scene buttonSettingsScene = initializeScene("button_settings.fxml");
+        buttonSettingsScene = initializeScene("button_settings.fxml");
         buttonSettingsScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
 
-        Scene characterSettingsScene = initializeScene("character_settings.fxml");
+        characterSettingsScene = initializeScene("character_settings.fxml");
         characterSettingsScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
 
-        //Scene playScene = GameFrame.getScene();
+        gameOverScene = initializeScene("game_over.fxml");
+        gameOverScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
 
         MainController.getInstance().setMainMenuScene(mainMenuScene);
         MainController.getInstance().setHowToPlayScene(howToPlayScene);
@@ -58,6 +66,7 @@ public class Display extends Application {
         MainController.getInstance().setSoundSettingsScene(soundSettingsScene);
         MainController.getInstance().setButtonSettingsScene(buttonSettingsScene);
         MainController.getInstance().setCharacterSettingsScene(characterSettingsScene);
+        MainController.getInstance().setGameOverScene(gameOverScene);
 
         //MainController.getInstance().setPlayScene(playScene);
         primaryStage.setTitle("Icy Tower");

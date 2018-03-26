@@ -183,11 +183,12 @@ public class  Map {
 
 		force=100;
 	}
-	public void gameOver(){
+	public boolean gameOver(){
 		if(gameCharacter.getPosY()<-30)
 		{
-
+			return true;
 		}
+		return false;
 	}
 
 }

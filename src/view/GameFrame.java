@@ -1,6 +1,8 @@
 package view;
 
 import controller.GameController;
+import controller.GameOverController;
+import controller.MainMenuController;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -21,6 +23,7 @@ import model.logic.ButtonManager;
 import model.logic.CharacterManager;
 import model.logic.GameEngine;
 import model.logic.SoundManager;
+import sun.applet.Main;
 
 import java.nio.file.Paths;
 import java.util.concurrent.atomic.AtomicReference;
@@ -33,6 +36,7 @@ public class GameFrame extends Application{
     private GameController gameController;
     private AnimationTimer timer;
     Scene scene;
+    private Stage gameStage;
     /*private static Character character;
     private static ImageView gameCharacter;
     private ImageView bar;
@@ -41,6 +45,7 @@ public class GameFrame extends Application{
     public MediaPlayer mediaplayer;
 
     public void start(Stage gameStage) {
+        this.gameStage = gameStage;
         //AnchorPane anchorPane = new AnchorPane();
         playSong();
 
@@ -84,7 +89,12 @@ public class GameFrame extends Application{
     }
 
     private void updateFrame(){
-        gameEngine.convertMapToPane();
+
+        if(gameEngine.convertMapToPane()==null)
+        {
+            mediaplayer.stop();
+            gameStage.setScene(MainMenuController.getInstance().getGameOverScene());
+        }
 
     }
 

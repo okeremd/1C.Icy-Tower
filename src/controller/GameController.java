@@ -70,8 +70,5 @@ public class GameController{
 		gameEngine.pauseGame();
 	}
 
-	public void stop(){
-
-	}
 
 }

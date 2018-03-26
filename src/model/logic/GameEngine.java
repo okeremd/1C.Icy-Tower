@@ -43,6 +43,10 @@ public class GameEngine {
 	public Pane convertMapToPane(){
 		map.updateCharacter();
 		map.updateObjects();
+		if(map.gameOver())
+        {
+            return null;
+        }
 		pane.getChildren().clear();
 		for(GameObject g: map.getGameObjects()){
 			int xsofar = 0;

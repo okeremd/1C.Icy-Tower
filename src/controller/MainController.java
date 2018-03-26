@@ -13,7 +13,10 @@ public class MainController {
     private static Scene settingsScene;
     private static Scene creditsScene;
     private static Scene exitScene;
-    private static Scene playScene;
+
+
+
+    private static Scene gameOverScene;
     // Setting scenes
     private static Scene soundSettingsScene;
     private static Scene buttonSettingsScene;
@@ -45,6 +48,8 @@ public class MainController {
 
         MainController.howToPlayScene = scene;
     }
+
+
 
     public void setMainMenuScene(Scene scene) {
 
@@ -116,12 +121,11 @@ public class MainController {
     public static void setCharacterSettingsScene(Scene characterSettingsScene) {
         MainController.characterSettingsScene = characterSettingsScene;
     }
-/*
-    public Scene getPlayScene() {
-        return playScene;
+    public static Scene getGameOverScene() {
+        return gameOverScene;
     }
-    public Scene setPlayScene(Scene scene){
-        playScene = scene;
+
+    public static void setGameOverScene(Scene gameOverScene) {
+        MainController.gameOverScene = gameOverScene;
     }
-*/
 }
