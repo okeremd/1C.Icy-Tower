@@ -77,11 +77,8 @@ public class GameEngine {
 			text2.setTranslateX(-350);
 			text2.setTranslateY(270);
 			textflow.getChildren().addAll(text1,text2);
-			Group group = new Group(textflow);
-
 			pane.getChildren().addAll(b,textflow);
 
-			//pane.getChildren().addAll(b,text1,text2);
 			return pane;
 		}
 
