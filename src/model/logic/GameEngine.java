@@ -43,11 +43,14 @@ public class GameEngine {
 		pane.setBackground(new Background(backgroundImage));
 		mapgen = new MapGenerator(map);
 		mapgen.initializeMap();
+
+
 	}
 
 	public Pane convertMapToPane(){
 		map.updateCharacter();
 		map.updateObjects();
+		map.changeImages();
 		if(map.gameOver()){
 			Button b = new Button("Main");
 			b.setOnMouseClicked(event -> {
@@ -201,5 +204,4 @@ public class GameEngine {
 	public Map getMap(){
 		return map;
 	}
-
 }

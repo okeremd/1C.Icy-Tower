@@ -1,8 +1,10 @@
 package model.entity;
 
 import javafx.scene.image.Image;
+import model.logic.CharacterManager;
 import model.logic.CollisionManager;
 
+import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -101,10 +103,12 @@ public class  Map {
 
 	public void updateCharacter() {
 		//gravity
-
+		Image[] image =new Image[1];
 		if(!gameCharacter.isStanding()){
 			gameCharacter.setVerticalVelocity(gameCharacter.getVerticalVelocity() - gravity);
 			GameObject bar = cm.checkCollision(gameObjects);
+
+
 /*			if(bar != null && bar instanceof Bar){
 				gameCharacter.setVerticalVelocity(0);
 				gameCharacter.setStanding(true);
@@ -208,4 +212,25 @@ public class  Map {
 		return false;
 	}
 
+	public void changeImages() {
+		if(gameCharacter.getVerticalVelocity()!=0) {
+			Image image = new Image(Paths.get(("./images/mainCharacter/character_jump.PNG")).toUri().toString());
+			Image[] imagejump = new Image[1];
+			imagejump[0] = image;
+			gameCharacter.setImages(imagejump);
+		}
+		else if(gameCharacter.getVerticalVelocity()== 0 && characterMoveSpeed == 0){
+			Image image = new Image(Paths.get(("./images/mainCharacter/character1.PNG")).toUri().toString());
+			Image[] imagestand = new Image[1];
+			imagestand[0] = image;
+			gameCharacter.setImages(imagestand);
+		}
+		if(characterMoveSpeed != 0){
+
+			Image image = new Image(Paths.get(("./images/mainCharacter/character_left_small.GIF")).toUri().toString());
+			Image[] imagestand = new Image[1];
+			imagestand[0] = image;
+			gameCharacter.setImages(imagestand);
+		}
+	}
 }

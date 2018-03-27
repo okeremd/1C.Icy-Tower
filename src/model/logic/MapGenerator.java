@@ -31,5 +31,8 @@ public class MapGenerator {
         map.createNextAltitudeObjects(map.getLevel() % 25);
     }
 
+    public Map getMap(){
+        return map;
+    }
 
 }

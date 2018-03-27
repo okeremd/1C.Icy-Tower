@@ -22,6 +22,15 @@ public class CharacterManager{
         return characterManager;
 
     }
+
+    public void changeCharacterImageToJumpImage(){
+        current[0] = new Image(Paths.get(("./images/mainCharacter/character_jump.PNG")).toUri().toString());
+    }
+
+    public void changeCharacterImageToStandingImage(){
+        current[0] = new Image(Paths.get(("./images/mainCharacter/character1.PNG")).toUri().toString());
+    }
+
     public Image[] getCharacterPrevs() {
         return CharacterPrevs;
     }
