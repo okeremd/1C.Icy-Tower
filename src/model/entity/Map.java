@@ -15,7 +15,7 @@ public class  Map {
 	public static final int GAME_LEFT_LIMIT = 50;
 	public static final int GAME_RIGHT_LIMIT = 630;
 	public static final int ACCELERATION = 10;
-	public static final int INITIAL_CHARACTER_SPEED = 20;
+	public static final int INITIAL_CHARACTER_SPEED = 0;
 
 	private ArrayList<GameObject> gameObjects;
 	private Character gameCharacter;
@@ -173,9 +173,9 @@ public class  Map {
 	}
 
 	public void moveLeft(){
-		characterMoveSpeed += ACCELERATION;
+		characterMoveSpeed -= ACCELERATION;
 		if(gameCharacter.getPosX() - characterMoveSpeed> GAME_LEFT_LIMIT)
-			gameCharacter.setPosX(gameCharacter.getPosX() - characterMoveSpeed);
+			gameCharacter.setPosX(gameCharacter.getPosX() + characterMoveSpeed);
 		else
 			gameCharacter.setPosX(GAME_LEFT_LIMIT);
 	}
@@ -225,12 +225,19 @@ public class  Map {
 			imagestand[0] = image;
 			gameCharacter.setImages(imagestand);
 		}
-		if(characterMoveSpeed != 0){
-
-			Image image = new Image(Paths.get(("./images/mainCharacter/character_left_small.GIF")).toUri().toString());
-			Image[] imagestand = new Image[1];
-			imagestand[0] = image;
-			gameCharacter.setImages(imagestand);
+		else if(characterMoveSpeed > 0){
+            System.out.println(characterMoveSpeed);
+			Image image = new Image(Paths.get(("./images/mainCharacter/character_right_small.GIF")).toUri().toString());
+			Image[] imageLeft = new Image[1];
+			imageLeft[0] = image;
+			gameCharacter.setImages(imageLeft);
 		}
+        else if(characterMoveSpeed < 0){
+            System.out.println(characterMoveSpeed);
+            Image image = new Image(Paths.get(("./images/mainCharacter/character_left_small.GIF")).toUri().toString());
+            Image[] imageRight = new Image[1];
+            imageRight[0] = image;
+            gameCharacter.setImages(imageRight);
+        }
 	}
 }
