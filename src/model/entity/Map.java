@@ -44,6 +44,11 @@ public class  Map {
 		gravity = 2;
 		cm = new CollisionManager();
 		oldPlayerPosition= OldPlayerPosition.STANDING;
+		Icy init = new Icy();
+		init.setWidth(20);
+		init.setPosY(0);
+		init.setPosX(0);
+		gameObjects.add(init);
     }
 
     public Map(Map map){
@@ -115,7 +120,7 @@ public class  Map {
 		Image[] image =new Image[1];
 		if(!gameCharacter.isStanding()){
 			gameCharacter.setVerticalVelocity(gameCharacter.getVerticalVelocity() - gravity);
-			GameObject bar = cm.checkCollision(gameObjects);
+			cm.checkCollision(gameObjects);
 
 
 /*			if(bar != null && bar instanceof Bar){
@@ -123,6 +128,9 @@ public class  Map {
 				gameCharacter.setStanding(true);
 			}
 */		}
+		else{
+			cm.checkCollision(gameObjects);
+		}
 		gameCharacter.setPosY(gameCharacter.getPosY() + gameCharacter.getVerticalVelocity());
 
 
