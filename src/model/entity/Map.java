@@ -10,8 +10,16 @@ import java.util.Random;
 
 import java.util.ArrayList;
 
+
+
 public class  Map {
 
+    public enum OldPlayerPosition{
+        STANDING,
+        MOVINGLEFT,
+        MOVINGRIGHT,
+        JUMP
+    }
 	public static final int GAME_LEFT_LIMIT = 50;
 	public static final int GAME_RIGHT_LIMIT = 630;
 	public static final int ACCELERATION = 10;
@@ -25,7 +33,7 @@ public class  Map {
 	CollisionManager cm;
 
 	private int characterMoveSpeed = INITIAL_CHARACTER_SPEED;
-
+    private OldPlayerPosition oldPlayerPosition;
     public Map() {
 		gameObjects = new ArrayList<>();
 		rand = new Random();
@@ -35,6 +43,7 @@ public class  Map {
 		gameObjects.add(gameCharacter);
 		gravity = 2;
 		cm = new CollisionManager();
+		oldPlayerPosition= OldPlayerPosition.STANDING;
     }
 
     public Map(Map map){
@@ -214,30 +223,35 @@ public class  Map {
 
 	public void changeImages() {
 		if(gameCharacter.getVerticalVelocity()!=0) {
+		    System.out.println(gameCharacter.getVerticalVelocity());
 			Image image = new Image(Paths.get(("./images/mainCharacter/character_jump.PNG")).toUri().toString());
 			Image[] imagejump = new Image[1];
 			imagejump[0] = image;
 			gameCharacter.setImages(imagejump);
+			oldPlayerPosition = OldPlayerPosition.JUMP;
 		}
-		else if(gameCharacter.getVerticalVelocity()== 0 && characterMoveSpeed == 0){
-			Image image = new Image(Paths.get(("./images/mainCharacter/character1.PNG")).toUri().toString());
+		else if(gameCharacter.getVerticalVelocity()== 0 && characterMoveSpeed == 0 && oldPlayerPosition != oldPlayerPosition.STANDING){
+			Image image = new Image(Paths.get(("./images/mainCharacter/standing.GIF")).toUri().toString());
 			Image[] imagestand = new Image[1];
 			imagestand[0] = image;
 			gameCharacter.setImages(imagestand);
+			oldPlayerPosition =OldPlayerPosition.STANDING;
 		}
-		else if(characterMoveSpeed > 0){
+		else if(characterMoveSpeed > 0 && oldPlayerPosition != oldPlayerPosition.MOVINGRIGHT){
             System.out.println(characterMoveSpeed);
 			Image image = new Image(Paths.get(("./images/mainCharacter/character_right_small.GIF")).toUri().toString());
-			Image[] imageLeft = new Image[1];
-			imageLeft[0] = image;
-			gameCharacter.setImages(imageLeft);
+			Image[] imageRight = new Image[1];
+			imageRight[0] = image;
+			gameCharacter.setImages(imageRight);
+            oldPlayerPosition =OldPlayerPosition.MOVINGRIGHT;
 		}
-        else if(characterMoveSpeed < 0){
+        else if(characterMoveSpeed < 0 && oldPlayerPosition != oldPlayerPosition.MOVINGLEFT){
             System.out.println(characterMoveSpeed);
             Image image = new Image(Paths.get(("./images/mainCharacter/character_left_small.GIF")).toUri().toString());
-            Image[] imageRight = new Image[1];
-            imageRight[0] = image;
-            gameCharacter.setImages(imageRight);
+            Image[] imageLeft = new Image[1];
+            imageLeft[0] = image;
+            gameCharacter.setImages(imageLeft);
+            oldPlayerPosition =OldPlayerPosition.MOVINGLEFT;
         }
 	}
 }

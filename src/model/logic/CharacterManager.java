@@ -13,7 +13,7 @@ public class CharacterManager{
 
     public CharacterManager() {
         current = new Image[1];
-        current[0] = new Image(Paths.get(("./images/mainCharacter/character1.PNG")).toUri().toString());
+        current[0] = new Image(Paths.get(("./images/mainCharacter/standing.gif")).toUri().toString());
     }
 
     public static CharacterManager getInstance(){
