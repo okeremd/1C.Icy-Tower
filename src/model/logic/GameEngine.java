@@ -6,6 +6,7 @@ import java.util.Timer;
 
 import controller.MainController;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,6 +14,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import model.entity.*;
 
@@ -52,12 +58,30 @@ public class GameEngine {
 		map.updateObjects();
 		map.changeImages();
 		if(map.gameOver()){
-			Button b = new Button("Main");
+			Button b = new Button("Back to Menu");
+			b.setTranslateY(550);
+			b.setTranslateX(650);
 			b.setOnMouseClicked(event -> {
 				Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 				primaryStage.setScene(MainController.getInstance().getMainMenuScene());
 			});
-			pane.getChildren().add(b);
+			TextFlow textflow = new TextFlow();
+			Text text1 = new Text("Game Over");
+			text1.setFont(Font.font("Game Over", FontWeight.BOLD, 100));
+			text1.setFill(Color.AQUAMARINE);
+			text1.setTranslateX(100);
+			text1.setTranslateY(150);
+			Text text2 = new Text("Score: ");
+			text2.setFont(Font.font("Score: ", FontWeight.BOLD, 60));
+			text2.setFill(Color.GREENYELLOW);
+			text2.setTranslateX(-350);
+			text2.setTranslateY(270);
+			textflow.getChildren().addAll(text1,text2);
+			Group group = new Group(textflow);
+
+			pane.getChildren().addAll(b,textflow);
+
+			//pane.getChildren().addAll(b,text1,text2);
 			return pane;
 		}
 
