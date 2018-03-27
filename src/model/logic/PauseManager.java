@@ -22,7 +22,7 @@ public class PauseManager {
 	 * @param index
 	 */
 	public void setCurrent(int index) {
-		// TODO - implement PauseManager.setCurrent
+		// TODO - implement PauseManager.setCharacterImages
 		throw new UnsupportedOperationException();
 	}
 

@@ -22,12 +22,14 @@ public class  Map {
     }
 	public static final int GAME_LEFT_LIMIT = 50;
 	public static final int GAME_RIGHT_LIMIT = 630;
-	public static final int ACCELERATION = 10;
+	public static final int ACCELERATION = 1;
 	public static final int INITIAL_CHARACTER_SPEED = 0;
 
 	private ArrayList<GameObject> gameObjects;
 	private Character gameCharacter;
 	private int level;
+	private int passedLevel;
+	int altitude;
 	private Random rand;
 	private int gravity;
 	CollisionManager cm;
@@ -39,7 +41,8 @@ public class  Map {
 		rand = new Random();
 		gameCharacter = new Character();
 		gameCharacter.setPosX(280);
-		level = 1;
+		level = 0;
+		altitude = 0;
 		gameObjects.add(gameCharacter);
 		gravity = 2;
 		cm = new CollisionManager();
@@ -69,18 +72,17 @@ public class  Map {
 	 * @param diff
 	 */
 	public void createNextAltitudeObjects(int diff) {
-		int numOfBar = rand.nextInt(1) + 1;
-		if(level % 100 < 25){
-			createLevel(1, numOfBar);
+		if(level % 100 < 125){
+			createLevel(1);
 		}
 		else if(level % 100 < 50){
-			createLevel(2, numOfBar);
+			createLevel(2);
 		}
 		else if(level % 100 < 75){
-			createLevel(3, numOfBar);
+			createLevel(3);
 		}
 		else{
-			createLevel(4, numOfBar);
+			createLevel(4);
 		}
 	}
 
@@ -100,11 +102,20 @@ public class  Map {
 
 	public void updateObjects() {
 		Iterator<GameObject> iter = gameObjects.iterator();
+		int decrease = 1;
+		if(gameCharacter.getPosY() > 540){
+			decrease = 1 + gameCharacter.getPosY() - 540;
+		}
 		while(iter.hasNext()){
 			GameObject obj = iter.next();
-
-			//obj.setPosY(obj.getPosY()-1);
+			if(obj.getPosY() < -130){
+				iter.remove();
+			}
+			else {
+				obj.setPosY(obj.getPosY() - decrease);
+			}
 		}
+		altitude+= decrease;
 	}
 
 	public int getLevel() {
@@ -113,6 +124,10 @@ public class  Map {
 
 	public void setLevel(int level) {
 		this.level = level;
+	}
+
+	public int getAltitude() {
+		return altitude;
 	}
 
 	public void updateCharacter() {
@@ -132,7 +147,24 @@ public class  Map {
 			cm.checkCollision(gameObjects);
 		}
 		gameCharacter.setPosY(gameCharacter.getPosY() + gameCharacter.getVerticalVelocity());
+		if(gameCharacter.isMovingRight() && gameCharacter.isMovingLeft()){
+			gameCharacter.setHorizontalVelocity(0);
+		}
+		else if(gameCharacter.isMovingLeft()){
+			gameCharacter.setHorizontalVelocity(gameCharacter.getHorizontalVelocity() - ACCELERATION);
+			if(gameCharacter.getPosX() + gameCharacter.getHorizontalVelocity()> GAME_LEFT_LIMIT)
+				gameCharacter.setPosX(gameCharacter.getPosX() + gameCharacter.getHorizontalVelocity());
+			else
+				gameCharacter.setPosX(GAME_LEFT_LIMIT);
 
+		}
+		else if(gameCharacter.isMovingRight()){
+			gameCharacter.setHorizontalVelocity(gameCharacter.getHorizontalVelocity() + ACCELERATION);
+			if(gameCharacter.getPosX() + gameCharacter.getHorizontalVelocity()< GAME_RIGHT_LIMIT)
+				gameCharacter.setPosX(gameCharacter.getPosX() + gameCharacter.getHorizontalVelocity());
+			else
+				gameCharacter.setPosX(GAME_RIGHT_LIMIT);
+		}
 
 		/*if(force>0)
 		{
@@ -161,12 +193,10 @@ public class  Map {
 
 	}
 
-	public void createLevel(int type, int numOfBars){
-		Bar bars[] = new Bar[numOfBars];
+	public void createLevel(int type){
 		Bar bar;
 		int current = 0;
 		double width = 0;
-		while(current < numOfBars) {
 			if (type == 1) {
 				bar = new Icy();
 			}
@@ -182,35 +212,40 @@ public class  Map {
 			width = rand.nextDouble() % 5;
 			bar.setWidth(12 + (int) width);
 			bar.setPosX(rand.nextInt(550) + 50);
-			bar.setPosY(50 * level);
+			bar.setPosY(50 * (level) - altitude);
 			gameObjects.add(bar);
-			bars[current] = bar;
-			current++;
-		}
 	}
 
 	public void moveLeft(){
+		/*
 		characterMoveSpeed -= ACCELERATION;
 		if(gameCharacter.getPosX() - characterMoveSpeed> GAME_LEFT_LIMIT)
 			gameCharacter.setPosX(gameCharacter.getPosX() + characterMoveSpeed);
 		else
 			gameCharacter.setPosX(GAME_LEFT_LIMIT);
+		*/
+		gameCharacter.setMovingLeft(true);
 	}
 
 	public void moveRight(){
+		/*
 		characterMoveSpeed += ACCELERATION;
 		if(gameCharacter.getPosX() + characterMoveSpeed< GAME_RIGHT_LIMIT)
 			gameCharacter.setPosX(gameCharacter.getPosX() + characterMoveSpeed);
 		else
 			gameCharacter.setPosX(GAME_RIGHT_LIMIT);
+		*/
+		gameCharacter.setMovingRight(true);
 	}
 
 	public void stopMoveRight(){
-		characterMoveSpeed = 0;
+		gameCharacter.setHorizontalVelocity(0);
+		gameCharacter.setMovingRight(false);
 	}
 
 	public void stopMoveLeft(){
-		characterMoveSpeed = 0;
+		gameCharacter.setHorizontalVelocity(0);
+		gameCharacter.setMovingLeft(false);
 	}
 	public void stopMoveJump(){
 
@@ -231,35 +266,40 @@ public class  Map {
 
 	public void changeImages() {
 		if(gameCharacter.getVerticalVelocity()!=0) {
-		    System.out.println(gameCharacter.getVerticalVelocity());
 			Image image = new Image(Paths.get(("./images/mainCharacter/character_jump.PNG")).toUri().toString());
 			Image[] imagejump = new Image[1];
 			imagejump[0] = image;
 			gameCharacter.setImages(imagejump);
-			oldPlayerPosition = OldPlayerPosition.JUMP;
+			//oldPlayerPosition = OldPlayerPosition.JUMP;
 		}
-		else if(gameCharacter.getVerticalVelocity()== 0 && characterMoveSpeed == 0 && oldPlayerPosition != oldPlayerPosition.STANDING){
+		else if(gameCharacter.getVerticalVelocity()== 0  && oldPlayerPosition != oldPlayerPosition.STANDING){
 			Image image = new Image(Paths.get(("./images/mainCharacter/standing.GIF")).toUri().toString());
 			Image[] imagestand = new Image[1];
 			imagestand[0] = image;
 			gameCharacter.setImages(imagestand);
 			oldPlayerPosition =OldPlayerPosition.STANDING;
 		}
-		else if(characterMoveSpeed > 0 && oldPlayerPosition != oldPlayerPosition.MOVINGRIGHT){
-            System.out.println(characterMoveSpeed);
+		else if(gameCharacter.isMovingRight() && oldPlayerPosition != oldPlayerPosition.MOVINGRIGHT){
 			Image image = new Image(Paths.get(("./images/mainCharacter/character_right_small.GIF")).toUri().toString());
 			Image[] imageRight = new Image[1];
 			imageRight[0] = image;
 			gameCharacter.setImages(imageRight);
             oldPlayerPosition =OldPlayerPosition.MOVINGRIGHT;
 		}
-        else if(characterMoveSpeed < 0 && oldPlayerPosition != oldPlayerPosition.MOVINGLEFT){
-            System.out.println(characterMoveSpeed);
+        else if(gameCharacter.isMovingLeft() && oldPlayerPosition != oldPlayerPosition.MOVINGLEFT){
             Image image = new Image(Paths.get(("./images/mainCharacter/character_left_small.GIF")).toUri().toString());
             Image[] imageLeft = new Image[1];
             imageLeft[0] = image;
             gameCharacter.setImages(imageLeft);
             oldPlayerPosition =OldPlayerPosition.MOVINGLEFT;
         }
+	}
+
+	public int getPassedLevel() {
+		return passedLevel;
+	}
+
+	public void setPassedLevel(int passedLevel) {
+		this.passedLevel = passedLevel;
 	}
 }

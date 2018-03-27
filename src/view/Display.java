@@ -5,7 +5,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import java.nio.file.Paths;
 
 public class Display extends Application {
 
@@ -26,7 +29,7 @@ public class Display extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+        primaryStage.getIcons().add(new Image(Paths.get("images/background/icon.png").toUri().toString()));
         mainMenuScene = initializeScene("main_menu.fxml");
         //Set background via css
         mainMenuScene.getStylesheets().add(this.getClass().getResource("styleMainMenu.css").toExternalForm());

@@ -20,15 +20,12 @@ public class MapGenerator {
         this.map = map;
     }
 
-	public void initializeMap() {
-        for(int i = 0; i < 20; i++){
+	public void createNextLevels(){
+        map.setPassedLevel(map.getPassedLevel());
+        for(int i = 0; i < 30; i++){
+            map.setLevel(map.getLevel() + 1);
             map.createNextAltitudeObjects(1);
-            map.setLevel(i+1);
         }
-	}
-
-	public void updateMap(){
-        map.createNextAltitudeObjects(map.getLevel() % 25);
     }
 
     public Map getMap(){

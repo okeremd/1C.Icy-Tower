@@ -1,33 +1,20 @@
 package view;
 
 import controller.GameController;
-import controller.GameOverController;
-import controller.MainController;
-import controller.MainMenuController;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.entity.Character;
 import model.logic.ButtonManager;
 import model.logic.CharacterManager;
 import model.logic.GameEngine;
 import model.logic.SoundManager;
-import sun.applet.Main;
-
-import java.nio.file.Paths;
-import java.util.concurrent.atomic.AtomicReference;
 
 
 public class GameFrame {
@@ -53,9 +40,10 @@ public class GameFrame {
         stopped = false;
         KeyCode[] kc = createKeycode();
 
+
         gameEngine = new GameEngine();
 
-        Image[] charIms = characterImage();
+        Image[] charIms = CharacterManager.getInstance().getCharacterImages();
 
         gameEngine.setCurrentCharactersImages(charIms);
 
@@ -103,13 +91,4 @@ public class GameFrame {
     public boolean isStopped(){
         return stopped;
     }
-
-    private Image[] characterImage(){
-
-        Image[] charIms = CharacterManager.getInstance().getCurrent();
-        return charIms;
-
-    }
-
-
 }

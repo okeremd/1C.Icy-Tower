@@ -1,6 +1,7 @@
 package model.logic;
 
 import java.io.File;
+import java.lang.Character;
 import java.nio.file.Paths;
 import java.util.Timer;
 
@@ -37,26 +38,29 @@ public class GameEngine {
 	private int difficulty;
 	private Map map;
 	private Pane pane;
+	int mapLevel;
 	//TODO this class should initialize a display and then maintain the game process
 	//TODO let game engine initialize a game character, map that contains game objects
 	//TODO then let view module display it.
 	//TODO then process should continue throughout the gametime
 
 	public GameEngine() {
+		currentAltitude = 0;
 		map = new Map();
 		pane = new Pane();
 		BackgroundImage backgroundImage = new BackgroundImage(new Image(Paths.get( "./images/gameObject/gameBack.png").toUri().toString()), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		pane.setBackground(new Background(backgroundImage));
 		mapgen = new MapGenerator(map);
-		mapgen.initializeMap();
-
-
+		mapgen.createNextLevels();
 	}
 
 	public Pane convertMapToPane(){
 		map.updateCharacter();
 		map.updateObjects();
-		map.changeImages();
+		if(map.getLevel() - (map.getAltitude() / 50) < 15){
+			mapgen.createNextLevels();
+		}
+		//map.changeImages();
 		if(map.gameOver()){
 			Button b = new Button("Back to Menu");
 			b.setTranslateY(550);
@@ -85,21 +89,29 @@ public class GameEngine {
 		pane.getChildren().clear();
 		for(GameObject g: map.getGameObjects()){
 			int xsofar = 0;
-			for(int i = 0; i < g.getImages().length; i++) {
-				ImageView add = new ImageView(g.getImages()[i]);
-				add.setTranslateX(g.getPosX()+ xsofar);
-				xsofar += g.getImages()[i].getWidth();
+			if(g instanceof model.entity.Character){
+				ImageView add = new ImageView(((model.entity.Character) g).getCurrentImage());
+				add.setTranslateX(g.getPosX() + xsofar);
 				add.setTranslateY(500 - g.getPosY());
 				pane.getChildren().add(add);
-				if(g instanceof Bar && i == 0){
-					for(int j = 0; j < ((Bar) g).getWidth(); j++ ){
-						add = new ImageView(g.getImages()[1]);
-						add.setTranslateX(g.getPosX()+ xsofar);
-						xsofar += g.getImages()[1].getWidth();
-						add.setTranslateY(500 - g.getPosY());
-						pane.getChildren().add(add);
+			}
+			else {
+				for (int i = 0; i < g.getImages().length; i++) {
+					ImageView add = new ImageView(g.getImages()[i]);
+					add.setTranslateX(g.getPosX() + xsofar);
+					xsofar += g.getImages()[i].getWidth();
+					add.setTranslateY(500 - g.getPosY());
+					pane.getChildren().add(add);
+					if (g instanceof Bar && i == 0) {
+						for (int j = 0; j < ((Bar) g).getWidth(); j++) {
+							add = new ImageView(g.getImages()[1]);
+							add.setTranslateX(g.getPosX() + xsofar);
+							xsofar += g.getImages()[1].getWidth();
+							add.setTranslateY(500 - g.getPosY());
+							pane.getChildren().add(add);
+						}
+						i++;
 					}
-					i++;
 				}
 			}
 		}
@@ -114,7 +126,7 @@ public class GameEngine {
 	 * @param images
 	 */
 	public void setCurrentCharactersImages(Image[] images) {
-		map.setCurrentCharactersImages(images);
+		map.setCurrentCharactersImages(CharacterManager.getInstance().getCharacterImages());
 	}
 
 	public void moveCharacterLeft(){
