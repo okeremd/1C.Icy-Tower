@@ -45,13 +45,13 @@ public class  Map {
 		altitude = 0;
 		gameObjects.add(gameCharacter);
 		gravity = 2;
-		cm = new CollisionManager();
 		oldPlayerPosition= OldPlayerPosition.STANDING;
 		Icy init = new Icy();
 		init.setWidth(20);
 		init.setPosY(0);
 		init.setPosX(0);
 		gameObjects.add(init);
+		cm = new CollisionManager(gameObjects);
     }
 
     public Map(Map map){
@@ -131,24 +131,42 @@ public class  Map {
 	}
 
 	public void updateCharacter() {
+		System.out.println(gameCharacter.isStanding());
 		//gravity
-		Image[] image =new Image[1];
-		if(!gameCharacter.isStanding()){
+		cm.checkCollision(gameObjects);
+		if (!gameCharacter.isStanding()) {
 			gameCharacter.setVerticalVelocity(gameCharacter.getVerticalVelocity() - gravity);
-			cm.checkCollision(gameObjects);
-
-
-/*			if(bar != null && bar instanceof Bar){
-				gameCharacter.setVerticalVelocity(0);
-				gameCharacter.setStanding(true);
-			}
-*/		}
-		else{
-			cm.checkCollision(gameObjects);
 		}
+
+		gameCharacter.setPosY(gameCharacter.getPosY() + gameCharacter.getVerticalVelocity());
+		if (gameCharacter.isMovingRight() && gameCharacter.isMovingLeft()) {
+			gameCharacter.setHorizontalVelocity(0);
+		} else if (gameCharacter.isMovingLeft()) {
+			gameCharacter.setHorizontalVelocity(gameCharacter.getHorizontalVelocity() - ACCELERATION);
+			if (gameCharacter.getPosX() + gameCharacter.getHorizontalVelocity() > GAME_LEFT_LIMIT)
+				gameCharacter.setPosX(gameCharacter.getPosX() + gameCharacter.getHorizontalVelocity());
+			else
+				gameCharacter.setPosX(GAME_LEFT_LIMIT);
+
+		} else if (gameCharacter.isMovingRight()) {
+			gameCharacter.setHorizontalVelocity(gameCharacter.getHorizontalVelocity() + ACCELERATION);
+			if (gameCharacter.getPosX() + gameCharacter.getHorizontalVelocity() < GAME_RIGHT_LIMIT)
+				gameCharacter.setPosX(gameCharacter.getPosX() + gameCharacter.getHorizontalVelocity());
+			else
+				gameCharacter.setPosX(GAME_RIGHT_LIMIT);
+		}
+	}
+		/*if(force>0)
+		{
+			//force decreases as the character goes up, physics 101
+			gameCharacter.setPosY(gameCharacter.getPosY()-10+force);
+			force-=30;
+=======
+
 		gameCharacter.setPosY(gameCharacter.getPosY() + gameCharacter.getVerticalVelocity());
 		if(gameCharacter.isMovingRight() && gameCharacter.isMovingLeft()){
 			gameCharacter.setHorizontalVelocity(0);
+>>>>>>> Stashed changes
 		}
 		else if(gameCharacter.isMovingLeft()){
 			gameCharacter.setHorizontalVelocity(gameCharacter.getHorizontalVelocity() - ACCELERATION);
@@ -165,37 +183,10 @@ public class  Map {
 			else
 				gameCharacter.setPosX(GAME_RIGHT_LIMIT);
 		}
-
-		/*if(force>0)
-		{
-			//force decreases as the character goes up, physics 101
-			gameCharacter.setPosY(gameCharacter.getPosY()-10+force);
-			force-=30;
-		}
-		else{
-			//if there is an object that the gameobject can land to
-			for(GameObject gameObject : gameObjects)
-			{
-				if(gameObject != gameCharacter)
-				{
-					if(gameObject.getPosY() == gameCharacter.getPosY())
-						force=0;
-				}
-			}
-			//if there is force going down and the character is not at the bottom
-			if(force!= 0 && gameCharacter.getPosY()!=0)
-			{
-				//let the gravity fall the character
-				gameCharacter.setPosY(gameCharacter.getPosY()+force);
-			}
-		}*/
-
-
 	}
-
+*/
 	public void createLevel(int type){
 		Bar bar;
-		int current = 0;
 		double width = 0;
 			if (type == 1) {
 				bar = new Icy();
@@ -264,7 +255,7 @@ public class  Map {
 		return false;
 	}
 
-	public void changeImages() {
+	/*public void changeImages() {
 		if(gameCharacter.getVerticalVelocity()!=0) {
 			Image image = new Image(Paths.get(("./images/mainCharacter/character_jump.PNG")).toUri().toString());
 			Image[] imagejump = new Image[1];
@@ -293,7 +284,7 @@ public class  Map {
             gameCharacter.setImages(imageLeft);
             oldPlayerPosition =OldPlayerPosition.MOVINGLEFT;
         }
-	}
+*/
 
 	public int getPassedLevel() {
 		return passedLevel;
