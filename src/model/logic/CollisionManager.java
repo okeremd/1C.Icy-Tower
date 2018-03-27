@@ -27,7 +27,6 @@ public class CollisionManager {
                     return gameObjects.get(i);
                 }
             }
-
 		}
 		return null;
 	}

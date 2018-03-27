@@ -38,6 +38,7 @@ public class GameEngine {
 	private int difficulty;
 	private Map map;
 	private Pane pane;
+	int mapLevel;
 	//TODO this class should initialize a display and then maintain the game process
 	//TODO let game engine initialize a game character, map that contains game objects
 	//TODO then let view module display it.
@@ -50,13 +51,15 @@ public class GameEngine {
 		BackgroundImage backgroundImage = new BackgroundImage(new Image(Paths.get( "./images/gameObject/gameBack.png").toUri().toString()), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		pane.setBackground(new Background(backgroundImage));
 		mapgen = new MapGenerator(map);
-		mapgen.initializeMap();
-
+		mapgen.createNextLevels();
 	}
 
 	public Pane convertMapToPane(){
 		map.updateCharacter();
 		map.updateObjects();
+		if(map.getLevel() - (map.getAltitude() / 50) < 15){
+			mapgen.createNextLevels();
+		}
 		//map.changeImages();
 		if(map.gameOver()){
 			Button b = new Button("Back to Menu");

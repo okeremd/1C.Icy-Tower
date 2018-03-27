@@ -28,6 +28,8 @@ public class  Map {
 	private ArrayList<GameObject> gameObjects;
 	private Character gameCharacter;
 	private int level;
+	private int passedLevel;
+	int altitude;
 	private Random rand;
 	private int gravity;
 	CollisionManager cm;
@@ -39,7 +41,8 @@ public class  Map {
 		rand = new Random();
 		gameCharacter = new Character();
 		gameCharacter.setPosX(280);
-		level = 1;
+		level = 0;
+		altitude = 0;
 		gameObjects.add(gameCharacter);
 		gravity = 2;
 		cm = new CollisionManager();
@@ -64,18 +67,17 @@ public class  Map {
 	 * @param diff
 	 */
 	public void createNextAltitudeObjects(int diff) {
-		int numOfBar = rand.nextInt(1) + 1;
-		if(level % 100 < 25){
-			createLevel(1, numOfBar);
+		if(level % 100 < 125){
+			createLevel(1);
 		}
 		else if(level % 100 < 50){
-			createLevel(2, numOfBar);
+			createLevel(2);
 		}
 		else if(level % 100 < 75){
-			createLevel(3, numOfBar);
+			createLevel(3);
 		}
 		else{
-			createLevel(4, numOfBar);
+			createLevel(4);
 		}
 	}
 
@@ -95,11 +97,20 @@ public class  Map {
 
 	public void updateObjects() {
 		Iterator<GameObject> iter = gameObjects.iterator();
+		int decrease = 1;
+		if(gameCharacter.getPosY() > 540){
+			decrease = 1 + gameCharacter.getPosY() - 540;
+		}
 		while(iter.hasNext()){
 			GameObject obj = iter.next();
-
-			obj.setPosY(obj.getPosY()-1);
+			if(obj.getPosY() < -130){
+				iter.remove();
+			}
+			else {
+				obj.setPosY(obj.getPosY() - decrease);
+			}
 		}
+		altitude+= decrease;
 	}
 
 	public int getLevel() {
@@ -108,6 +119,10 @@ public class  Map {
 
 	public void setLevel(int level) {
 		this.level = level;
+	}
+
+	public int getAltitude() {
+		return altitude;
 	}
 
 	public void updateCharacter() {
@@ -170,12 +185,10 @@ public class  Map {
 
 	}
 
-	public void createLevel(int type, int numOfBars){
-		Bar bars[] = new Bar[numOfBars];
+	public void createLevel(int type){
 		Bar bar;
 		int current = 0;
 		double width = 0;
-		while(current < numOfBars) {
 			if (type == 1) {
 				bar = new Icy();
 			}
@@ -191,11 +204,8 @@ public class  Map {
 			width = rand.nextDouble() % 5;
 			bar.setWidth(12 + (int) width);
 			bar.setPosX(rand.nextInt(550) + 50);
-			bar.setPosY(50 * level);
+			bar.setPosY(50 * (level) - altitude);
 			gameObjects.add(bar);
-			bars[current] = bar;
-			current++;
-		}
 	}
 
 	public void moveLeft(){
@@ -275,5 +285,13 @@ public class  Map {
             gameCharacter.setImages(imageLeft);
             oldPlayerPosition =OldPlayerPosition.MOVINGLEFT;
         }
+	}
+
+	public int getPassedLevel() {
+		return passedLevel;
+	}
+
+	public void setPassedLevel(int passedLevel) {
+		this.passedLevel = passedLevel;
 	}
 }

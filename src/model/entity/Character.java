@@ -72,7 +72,6 @@ public class Character extends GameObject {
     }
 
     public boolean isMovingLeft() {
-        System.out.println(movingLeft);
 	    return movingLeft;
     }
 
