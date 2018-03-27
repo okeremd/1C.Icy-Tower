@@ -9,7 +9,7 @@ public class CharacterManager{
 	private Image[] CharacterPrevs;
 	private Image[] current;
 	private final int CHARACTER_NUMBER = 1;
-	private final int CHARACTER_IMAGE_NUM = 4;
+	private final int CHARACTER_IMAGE_NUM = 6;
 	private static CharacterManager characterManager;
 
     public CharacterManager() {
@@ -33,9 +33,11 @@ public class CharacterManager{
     }
 
     public void setCharacterImages(int characterNo) {
-        for(int i = 0; i < CHARACTER_IMAGE_NUM - 1; i++){
+        for(int i = 0; i < CHARACTER_IMAGE_NUM - 3; i++){
             current[i] = new Image(Paths.get(("./images/mainCharacter/character" + characterNo + "_" + (i) + ".gif")).toUri().toString());
         }
-        current[CHARACTER_IMAGE_NUM - 1] = new Image(Paths.get(("./images/mainCharacter/character" + characterNo+ "_3.png")).toUri().toString());
+        for (int i = 3; i<6; i++)
+            current[i] = new Image(Paths.get(("./images/mainCharacter/character" + characterNo+ "_" + i + ".png")).toUri().toString());
+
     }
 }

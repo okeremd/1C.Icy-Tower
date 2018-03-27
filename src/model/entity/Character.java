@@ -9,7 +9,7 @@ public class Character extends GameObject {
 
 	private int verticalVelocity, horizontalVelocity;
 	private int jumpPower;
-	private final int IMAGE_NO = 4;
+	private final int IMAGE_NO = 6;
 	private boolean movingLeft, movingRight, standing;
 
 	public Character(){
@@ -29,7 +29,16 @@ public class Character extends GameObject {
     }
 
     public Image getCurrentImage(){
-	    if(isMovingLeft()){
+	    if(!isStanding() && isMovingRight())
+        {
+            System.out.println("1");
+            return getImages()[4];
+        }
+        else if(!isStanding() && isMovingLeft())
+        {
+            return  getImages()[5];
+        }
+	    else if(isMovingLeft()){
             return getImages()[2];
         }
         else if(isMovingRight()){
