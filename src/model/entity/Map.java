@@ -102,7 +102,7 @@ public class  Map {
 
 	public void updateObjects() {
 		Iterator<GameObject> iter = gameObjects.iterator();
-		int decrease = 1;
+		int decrease = level/30;
 		if(gameCharacter.getPosY() > 540){
 			decrease = 1 + gameCharacter.getPosY() - 540;
 		}

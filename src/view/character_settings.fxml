@@ -28,12 +28,12 @@
             <Image url="@/images/mainChar.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="89.0" fitWidth="79.0" layoutX="387.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="89.0" fitWidth="79.0" layoutX="472.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@/images/mainChar.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="89.0" fitWidth="79.0" layoutX="474.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="89.0" fitWidth="79.0" layoutX="387.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@/images/character2.PNG" />
          </image>

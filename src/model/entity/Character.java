@@ -31,7 +31,6 @@ public class Character extends GameObject {
     public Image getCurrentImage(){
 	    if(!isStanding() && isMovingRight())
         {
-            System.out.println("1");
             return getImages()[4];
         }
         else if(!isStanding() && isMovingLeft())
