@@ -1,10 +1,8 @@
 package model.entity;
 
 import javafx.scene.image.Image;
-import model.logic.CharacterManager;
 import model.logic.CollisionManager;
 
-import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -32,7 +30,7 @@ public class  Map {
 	int altitude;
 	private Random rand;
 	private int gravity;
-	CollisionManager cm;
+	CollisionManager collisionManager;
 
 	private int characterMoveSpeed = INITIAL_CHARACTER_SPEED;
     private OldPlayerPosition oldPlayerPosition;
@@ -51,7 +49,7 @@ public class  Map {
 		init.setPosY(0);
 		init.setPosX(0);
 		gameObjects.add(init);
-		cm = new CollisionManager(gameObjects);
+		collisionManager = new CollisionManager(gameObjects);
     }
 
     public Map(Map map){
@@ -132,8 +130,8 @@ public class  Map {
 
 	public void updateCharacter() {
 		System.out.println(gameCharacter.isStanding());
-		//gravity
-		cm.checkCollision(gameObjects);
+
+		collisionManager.checkCollision(gameObjects);
 		if (!gameCharacter.isStanding()) {
 			gameCharacter.setVerticalVelocity(gameCharacter.getVerticalVelocity() - gravity);
 		}
@@ -156,35 +154,7 @@ public class  Map {
 				gameCharacter.setPosX(GAME_RIGHT_LIMIT);
 		}
 	}
-		/*if(force>0)
-		{
-			//force decreases as the character goes up, physics 101
-			gameCharacter.setPosY(gameCharacter.getPosY()-10+force);
-			force-=30;
-=======
 
-		gameCharacter.setPosY(gameCharacter.getPosY() + gameCharacter.getVerticalVelocity());
-		if(gameCharacter.isMovingRight() && gameCharacter.isMovingLeft()){
-			gameCharacter.setHorizontalVelocity(0);
->>>>>>> Stashed changes
-		}
-		else if(gameCharacter.isMovingLeft()){
-			gameCharacter.setHorizontalVelocity(gameCharacter.getHorizontalVelocity() - ACCELERATION);
-			if(gameCharacter.getPosX() + gameCharacter.getHorizontalVelocity()> GAME_LEFT_LIMIT)
-				gameCharacter.setPosX(gameCharacter.getPosX() + gameCharacter.getHorizontalVelocity());
-			else
-				gameCharacter.setPosX(GAME_LEFT_LIMIT);
-
-		}
-		else if(gameCharacter.isMovingRight()){
-			gameCharacter.setHorizontalVelocity(gameCharacter.getHorizontalVelocity() + ACCELERATION);
-			if(gameCharacter.getPosX() + gameCharacter.getHorizontalVelocity()< GAME_RIGHT_LIMIT)
-				gameCharacter.setPosX(gameCharacter.getPosX() + gameCharacter.getHorizontalVelocity());
-			else
-				gameCharacter.setPosX(GAME_RIGHT_LIMIT);
-		}
-	}
-*/
 	public void createLevel(int type){
 		Bar bar;
 		double width = 0;
@@ -208,24 +178,11 @@ public class  Map {
 	}
 
 	public void moveLeft(){
-		/*
-		characterMoveSpeed -= ACCELERATION;
-		if(gameCharacter.getPosX() - characterMoveSpeed> GAME_LEFT_LIMIT)
-			gameCharacter.setPosX(gameCharacter.getPosX() + characterMoveSpeed);
-		else
-			gameCharacter.setPosX(GAME_LEFT_LIMIT);
-		*/
 		gameCharacter.setMovingLeft(true);
 	}
 
 	public void moveRight(){
-		/*
-		characterMoveSpeed += ACCELERATION;
-		if(gameCharacter.getPosX() + characterMoveSpeed< GAME_RIGHT_LIMIT)
-			gameCharacter.setPosX(gameCharacter.getPosX() + characterMoveSpeed);
-		else
-			gameCharacter.setPosX(GAME_RIGHT_LIMIT);
-		*/
+
 		gameCharacter.setMovingRight(true);
 	}
 
@@ -254,37 +211,6 @@ public class  Map {
 		}
 		return false;
 	}
-
-	/*public void changeImages() {
-		if(gameCharacter.getVerticalVelocity()!=0) {
-			Image image = new Image(Paths.get(("./images/mainCharacter/character_jump.PNG")).toUri().toString());
-			Image[] imagejump = new Image[1];
-			imagejump[0] = image;
-			gameCharacter.setImages(imagejump);
-			//oldPlayerPosition = OldPlayerPosition.JUMP;
-		}
-		else if(gameCharacter.getVerticalVelocity()== 0  && oldPlayerPosition != oldPlayerPosition.STANDING){
-			Image image = new Image(Paths.get(("./images/mainCharacter/standing.GIF")).toUri().toString());
-			Image[] imagestand = new Image[1];
-			imagestand[0] = image;
-			gameCharacter.setImages(imagestand);
-			oldPlayerPosition =OldPlayerPosition.STANDING;
-		}
-		else if(gameCharacter.isMovingRight() && oldPlayerPosition != oldPlayerPosition.MOVINGRIGHT){
-			Image image = new Image(Paths.get(("./images/mainCharacter/character_right_small.GIF")).toUri().toString());
-			Image[] imageRight = new Image[1];
-			imageRight[0] = image;
-			gameCharacter.setImages(imageRight);
-            oldPlayerPosition =OldPlayerPosition.MOVINGRIGHT;
-		}
-        else if(gameCharacter.isMovingLeft() && oldPlayerPosition != oldPlayerPosition.MOVINGLEFT){
-            Image image = new Image(Paths.get(("./images/mainCharacter/character_left_small.GIF")).toUri().toString());
-            Image[] imageLeft = new Image[1];
-            imageLeft[0] = image;
-            gameCharacter.setImages(imageLeft);
-            oldPlayerPosition =OldPlayerPosition.MOVINGLEFT;
-        }
-*/
 
 	public int getPassedLevel() {
 		return passedLevel;
