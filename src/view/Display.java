@@ -17,19 +17,16 @@ public class Display extends Application {
 
     private Scene mainMenuScene, howToPlayScene, creditsScene, exitScene, settingsScene, highScoreScene,
             soundSettingsScene, buttonSettingsScene, characterSettingsScene, gameOverScene;
-    GameFrame gf;
 
     public static void main(String[] args) {
         launch(args);
     }
 
-    public Display(){
-
-    }
-
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         primaryStage.getIcons().add(new Image(Paths.get("images/background/icon.png").toUri().toString()));
+
         mainMenuScene = initializeScene("main_menu.fxml");
         //Set background via css
         mainMenuScene.getStylesheets().add(this.getClass().getResource("styleMainMenu.css").toExternalForm());

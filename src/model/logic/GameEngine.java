@@ -29,7 +29,6 @@ public class GameEngine {
 	private PauseManager pm;
 	//private GameFrame gf;
 	private CollisionManager cm;
-	private Camera camera;
 	private Timer timer;
 	private int currentAltitude;
 	private int currentScore;
@@ -39,10 +38,6 @@ public class GameEngine {
 	private Map map;
 	private Pane pane;
 	int mapLevel;
-	//TODO this class should initialize a display and then maintain the game process
-	//TODO let game engine initialize a game character, map that contains game objects
-	//TODO then let view module display it.
-	//TODO then process should continue throughout the gametime
 
 	public GameEngine() {
 		currentAltitude = 0;
@@ -62,26 +57,7 @@ public class GameEngine {
 		}
 		//map.changeImages();
 		if(map.gameOver()){
-			Button b = new Button("Back to Menu");
-			b.setTranslateY(550);
-			b.setTranslateX(650);
-			b.setOnMouseClicked(event -> {
-				Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-				primaryStage.setScene(MainController.getInstance().getMainMenuScene());
-			});
-			TextFlow textflow = new TextFlow();
-			Text text1 = new Text("Game Over");
-			text1.setFont(Font.font("Game Over", FontWeight.BOLD, 100));
-			text1.setFill(Color.AQUAMARINE);
-			text1.setTranslateX(100);
-			text1.setTranslateY(150);
-			Text text2 = new Text("Score: ");
-			text2.setFont(Font.font("Score: ", FontWeight.BOLD, 60));
-			text2.setFill(Color.GREENYELLOW);
-			text2.setTranslateX(-350);
-			text2.setTranslateY(270);
-			textflow.getChildren().addAll(text1,text2);
-			pane.getChildren().addAll(b,textflow);
+			createGameOverPane();
 
 			return pane;
 		}
@@ -117,6 +93,30 @@ public class GameEngine {
 		}
 		return pane;
 	}
+
+	private void createGameOverPane() {
+		Button b = new Button("Back to Menu");
+		b.setTranslateY(550);
+		b.setTranslateX(650);
+		b.setOnMouseClicked(event -> {
+            Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            primaryStage.setScene(MainController.getInstance().getMainMenuScene());
+        });
+		TextFlow textflow = new TextFlow();
+		Text text1 = new Text("Game Over");
+		text1.setFont(Font.font("Game Over", FontWeight.BOLD, 100));
+		text1.setFill(Color.AQUAMARINE);
+		text1.setTranslateX(100);
+		text1.setTranslateY(150);
+		Text text2 = new Text("Score: ");
+		text2.setFont(Font.font("Score: ", FontWeight.BOLD, 60));
+		text2.setFill(Color.GREENYELLOW);
+		text2.setTranslateX(-350);
+		text2.setTranslateY(270);
+		textflow.getChildren().addAll(text1,text2);
+		pane.getChildren().addAll(b,textflow);
+	}
+
 	public GameEngine(int difficulty, KeyCode[] buttons) {
 
 	}

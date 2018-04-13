@@ -5,10 +5,6 @@ import javafx.scene.image.Image;
 public class Bar extends GameObject {
 
 	private int width;
-	private int left;
-	private int right;
-	private int top;
-	private int bottom;
 
 	public Bar(){ }
 

@@ -25,17 +25,17 @@
       </Text>
       <ImageView fitHeight="89.0" fitWidth="79.0" layoutX="297.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@/images/mainChar.png" />
+            <Image url="@/images/character1_0.gif" />
          </image>
       </ImageView>
       <ImageView fitHeight="89.0" fitWidth="79.0" layoutX="472.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@/images/mainChar.png" />
+            <Image url="@/images/character1_0.gif" />
          </image>
       </ImageView>
       <ImageView fitHeight="89.0" fitWidth="79.0" layoutX="387.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@/images/character2.PNG" />
+            <Image url="@/images/character2_0.gif" />
          </image>
       </ImageView>
    </children>

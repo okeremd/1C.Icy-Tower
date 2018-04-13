@@ -23,8 +23,8 @@ public class CharacterSettingsController extends SettingsController {
         chr2 = new Image[1];
         chr3 = new Image[1];
 
-        chr1[0] = new Image(Paths.get(("./images/mainCharacter/mainCharacter1.PNG")).toUri().toString());
-        chr2[0] = new Image(Paths.get(("./images/mainCharacter/mainCharacter1.PNG")).toUri().toString());
+        chr1[0] = new Image(Paths.get(("./images/mainCharacter/character1_0.gif")).toUri().toString());
+        chr2[0] = new Image(Paths.get(("./images/mainCharacter/character2_0.gif")).toUri().toString());
         chr3[0] = new Image(Paths.get(("./images/mainCharacter/dance.gif")).toUri().toString());
 
         ch1.setOnAction(event -> CharacterManager.getInstance().setCharacterImages(1));

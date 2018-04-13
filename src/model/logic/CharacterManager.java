@@ -6,15 +6,12 @@ import java.nio.file.Paths;
 
 public class CharacterManager{
 
-	private Image[] CharacterPrevs;
 	private Image[] current;
-	private final int CHARACTER_NUMBER = 1;
 	private final int CHARACTER_IMAGE_NUM = 6;
 	private static CharacterManager characterManager;
 
     public CharacterManager() {
         current = new Image[CHARACTER_IMAGE_NUM];
-        CharacterPrevs = new Image[CHARACTER_NUMBER];
         setCharacterImages(1);
     }
 
@@ -22,10 +19,6 @@ public class CharacterManager{
         if(characterManager== null)
             characterManager = new CharacterManager();
         return characterManager;
-    }
-
-    public Image[] getCharacterPrevs() {
-        return CharacterPrevs;
     }
 
     public Image[] getCharacterImages() {

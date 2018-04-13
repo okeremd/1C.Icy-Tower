@@ -27,15 +27,11 @@ public class GameFrame {
     Timeline timeline;
     private Scene gameScene;
     boolean stopped;
-    /*private static Character character;
-    private static ImageView gameCharacter;
-    private ImageView bar;
-    private ImageView wall;
-    */
+
     public MediaPlayer mediaplayer;
 
     public Scene start() {
-        //AnchorPane anchorPane = new AnchorPane();
+
         playSong();
         stopped = false;
         KeyCode[] kc = createKeycode();
@@ -82,7 +78,6 @@ public class GameFrame {
         {
             timeline.stop();
             mediaplayer.stop();
-            System.out.println("gksjhgljd");
             stopped = true;
         }
 

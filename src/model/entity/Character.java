@@ -7,13 +7,14 @@ import java.awt.*;
 
 public class Character extends GameObject {
 
-	private int verticalVelocity, horizontalVelocity;
+    public static final int JUMP_POWER = 30;
+    private int verticalVelocity, horizontalVelocity;
 	private int jumpPower;
 	private final int IMAGE_NO = 6;
 	private boolean movingLeft, movingRight, standing;
 
 	public Character(){
-	    jumpPower = 30;
+	    jumpPower = JUMP_POWER;
 	    horizontalVelocity = 1;
 	    movingLeft = false;
 	    movingRight = false;
@@ -65,10 +66,6 @@ public class Character extends GameObject {
 
     public void setJumpPower(int jumpPower) {
         this.jumpPower = jumpPower;
-    }
-
-    public int getIMAGE_NO() {
-        return IMAGE_NO;
     }
 
     public void setStanding(boolean standing){
