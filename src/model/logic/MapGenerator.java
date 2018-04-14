@@ -27,9 +27,4 @@ public class MapGenerator {
             map.createNextAltitudeObjects(1);
         }
     }
-
-    public Map getMap(){
-        return map;
-    }
-
 }

@@ -19,21 +19,34 @@ import model.logic.SoundManager;
 
 public class GameFrame {
 
-
+    /**
+     * The instance of GameEngine that will be showed
+     */
     private GameEngine gameEngine;
+    /**
+     * GameController instance that will take input from user
+     */
     private GameController gameController;
-    private AnimationTimer timer;
-    Scene scene;
+    /**
+     * Timeline will controll the time between each frame
+     */
     Timeline timeline;
+    /**
+     * The Scene that will be shown is held in gameScene
+     */
     private Scene gameScene;
-    boolean stopped;
-
+    /**
+     * MediaPlayer instance will play the musics in game
+     */
     public MediaPlayer mediaplayer;
 
+    /**
+     * This is the default JavaFX method to run animations
+     *
+     */
     public Scene start() {
 
         playSong();
-        stopped = false;
         KeyCode[] kc = createKeycode();
 
 
@@ -56,12 +69,20 @@ public class GameFrame {
         return gameScene;
     }
 
+    /**
+     * This method gets the game buttons from the ButtonManager and pass them to GameEngine
+     * @return KeyCode
+     */
     private KeyCode[] createKeycode() {
 
         KeyCode[] kc = ButtonManager.getInstance().getButtons();
         return kc;
     }
 
+    /**
+     * This method gets the sound settings from SoundManager and plays them
+     *
+     */
     public void playSong(){
 
         Media media = SoundManager.getInstance().getSelectedSong();
@@ -72,18 +93,17 @@ public class GameFrame {
         mediaplayer.play();
     }
 
+    /**
+     * This method updates the frame at each timer instance
+     *
+     */
     private void updateFrame(){
         gameEngine.convertMapToPane();
         if(gameEngine.getMap().gameOver())
         {
             timeline.stop();
             mediaplayer.stop();
-            stopped = true;
         }
 
-    }
-
-    public boolean isStopped(){
-        return stopped;
     }
 }

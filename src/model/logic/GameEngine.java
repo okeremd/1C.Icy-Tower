@@ -159,31 +159,8 @@ public class GameEngine {
 		map.stopMoveJump();
 	}
 
-	/**
-	 * 
-	 * @param buttons
-	 */
-	public void setGameButtons(char[] buttons) {
-		// TODO - implement GameEngine.setGameButtons
-		throw new UnsupportedOperationException();
-	}
-
 	public void updateScore() {
 		// TODO - implement GameEngine.updateScore
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param diff
-	 */
-	public void initializeMap(int diff) {
-		// TODO - implement GameEngine.initializeMap
-		throw new UnsupportedOperationException();
-	}
-
-	public void followCharactersAltitude() {
-		// TODO - implement GameEngine.followCharactersAltitude
 		throw new UnsupportedOperationException();
 	}
 
@@ -196,19 +173,6 @@ public class GameEngine {
 		return this.gamePaused;
 	}
 
-	public void startGame() {
-		// TODO
-		// intialize the game here
-		// initializeMap()
-		//
-		throw new UnsupportedOperationException();
-	}
-
-	public void finishGame() {
-		// TODO - implement GameEngine.finishGame
-		throw new UnsupportedOperationException();
-	}
-
 	public void pauseGame() {
 		// TODO - implement GameEngine.pauseGame
 		throw new UnsupportedOperationException();
@@ -216,21 +180,6 @@ public class GameEngine {
 
 	public void continueGame() {
 		// TODO - implement GameEngine.continueGame
-		throw new UnsupportedOperationException();
-	}
-
-	public void exitGame() {
-		// TODO - implement GameEngine.exitGame
-		throw new UnsupportedOperationException();
-	}
-
-	public void changeVolume() {
-		// TODO - implement GameEngine.changeVolume
-		throw new UnsupportedOperationException();
-	}
-
-	public void changeMusic() {
-		// TODO - implement GameEngine.changeMusic
 		throw new UnsupportedOperationException();
 	}
 

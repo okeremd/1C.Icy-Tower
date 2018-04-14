@@ -11,18 +11,9 @@ import java.util.ArrayList;
 
 
 public class  Map {
-
-    public enum OldPlayerPosition{
-        STANDING,
-        MOVINGLEFT,
-        MOVINGRIGHT,
-        JUMP
-    }
 	public static final int GAME_LEFT_LIMIT = 50;
 	public static final int GAME_RIGHT_LIMIT = 630;
 	public static final int ACCELERATION = 1;
-	public static final int INITIAL_CHARACTER_SPEED = 0;
-
 	private ArrayList<GameObject> gameObjects;
 	private Character gameCharacter;
 	private int level;
@@ -32,8 +23,6 @@ public class  Map {
 	private int gravity;
 	CollisionManager collisionManager;
 
-	private int characterMoveSpeed = INITIAL_CHARACTER_SPEED;
-    private OldPlayerPosition oldPlayerPosition;
     public Map() {
 		gameObjects = new ArrayList<>();
 		rand = new Random();
@@ -43,7 +32,6 @@ public class  Map {
 		altitude = 0;
 		gameObjects.add(gameCharacter);
 		gravity = 2;
-		oldPlayerPosition= OldPlayerPosition.STANDING;
 		Icy init = new Icy();
 		init.setWidth(20);
 		init.setPosY(0);

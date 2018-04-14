@@ -14,17 +14,16 @@ public class SoundManager {
 
     private static SoundManager soundManager;
 
-    private SoundManager(){
+    private SoundManager() {
         sounds = new ArrayList<>();
-        for(int no = 0; no < SOUND_NO; no++){
+        for (int no = 0; no < SOUND_NO; no++) {
             sounds.add(new Media(Paths.get("music/audio" + no + ".mp3").toUri().toString()));
         }
         currentvolume = 0.5;
     }
 
-    public static SoundManager getInstance(){
-        if(soundManager == null)
-        {
+    public static SoundManager getInstance() {
+        if (soundManager == null) {
             soundManager = new SoundManager();
         }
         return soundManager;
