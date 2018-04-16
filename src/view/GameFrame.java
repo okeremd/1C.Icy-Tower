@@ -54,7 +54,7 @@ public class GameFrame {
 
         Image[] charIms = CharacterManager.getInstance().getCharacterImages();
 
-        gameEngine.setCurrentCharactersImages(charIms);
+        gameEngine.loadCurrentCharactersImages(charIms);
 
         gameScene = new Scene(gameEngine.convertMapToPane(), 800, 600);
 

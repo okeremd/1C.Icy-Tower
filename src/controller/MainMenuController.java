@@ -37,6 +37,7 @@ public class MainMenuController extends MainController {
         primaryStage.setScene(MainController.getInstance().getExitScene());
     }
     public void openPlayScene(ActionEvent actionEvent){
+        // ToDo add startController Scene
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         //primaryStage.close();
         //primaryStage = new Stage();

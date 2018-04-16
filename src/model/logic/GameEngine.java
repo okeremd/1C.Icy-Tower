@@ -125,8 +125,8 @@ public class GameEngine {
 	 * 
 	 * @param images
 	 */
-	public void setCurrentCharactersImages(Image[] images) {
-		map.setCurrentCharactersImages(CharacterManager.getInstance().getCharacterImages());
+	public void loadCurrentCharactersImages(Image[] images) {
+		map.loadCurrentCharactersImages(CharacterManager.getInstance().getCharacterImages());
 	}
 
 	public void moveCharacterLeft(){

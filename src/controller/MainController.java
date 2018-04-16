@@ -13,7 +13,7 @@ public class MainController {
     private static Scene settingsScene;
     private static Scene creditsScene;
     private static Scene exitScene;
-
+    private static Scene startScene;
 
 
     private static Scene gameOverScene;
@@ -55,6 +55,10 @@ public class MainController {
 
         mainMenuScene = scene;
     }
+
+    public void setStartScene(Scene scene){
+        startScene = scene;
+    }
     public Scene getMainMenuScene(){
 
         return mainMenuScene;
@@ -85,6 +89,8 @@ public class MainController {
     public static Scene getHighScoreScene() {
         return highScoreScene;
     }
+
+    public static Scene getStartScene(){return startScene; }
 
     public static void setHighScoreScene(Scene highScoreScene) {
         MainController.highScoreScene = highScoreScene;

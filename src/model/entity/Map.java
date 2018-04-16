@@ -49,7 +49,7 @@ public class  Map {
 	 * 
 	 * @param images
 	 */
-	public void setCurrentCharactersImages(Image[] images) {
+	public void loadCurrentCharactersImages(Image[] images) {
 		gameCharacter.setImages(images);
 	}
 
