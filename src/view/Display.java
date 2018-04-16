@@ -16,7 +16,7 @@ public class Display extends Application {
     private static final int SCENE_HEIGHT = 600;
 
     private Scene mainMenuScene, howToPlayScene, creditsScene, exitScene, settingsScene, highScoreScene,
-            soundSettingsScene, buttonSettingsScene, characterSettingsScene, gameOverScene;
+            soundSettingsScene, buttonSettingsScene, characterSettingsScene;
 
     public static void main(String[] args) {
         launch(args);
@@ -55,10 +55,6 @@ public class Display extends Application {
         characterSettingsScene = initializeScene("character_settings.fxml");
         characterSettingsScene.getStylesheets().add(this.getClass().getResource("styleOtherMenus.css").toExternalForm());
 
-        gameOverScene = initializeScene("game_over.fxml");
-        gameOverScene.getStylesheets().add(this.getClass().getResource("gameover.css").toExternalForm());
-
-
         MainController.getInstance().setMainMenuScene(mainMenuScene);
         MainController.getInstance().setHowToPlayScene(howToPlayScene);
         MainController.getInstance().setCreditsScene(creditsScene);
@@ -68,8 +64,6 @@ public class Display extends Application {
         MainController.getInstance().setSoundSettingsScene(soundSettingsScene);
         MainController.getInstance().setButtonSettingsScene(buttonSettingsScene);
         MainController.getInstance().setCharacterSettingsScene(characterSettingsScene);
-        MainController.getInstance().setGameOverScene(gameOverScene);
-
         //MainController.getInstance().setPlayScene(playScene);
         primaryStage.setTitle("Icy Tower");
         primaryStage.setScene(mainMenuScene);

@@ -27,10 +27,10 @@ public class CharacterManager{
 
     public void setCharacterImages(int characterNo) {
         for(int i = 0; i < CHARACTER_IMAGE_NUM - 3; i++){
-            current[i] = new Image(Paths.get(("./images/mainCharacter/character" + characterNo + "_" + (i) + ".gif")).toUri().toString());
+            current[i] = new Image(Paths.get(("./images/character_images/character" + characterNo + "_" + (i) + ".gif")).toUri().toString());
         }
         for (int i = 3; i<6; i++)
-            current[i] = new Image(Paths.get(("./images/mainCharacter/character" + characterNo+ "_" + i + ".png")).toUri().toString());
+            current[i] = new Image(Paths.get(("./images/character_images/character" + characterNo+ "_" + i + ".png")).toUri().toString());
 
     }
 }
