@@ -72,6 +72,11 @@ public class  Map {
 		}
 	}
 
+	public void createCollectible(int diff){
+		Collectible collectible = new Collectible();
+		gameObjects.add(collectible);
+	}
+
 	public void createFullWidthLevel() {
 		// TODO - implement Map.createFullWidthLevel
 		throw new UnsupportedOperationException();
@@ -79,11 +84,6 @@ public class  Map {
 
 	public ArrayList<GameObject> getGameObjects() {
 		return gameObjects;
-	}
-
-	public void createBonus() {
-		// TODO - implement Map.createBonus
-		throw new UnsupportedOperationException();
 	}
 
 	public void updateObjects() {
