@@ -103,6 +103,9 @@ public class GameEngine {
 							add.setTranslateX(g.getPosX() + xsofar);
 							xsofar += g.getImages()[1].getWidth();
 							add.setTranslateY(500 - g.getPosY());
+							if(g instanceof HardlyVisible){
+								add.setOpacity(0.3);
+							}
 							pane.getChildren().add(add);
 						}
 						i++;

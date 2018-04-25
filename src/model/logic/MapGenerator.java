@@ -21,7 +21,6 @@ public class MapGenerator {
     }
 
 	public void createNextLevels(){
-        map.setPassedLevel(map.getPassedLevel());
         for(int i = 0; i < 30; i++){
             map.setLevel(map.getLevel() + 1);
             map.createNextAltitudeObjects(1);
