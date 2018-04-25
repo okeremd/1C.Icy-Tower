@@ -103,6 +103,7 @@ public class  Map {
 			}
 		}
 		altitude+= decrease;
+		Character.getInstance().setScore((altitude/90)*6+(int)Math.sqrt(altitude));
 	}
 
 	public int getLevel() {
@@ -212,4 +213,6 @@ public class  Map {
 	public void setPassedLevel(int passedLevel) {
 		this.passedLevel = passedLevel;
 	}
+
+
 }
