@@ -20,10 +20,6 @@ import model.logic.SoundManager;
 public class GameFrame {
 
     /**
-     * The instance of GameEngine that will be showed
-     */
-    private GameEngine gameEngine;
-    /**
      * GameController instance that will take input from user
      */
     private GameController gameController;
@@ -49,16 +45,13 @@ public class GameFrame {
         playSong();
         KeyCode[] kc = createKeycode();
 
-
-        gameEngine = new GameEngine();
-
         Image[] charIms = CharacterManager.getInstance().getCharacterImages();
 
-        gameEngine.loadCurrentCharactersImages(charIms);
+        GameEngine.getInstance().loadCurrentCharactersImages(charIms);
 
-        gameScene = new Scene(gameEngine.convertMapToPane(), 800, 600);
+        gameScene = new Scene(GameEngine.getInstance().convertMapToPane(), 800, 600);
 
-        gameController = new GameController(gameScene, kc, gameEngine);
+        gameController = new GameController(gameScene, kc, GameEngine.getInstance());
 
         timeline = new Timeline(new KeyFrame(
                 Duration.millis(50),
@@ -98,8 +91,8 @@ public class GameFrame {
      *
      */
     private void updateFrame(){
-        gameEngine.convertMapToPane();
-        if(gameEngine.getMap().gameOver())
+        GameEngine.getInstance().convertMapToPane();
+        if(GameEngine.getInstance().getMap().gameOver())
         {
             timeline.stop();
             mediaplayer.stop();
