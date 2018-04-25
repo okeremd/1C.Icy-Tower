@@ -13,6 +13,7 @@ public class Character extends GameObject {
 	private int score;
 	private final int IMAGE_NO = 7;
 	private boolean movingLeft, movingRight, standing, comboJumping;
+	private static Character character;
 
 	public Character(){
 	    jumpPower = JUMP_POWER;
@@ -59,6 +60,11 @@ public class Character extends GameObject {
         else{
 	        return getImages()[3];
         }
+    }
+    public static Character getInstance(){
+        if(character== null)
+            character = new Character();
+        return character;
     }
 
     public boolean isComboJumping() {

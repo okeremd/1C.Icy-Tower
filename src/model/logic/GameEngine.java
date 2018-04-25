@@ -70,6 +70,17 @@ public class GameEngine {
 		}
 
 		pane.getChildren().clear();
+		Text textscore = new Text("score");
+		textscore.setFont(Font.font("score", FontWeight.BOLD, 35));
+		textscore.setTranslateY(40);
+		textscore.setTranslateX(700);
+		textscore.setFill(Color.RED);
+		Text tscore = new Text(""+model.entity.Character.getInstance().getScore());
+		tscore.setFont(Font.font("score", FontWeight.BOLD, 35));
+		tscore.setTranslateY(77);
+		tscore.setTranslateX(720);
+		tscore.setFill(Color.RED);
+		pane.getChildren().addAll(textscore,tscore);
 		for(GameObject g: map.getGameObjects()){
 			int xsofar = 0;
 			if(g instanceof model.entity.Character){
