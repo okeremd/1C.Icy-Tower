@@ -95,7 +95,7 @@ public class GameEngine {
 					xsofar += g.getImages()[i].getWidth();
 					add.setTranslateY(500 - g.getPosY());
 					pane.getChildren().add(add);
-					if (g instanceof Bar && i == 0) {
+					if (g instanceof Bar&& i == 0) {
 						for (int j = 0; j < ((Bar) g).getWidth(); j++) {
 							add = new ImageView(g.getImages()[1]);
 							add.setTranslateX(g.getPosX() + xsofar);
@@ -104,6 +104,16 @@ public class GameEngine {
 							if(g instanceof HardlyVisible){
 								add.setOpacity(0.3);
 							}
+							pane.getChildren().add(add);
+						}
+						i++;
+					}
+					else if(g instanceof Base && i == 0){
+						for (int j = 0; j < ((Base) g).getWidth(); j++) {
+							add = new ImageView(g.getImages()[1]);
+							add.setTranslateX(g.getPosX() + xsofar);
+							xsofar += g.getImages()[1].getWidth();
+							add.setTranslateY(500 - g.getPosY());
 							pane.getChildren().add(add);
 						}
 						i++;

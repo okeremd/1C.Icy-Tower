@@ -39,8 +39,7 @@ public class  Map {
 		altitude = 0;
 		gameObjects.add(gameCharacter);
 		gravity = 2;
-		Icy init = new Icy();
-		init.setWidth(550);
+		Base init = new Base();
 		init.setPosY(-78);
 		init.setPosX(0);
 		gameObjects.add(init);

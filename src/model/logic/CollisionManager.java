@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class CollisionManager {
     Bar current;
 	public CollisionManager(ArrayList<GameObject> gameObjects) {
-        current = (Bar) gameObjects.get(1);
+
 	}
 
 
@@ -36,7 +36,7 @@ public class CollisionManager {
             }
         }
         else{
-	        if(!((current.getPosX() - 50 <= character.getPosX()) && (current.getPosX() + (current.getWidth()) * current.getImages()[0].getWidth() >= character.getPosX()))){
+	        if(current instanceof Bar && !((current.getPosX() - 50 <= character.getPosX()) && (current.getPosX() + (current.getWidth()) * current.getImages()[0].getWidth() >= character.getPosX()))){
 	            character.setStanding(false);
 	            current = null;
             }
