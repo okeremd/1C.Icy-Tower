@@ -118,8 +118,6 @@ public class  Map {
 	}
 
 	public void updateCharacter() {
-		System.out.println(gameCharacter.isStanding());
-
 		collisionManager.checkCollision(gameObjects);
 		if (!gameCharacter.isStanding()) {
 			gameCharacter.setVerticalVelocity(gameCharacter.getVerticalVelocity() - gravity);
@@ -146,7 +144,6 @@ public class  Map {
 
 	public void createLevel(int type){
 		Bar bar;
-		double width = 0;
 			if (type == 1) {
 				bar = new Icy();
 			}
@@ -159,9 +156,8 @@ public class  Map {
 			else{
 				bar = new HardlyVisible();
 			}
-			width = rand.nextDouble() % 5;
-			bar.setWidth(12 + (int) width);
-			bar.setPosX(rand.nextInt(550) + 50);
+			bar.setWidth(12 + rand.nextInt(5));
+			bar.setPosX(rand.nextInt(400) + 50);
 			bar.setPosY(90 * level - altitude);
 			gameObjects.add(bar);
 	}
