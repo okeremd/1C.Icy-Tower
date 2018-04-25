@@ -19,8 +19,8 @@ public class CollisionManager {
             for (int i = 1; i < gameObjects.size(); i++) {
                 if (gameObjects.get(i) instanceof Bar) {
                     Bar looper = (Bar) gameObjects.get(i);
-                    if (looper.getPosY() < character.getPosY() - character.getImages()[0].getHeight() + 10
-                            && looper.getPosY() > character.getPosY() - character.getImages()[0].getHeight() - 10
+                    if (looper.getPosY() < character.getPosY() - character.getImages()[0].getHeight() + Math.abs(character.getVerticalVelocity())
+                            && looper.getPosY() > character.getPosY() - character.getImages()[0].getHeight() - Math.abs(character.getVerticalVelocity())
                             && ((looper.getPosX() - 50 <= character.getPosX())
                             && (looper.getPosX() + (looper.getWidth()) * looper.getImages()[0].getWidth() >= character.getPosX())
                             && character.getVerticalVelocity() <= 0)) {
@@ -36,14 +36,9 @@ public class CollisionManager {
         }
         else{
 	        if(!((current.getPosX() - 50 <= character.getPosX()) && (current.getPosX() + (current.getWidth()) * current.getImages()[0].getWidth() >= character.getPosX()))){
-	            System.out.println(current.getPosX() + " " + character.getPosX());
 	            character.setStanding(false);
             }
         }
 
 	}
-
-
-
-
 }
