@@ -28,13 +28,14 @@ public class  Map {
 		rand = new Random();
 		gameCharacter = new Character();
 		gameCharacter.setPosX(280);
+		gameCharacter.setPosY(50);
 		level = 0;
 		altitude = 0;
 		gameObjects.add(gameCharacter);
 		gravity = 2;
 		Icy init = new Icy();
-		init.setWidth(20);
-		init.setPosY(0);
+		init.setWidth(550);
+		init.setPosY(-78);
 		init.setPosX(0);
 		gameObjects.add(init);
 		collisionManager = new CollisionManager(gameObjects);
@@ -88,9 +89,9 @@ public class  Map {
 
 	public void updateObjects() {
 		Iterator<GameObject> iter = gameObjects.iterator();
-		int decrease = level/30;
+		int decrease = level/30 - 1;
 		if(gameCharacter.getPosY() > 540){
-			decrease = 1 + gameCharacter.getPosY() - 540;
+			decrease = gameCharacter.getPosY() - 540;
 		}
 		while(iter.hasNext()){
 			GameObject obj = iter.next();
@@ -161,7 +162,7 @@ public class  Map {
 			width = rand.nextDouble() % 5;
 			bar.setWidth(12 + (int) width);
 			bar.setPosX(rand.nextInt(550) + 50);
-			bar.setPosY(50 * (level) - altitude);
+			bar.setPosY(90 * level - altitude);
 			gameObjects.add(bar);
 	}
 
@@ -189,11 +190,15 @@ public class  Map {
 
 	public void jump(){
 		if(gameCharacter.isStanding()){
-			if(gameCharacter.isMovingLeft() || gameCharacter.isMovingRight()){
+			if(Math.abs(gameCharacter.getHorizontalVelocity()) > 15){
 				gameCharacter.setComboJumping(true);
+				gameCharacter.setVerticalVelocity(gameCharacter.getJumpPower() + Math.abs(gameCharacter.getHorizontalVelocity()));
+				gameCharacter.setStanding(false);
 			}
-			gameCharacter.setVerticalVelocity(gameCharacter.getJumpPower() + Math.abs(gameCharacter.getHorizontalVelocity()) * 2);
-			gameCharacter.setStanding(false);
+			else {
+				gameCharacter.setVerticalVelocity(gameCharacter.getJumpPower());
+				gameCharacter.setStanding(false);
+			}
 		}
 	}
 	public boolean gameOver(){
