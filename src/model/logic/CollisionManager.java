@@ -25,6 +25,7 @@ public class CollisionManager {
                             && (looper.getPosX() + (looper.getWidth()) * looper.getImages()[0].getWidth() >= character.getPosX())
                             && character.getVerticalVelocity() <= 0)) {
                         character.setStanding(true);
+                        character.setComboJumping(false);
                         character.setVerticalVelocity(0);
                         character.setPosY(looper.getPosY() + (int) character.getImages()[0].getHeight());
                         current = looper;

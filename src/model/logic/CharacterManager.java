@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 public class CharacterManager{
 
 	private Image[] current;
-	private final int CHARACTER_IMAGE_NUM = 6;
+	private final int CHARACTER_IMAGE_NUM = 7;
 	private static CharacterManager characterManager;
 
     public CharacterManager() {
@@ -31,6 +31,8 @@ public class CharacterManager{
         }
         for (int i = 3; i<6; i++)
             current[i] = new Image(Paths.get(("./images/character_images/character" + characterNo+ "_" + i + ".png")).toUri().toString());
+
+        current[6] = new Image(Paths.get(("./images/character_images/character" + characterNo+ "_6.gif")).toUri().toString());
 
     }
 }

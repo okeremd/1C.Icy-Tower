@@ -10,8 +10,8 @@ public class Character extends GameObject {
     public static final int JUMP_POWER = 30;
     private int verticalVelocity, horizontalVelocity;
 	private int jumpPower;
-	private final int IMAGE_NO = 6;
-	private boolean movingLeft, movingRight, standing;
+	private final int IMAGE_NO = 7;
+	private boolean movingLeft, movingRight, standing, comboJumping;
 
 	public Character(){
 	    jumpPower = JUMP_POWER;
@@ -19,6 +19,7 @@ public class Character extends GameObject {
 	    movingLeft = false;
 	    movingRight = false;
 	    standing = true;
+	    comboJumping = false;
     }
 
     public Character(Image[] images) {
@@ -27,10 +28,15 @@ public class Character extends GameObject {
         horizontalVelocity = 10;
         movingLeft = false;
         movingRight = false;
+        comboJumping = false;
+
     }
 
     public Image getCurrentImage(){
-	    if(!isStanding() && isMovingRight())
+	    if(isComboJumping()){
+	        return getImages()[6];
+        }
+	    else if(!isStanding() && isMovingRight())
         {
             return getImages()[4];
         }
@@ -50,6 +56,14 @@ public class Character extends GameObject {
         else{
 	        return getImages()[3];
         }
+    }
+
+    public boolean isComboJumping() {
+        return comboJumping;
+    }
+
+    public void setComboJumping(boolean comboJumping) {
+        this.comboJumping = comboJumping;
     }
 
     public int getVerticalVelocity() {

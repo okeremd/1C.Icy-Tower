@@ -186,9 +186,13 @@ public class  Map {
 	public void stopMoveJump(){
 
 	}
+
 	public void jump(){
 		if(gameCharacter.isStanding()){
-			gameCharacter.setVerticalVelocity(gameCharacter.getJumpPower());
+			if(gameCharacter.isMovingLeft() || gameCharacter.isMovingRight()){
+				gameCharacter.setComboJumping(true);
+			}
+			gameCharacter.setVerticalVelocity(gameCharacter.getJumpPower() + Math.abs(gameCharacter.getHorizontalVelocity()) * 2);
 			gameCharacter.setStanding(false);
 		}
 	}
