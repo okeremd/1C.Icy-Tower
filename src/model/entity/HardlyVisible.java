@@ -2,12 +2,20 @@ package model.entity;
 
 import javafx.scene.image.Image;
 
+import java.nio.file.Paths;
+
 public class HardlyVisible extends Bar {
 
 	private double opacity;
-	private final int IMAGE_NO = 2;
+	private final int IMAGE_NUM = 3;
 
-	public HardlyVisible(){}
+	public HardlyVisible(){
+        Image[] images = new Image[IMAGE_NUM];
+        images[0] = new Image(Paths.get("./images/gameObject/bar_l1.png").toUri().toString());
+        images[1] = new Image(Paths.get("./images/gameObject/bar_m1.png").toUri().toString());
+        images[2] = new Image(Paths.get("./images/gameObject/bar_r1.png").toUri().toString());
+        super.setImages(images);
+    }
 
     public HardlyVisible(Image[] images) {
         super(images);
@@ -26,8 +34,8 @@ public class HardlyVisible extends Bar {
         this.opacity = opacity;
     }
 
-    public int getIMAGE_NO() {
-        return IMAGE_NO;
+    public int getIMAGE_NUM() {
+        return IMAGE_NUM;
     }
 
 }

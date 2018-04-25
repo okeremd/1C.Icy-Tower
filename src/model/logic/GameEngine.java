@@ -72,12 +72,13 @@ public class GameEngine {
 		textscore.setFont(Font.font("score", FontWeight.BOLD, 35));
 		textscore.setTranslateY(40);
 		textscore.setTranslateX(700);
-		textscore.setFill(Color.RED);
+		textscore.setFill(Color.ORANGE);
 		Text tscore = new Text(""+model.entity.Character.getInstance().getScore());
 		tscore.setFont(Font.font("score", FontWeight.BOLD, 35));
 		tscore.setTranslateY(77);
 		tscore.setTranslateX(720);
-		tscore.setFill(Color.RED);
+		tscore.setFill(Color.ORANGE);
+
 		pane.getChildren().addAll(textscore,tscore);
 		for(GameObject g: Map.getInstance().getGameObjects()){
 			int xsofar = 0;
@@ -100,6 +101,9 @@ public class GameEngine {
 							add.setTranslateX(g.getPosX() + xsofar);
 							xsofar += g.getImages()[1].getWidth();
 							add.setTranslateY(500 - g.getPosY());
+							if(g instanceof HardlyVisible){
+								add.setOpacity(0.3);
+							}
 							pane.getChildren().add(add);
 						}
 						i++;
@@ -123,12 +127,12 @@ public class GameEngine {
 		TextFlow textflow = new TextFlow();
 		Text text1 = new Text("Game Over");
 		text1.setFont(Font.font("Game Over", FontWeight.BOLD, 100));
-		text1.setFill(Color.AQUAMARINE);
+		text1.setFill(Color.PALEGREEN);
 		text1.setTranslateX(100);
 		text1.setTranslateY(150);
-		Text text2 = new Text("Score: ");
+		Text text2 = new Text("Score: "+ model.entity.Character.getInstance().getScore());
 		text2.setFont(Font.font("Score: ", FontWeight.BOLD, 60));
-		text2.setFill(Color.GREENYELLOW);
+		text2.setFill(Color.PALETURQUOISE);
 		text2.setTranslateX(-350);
 		text2.setTranslateY(270);
 		textflow.getChildren().addAll(text1,text2);

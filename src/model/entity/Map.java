@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 
 
-
 public class  Map {
 	private static Map instance;
 	public static Map getInstance(){
@@ -66,7 +65,7 @@ public class  Map {
 	 * @param diff
 	 */
 	public void createNextAltitudeObjects(int diff) {
-		if(level % 100 < 125){
+		if(level % 100 < 25){
 			createLevel(1);
 		}
 		else if(level % 100 < 50){
@@ -118,6 +117,7 @@ public class  Map {
 			}
 		}
 		altitude+= decrease;
+		Character.getInstance().setScore((altitude/90)*6+(int)Math.sqrt(altitude));
 	}
 
 	public int getLevel() {
@@ -173,7 +173,7 @@ public class  Map {
 			}
 			bar.setWidth(12 + rand.nextInt(5));
 			bar.setPosX(rand.nextInt(400) + 50);
-			bar.setPosY(90 * level - altitude);
+			bar.setPosY(120 * level - altitude + rand.nextInt(50));
 			gameObjects.add(bar);
 	}
 

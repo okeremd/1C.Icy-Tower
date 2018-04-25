@@ -1,5 +1,6 @@
 package model.logic;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import model.entity.Bar;
 import model.entity.Character;
 import model.entity.GameObject;
@@ -37,8 +38,12 @@ public class CollisionManager {
         else{
 	        if(!((current.getPosX() - 50 <= character.getPosX()) && (current.getPosX() + (current.getWidth()) * current.getImages()[0].getWidth() >= character.getPosX()))){
 	            character.setStanding(false);
+	            current = null;
             }
         }
-
 	}
+
+	public Boolean isColliding(){
+	    return current != null;
+    }
 }
