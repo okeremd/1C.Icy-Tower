@@ -38,8 +38,15 @@ public class GameEngine {
 	private Map map;
 	private Pane pane;
 	int mapLevel;
-
-	public GameEngine() {
+	private static GameEngine instance;
+	public static GameEngine getInstance(){
+		if(instance == null)
+		{
+			instance = new GameEngine();
+		}
+		return instance;
+	}
+	private GameEngine() {
 		currentAltitude = 0;
 		map = new Map();
 		pane = new Pane();
