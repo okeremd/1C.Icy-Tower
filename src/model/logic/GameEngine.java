@@ -119,6 +119,7 @@ public class GameEngine {
 		b.setOnMouseClicked(event -> {
             Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
             primaryStage.setScene(MainController.getInstance().getMainMenuScene());
+            instance = null;
         });
 		TextFlow textflow = new TextFlow();
 		Text text1 = new Text("Game Over");
