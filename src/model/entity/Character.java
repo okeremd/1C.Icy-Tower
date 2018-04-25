@@ -10,6 +10,7 @@ public class Character extends GameObject {
     public static final int JUMP_POWER = 30;
     private int verticalVelocity, horizontalVelocity;
 	private int jumpPower;
+	private int score;
 	private final int IMAGE_NO = 7;
 	private boolean movingLeft, movingRight, standing, comboJumping;
 
@@ -20,6 +21,7 @@ public class Character extends GameObject {
 	    movingRight = false;
 	    standing = true;
 	    comboJumping = false;
+	    score=0;
     }
 
     public Character(Image[] images) {
@@ -29,6 +31,7 @@ public class Character extends GameObject {
         movingLeft = false;
         movingRight = false;
         comboJumping = false;
+        score=0;
 
     }
 
@@ -113,4 +116,8 @@ public class Character extends GameObject {
     public void setHorizontalVelocity(int horizontalVelocity) {
         this.horizontalVelocity = horizontalVelocity;
     }
+
+    public int getScore() { return score; }
+
+    public void setScore(int score) { this.score = score; }
 }

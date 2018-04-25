@@ -20,8 +20,8 @@
              <items>
                  <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Requem for a Dream" />
-                    <String fx:value="Light My Fire" />
-                     <String fx:value="Never gonna give you up" />
+                    <String fx:value="Never gonna give you up" />
+                     <String fx:value="Light My Fire" />
                 </FXCollections>
              </items>
          </ChoiceBox>
