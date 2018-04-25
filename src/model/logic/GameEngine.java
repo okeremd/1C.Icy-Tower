@@ -35,7 +35,6 @@ public class GameEngine {
 	private boolean gameFinished;
 	private boolean gamePaused;
 	private int difficulty;
-	private Map map;
 	private Pane pane;
 	int mapLevel;
 	private static GameEngine instance;
@@ -48,22 +47,21 @@ public class GameEngine {
 	}
 	private GameEngine() {
 		currentAltitude = 0;
-		map = new Map();
 		pane = new Pane();
 		BackgroundImage backgroundImage = new BackgroundImage(new Image(Paths.get( "./images/gameObject/gameBack.png").toUri().toString()), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		pane.setBackground(new Background(backgroundImage));
-		mapgen = new MapGenerator(map);
+		mapgen = new MapGenerator(Map.getInstance());
 		mapgen.createNextLevels();
 	}
 
 	public Pane convertMapToPane(){
-		map.updateCharacter();
-		map.updateObjects();
-		if(map.getLevel() - (map.getAltitude() / 50) < 15){
+		Map.getInstance().updateCharacter();
+		Map.getInstance().updateObjects();
+		if(Map.getInstance().getLevel() - (Map.getInstance().getAltitude() / 50) < 15){
 			mapgen.createNextLevels();
 		}
 		//map.changeImages();
-		if(map.gameOver()){
+		if(Map.getInstance().gameOver()){
 			createGameOverPane();
 
 			return pane;
@@ -81,7 +79,7 @@ public class GameEngine {
 		tscore.setTranslateX(720);
 		tscore.setFill(Color.RED);
 		pane.getChildren().addAll(textscore,tscore);
-		for(GameObject g: map.getGameObjects()){
+		for(GameObject g: Map.getInstance().getGameObjects()){
 			int xsofar = 0;
 			if(g instanceof model.entity.Character){
 				ImageView add = new ImageView(((model.entity.Character) g).getCurrentImage());
@@ -119,7 +117,8 @@ public class GameEngine {
 		b.setOnMouseClicked(event -> {
             Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
             primaryStage.setScene(MainController.getInstance().getMainMenuScene());
-            instance = null;
+            instance = null; // terminate the gameEngine for that game
+			Map.setMapNull();
         });
 		TextFlow textflow = new TextFlow();
 		Text text1 = new Text("Game Over");
@@ -145,37 +144,37 @@ public class GameEngine {
 	 * @param images
 	 */
 	public void loadCurrentCharactersImages(Image[] images) {
-		map.loadCurrentCharactersImages(CharacterManager.getInstance().getCharacterImages());
+		Map.getInstance().loadCurrentCharactersImages(CharacterManager.getInstance().getCharacterImages());
 	}
 
 	public void moveCharacterLeft(){
 
-		map.moveLeft();
+		Map.getInstance().moveLeft();
 	}
 
 	public void moveCharacterRight(){
 
-		map.moveRight();
+		Map.getInstance().moveRight();
 	}
 	public void jumpCharacter() {
 
-		map.jump();
+		Map.getInstance().jump();
 	}
 
 
 	public void stopMoveCharacterLeft(){
 
-		map.stopMoveLeft();
+		Map.getInstance().stopMoveLeft();
 	}
 
 	public void stopMoveCharacterRight(){
 
-		map.stopMoveRight();
+		Map.getInstance().stopMoveRight();
 	}
 
 	public void stopJump(){
 
-		map.stopMoveJump();
+		Map.getInstance().stopMoveJump();
 	}
 
 	public void updateScore() {
@@ -203,6 +202,7 @@ public class GameEngine {
 	}
 
 	public Map getMap(){
-		return map;
+		return Map.getInstance();
 	}
+
 }

@@ -13,6 +13,11 @@ public class Sticky extends Bar {
         super(images);
     }
 
+    @Override
+    public void remove() {
+
+    }
+
     public double getStickyness() {
         return stickyness;
     }
@@ -24,4 +29,5 @@ public class Sticky extends Bar {
     public int getIMAGE_NO() {
         return IMAGE_NO;
     }
+
 }

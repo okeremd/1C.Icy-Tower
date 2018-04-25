@@ -10,7 +10,14 @@ import java.util.ArrayList;
 
 
 
+
 public class  Map {
+	private static Map instance;
+	public static Map getInstance(){
+		if(instance==null)
+			instance = new Map();
+		return instance;
+	}
 	public static final int GAME_LEFT_LIMIT = 50;
 	public static final int GAME_RIGHT_LIMIT = 630;
 	public static final int ACCELERATION = 1;
@@ -23,7 +30,7 @@ public class  Map {
 	private int gravity;
 	CollisionManager collisionManager;
 
-    public Map() {
+    private Map() {
 		gameObjects = new ArrayList<>();
 		rand = new Random();
 		gameCharacter = new Character();
@@ -94,7 +101,15 @@ public class  Map {
 			decrease = gameCharacter.getPosY() - 540;
 		}
 		while(iter.hasNext()){
-			GameObject obj = iter.next();
+			GameObject obj = iter.next(); //TODO bonus falan gelirse buralar değişmeli!!!
+			if(obj.getPosY() < 20)
+			{
+				if(obj instanceof Bar)
+				{
+					Bar bar =(Bar) obj;
+					bar.remove();
+				}
+			}
 			if(obj.getPosY() < -130){
 				iter.remove();
 			}
@@ -211,5 +226,15 @@ public class  Map {
 
 	public void setPassedLevel(int passedLevel) {
 		this.passedLevel = passedLevel;
+	}
+
+	public void remove(Bar bar) {
+
+		bar.setPosY(bar.getPosY()-3);
+
+	}
+
+	public static void setMapNull() {
+		instance = null;
 	}
 }

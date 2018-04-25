@@ -13,6 +13,11 @@ public class Wooden extends Bar {
         super(images);
     }
 
+    @Override
+    public void remove() {
+
+    }
+
 
     public double getBreaktime() {
         return breaktime;
@@ -25,4 +30,5 @@ public class Wooden extends Bar {
     public int getIMAGE_NO() {
         return IMAGE_NO;
     }
+
 }

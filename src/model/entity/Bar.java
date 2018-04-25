@@ -2,7 +2,7 @@ package model.entity;
 
 import javafx.scene.image.Image;
 
-public class Bar extends GameObject {
+public abstract class Bar extends GameObject {
 
 	private int width;
 
@@ -20,5 +20,6 @@ public class Bar extends GameObject {
 		this.width = width;
 	}
 
+	abstract public void remove();
 
 }

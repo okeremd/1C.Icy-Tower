@@ -13,6 +13,11 @@ public class HardlyVisible extends Bar {
         super(images);
     }
 
+    @Override
+    public void remove() {
+
+    }
+
     public double getOpacity() {
         return opacity;
     }
@@ -24,4 +29,5 @@ public class HardlyVisible extends Bar {
     public int getIMAGE_NO() {
         return IMAGE_NO;
     }
+
 }

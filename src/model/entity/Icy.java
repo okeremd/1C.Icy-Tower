@@ -21,6 +21,12 @@ public class Icy extends Bar {
         super(images);
     }
 
+    @Override
+    public void remove() {
+        Breakable breakable = new Breakable();
+        breakable.react(this);
+    }
+
     public double getSlipperiness() {
         return slipperiness;
     }
@@ -32,4 +38,5 @@ public class Icy extends Bar {
     public int getIMAGE_NO() {
         return IMAGE_NUM;
     }
+
 }
