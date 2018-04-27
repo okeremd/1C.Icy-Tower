@@ -42,11 +42,10 @@ public class CollisionManager {
                 }
                 else if(gameObjects.get(i) instanceof Collectible){
                     if(currentbonus instanceof Coin){
-
-
+                        character.setScore(character.getScore() + ((Coin) currentbonus).getVALUE());
                     }
                     else if(currentbonus instanceof Balloon){
-
+                        
                     }
                     else if(currentbonus instanceof TimeStretcher){
 

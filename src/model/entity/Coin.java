@@ -14,4 +14,8 @@ public class Coin extends Collectible {
         images[0] = new Image(Paths.get("./images/bonus/coin.png").toUri().toString());
         super.setImages(images);
     }
+
+    public int getVALUE() {
+        return VALUE;
+    }
 }
