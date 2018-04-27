@@ -6,7 +6,6 @@ import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class FileManagerTest {
 
@@ -24,8 +23,13 @@ class FileManagerTest {
     }
 
     @org.junit.jupiter.api.Test
-    void saveHighScoreNames() throws IOException {
-        FileManager.getInstance().readHighScoreNames();
+    void readHighScoreLines() throws IOException {
+        FileManager instance = FileManager.getInstance();
+        instance.readHighScoreLines();
+        String[] names = instance.getHighScoreNames();
+        String[] scores = instance.getHighScoreScores();
+        assertThat(names[0], equalTo("Ahmet"));
+        assertThat(scores[0], equalTo("60"));
     }
 
     @org.junit.jupiter.api.Test
