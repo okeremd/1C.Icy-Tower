@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -26,10 +25,27 @@
            <Image url="@/images/hscup.png" />
        </image>
    </ImageView>
-      <TextArea layoutX="297.0" layoutY="200.0" prefHeight="200.0" prefWidth="233.0" text="no current high scores">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </TextArea>
+      <Text fx:id="name1" layoutX="282.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score1" />
+      <Text fx:id="name2" layoutX="282.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="name3" layoutX="282.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="name4" layoutX="282.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="name5" layoutX="282.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="name6" layoutX="282.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="name7" layoutX="282.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="name8" layoutX="282.0" layoutY="513.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="name9" layoutX="282.0" layoutY="551.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="name10" layoutX="282.0" layoutY="576.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+
+       <Text fx:id="score1" layoutX="403.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="score2" layoutX="403.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="score3" layoutX="403.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="score4" layoutX="403.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="score5" layoutX="403.0" layoutY="413.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="score6" layoutX="403.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="score7" layoutX="403.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="score8" layoutX="403.0" layoutY="513.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="score9" layoutX="403.0" layoutY="551.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="score10" layoutX="403.0" layoutY="576.0" strokeType="OUTSIDE" strokeWidth="0.0" text="s" />
+       
    </children>
 </AnchorPane>

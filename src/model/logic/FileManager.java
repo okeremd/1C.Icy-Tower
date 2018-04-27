@@ -10,25 +10,48 @@ import java.util.Scanner;
 
 public class FileManager {
 
-	private static FileManager instance;
-
-	private final String PATH = "~/";
-	private final int MAX_HIGH_SCORE = 10;
-	private String highScoreNames[];
-	private String highScoreScores[];
-
-    private FileManager(){
-
+	private FileManager(){
+		highScoreScores = new String[10];
+		highScoreNames = new String[10];
 	}
+
+	private static FileManager instance;
 
 	public static FileManager getInstance() {
 		if(instance == null) {
 			instance = new FileManager();
 		}
-    	return instance;
+		return instance;
 	}
 
-	public String[] readHighScoreNames() throws IOException {
+
+	private final String PATH = "~/";
+	private final int MAX_HIGH_SCORE = 10;
+
+	public String[] getHighScoreNames() {
+		return highScoreNames;
+	}
+
+	public void setHighScoreNames(String[] highScoreNames) {
+		this.highScoreNames = highScoreNames;
+	}
+
+	public String[] getHighScoreScores() {
+		return highScoreScores;
+	}
+
+	public void setHighScoreScores(String[] highScoreScores) {
+		this.highScoreScores = highScoreScores;
+	}
+
+	private String highScoreNames[];
+	private String highScoreScores[];
+
+
+
+
+
+	public void readHighScoreLines() throws IOException {
 
 
     	File file = new File("highScores.txt");
@@ -39,11 +62,10 @@ public class FileManager {
 		int i = 0;
 		while( (line = bufferedReader.readLine()) != null)
 		{
-			highScoreScores[i] = line;
-			System.out.println(line);
+			highScoreNames[i] = line;
+			highScoreScores[i] = bufferedReader.readLine();
+			i=i+1;
 		}
-
-    	return highScoreScores;
 	}
 
 	public int[] readHighScoreScores(){
