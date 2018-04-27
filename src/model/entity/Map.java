@@ -9,7 +9,6 @@ import java.util.Random;
 import java.util.ArrayList;
 
 
-
 public class  Map {
 	private static Map instance;
 	public static Map getInstance(){
@@ -19,7 +18,6 @@ public class  Map {
 	}
 	public static final int GAME_LEFT_LIMIT = 50;
 	public static final int GAME_RIGHT_LIMIT = 630;
-	public static final int ACCELERATION = 1;
 	private ArrayList<GameObject> gameObjects;
 	private Character gameCharacter;
 	private int level;
@@ -137,20 +135,17 @@ public class  Map {
 			gameCharacter.setVerticalVelocity(gameCharacter.getVerticalVelocity() - gravity);
 		}
 
-		gameCharacter.setPosY(gameCharacter.getPosY() + gameCharacter.getVerticalVelocity());
-		if (gameCharacter.isMovingRight() && gameCharacter.isMovingLeft()) {
-			gameCharacter.setHorizontalVelocity(0);
-		} else if (gameCharacter.isMovingLeft()) {
-			gameCharacter.setHorizontalVelocity(gameCharacter.getHorizontalVelocity() - ACCELERATION);
+		gameCharacter.setPosY(gameCharacter.getPosY() + (int)gameCharacter.getVerticalVelocity());
+		gameCharacter.accelerate();
+		if (gameCharacter.isMovingLeft()) {
 			if (gameCharacter.getPosX() + gameCharacter.getHorizontalVelocity() > GAME_LEFT_LIMIT)
-				gameCharacter.setPosX(gameCharacter.getPosX() + gameCharacter.getHorizontalVelocity());
+				gameCharacter.setPosX(gameCharacter.getPosX() + (int)gameCharacter.getHorizontalVelocity());
 			else
 				gameCharacter.setPosX(GAME_LEFT_LIMIT);
 
 		} else if (gameCharacter.isMovingRight()) {
-			gameCharacter.setHorizontalVelocity(gameCharacter.getHorizontalVelocity() + ACCELERATION);
 			if (gameCharacter.getPosX() + gameCharacter.getHorizontalVelocity() < GAME_RIGHT_LIMIT)
-				gameCharacter.setPosX(gameCharacter.getPosX() + gameCharacter.getHorizontalVelocity());
+				gameCharacter.setPosX(gameCharacter.getPosX() + (int)gameCharacter.getHorizontalVelocity());
 			else
 				gameCharacter.setPosX(GAME_RIGHT_LIMIT);
 		}
@@ -159,13 +154,13 @@ public class  Map {
 	public void createLevel(int type){
 		Bar bar;
 			if (type == 1) {
-				bar = new Icy();
+				bar = new Wooden();
 			}
 			else if (type == 2) {
 				bar = new Sticky();
 			}
 			else if (type == 3) {
-				bar = new Wooden();
+				bar = new Icy();
 			}
 			else{
 				bar = new HardlyVisible();

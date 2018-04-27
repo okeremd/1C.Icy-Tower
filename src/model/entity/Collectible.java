@@ -5,6 +5,7 @@ public class Collectible extends GameObject {
 	private double time;
 
     public Collectible() {
+        // ToDo implement Collectibles
 
     }
 

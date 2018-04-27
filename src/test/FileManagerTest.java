@@ -1,6 +1,6 @@
 package test;
 
-import model.logic.FileManager;
+/*import model.logic.FileManager;
 
 import java.io.IOException;
 
@@ -35,4 +35,4 @@ class FileManagerTest {
     @org.junit.jupiter.api.Test
     void saveHighScoreScores() {
     }
-}
+}*/

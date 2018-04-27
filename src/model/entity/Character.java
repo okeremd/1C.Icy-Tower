@@ -8,12 +8,14 @@ import java.awt.*;
 public class Character extends GameObject {
 
     public static final int JUMP_POWER = 30;
-    private int verticalVelocity, horizontalVelocity;
+    public static final double ACCELERATION = 1;
+    private double verticalVelocity, horizontalVelocity;
 	private int jumpPower;
 	private int score;
 	private final int IMAGE_NO = 7;
 	private boolean movingLeft, movingRight, standing, comboJumping;
 	private static Character character;
+	private double currentAccelleration;
 
 	public Character(){
 	    jumpPower = JUMP_POWER;
@@ -23,6 +25,7 @@ public class Character extends GameObject {
 	    standing = true;
 	    comboJumping = false;
 	    score=0;
+	    currentAccelleration = ACCELERATION;
     }
 
     public Character(Image[] images) {
@@ -75,11 +78,11 @@ public class Character extends GameObject {
         this.comboJumping = comboJumping;
     }
 
-    public int getVerticalVelocity() {
+    public double getVerticalVelocity() {
         return verticalVelocity;
     }
 
-    public void setVerticalVelocity(int verticalVelocity) {
+    public void setVerticalVelocity(double verticalVelocity) {
         this.verticalVelocity = verticalVelocity;
     }
 
@@ -115,15 +118,40 @@ public class Character extends GameObject {
         this.movingRight = movingRight;
     }
 
-    public int getHorizontalVelocity() {
+    public double getHorizontalVelocity() {
         return horizontalVelocity;
     }
 
-    public void setHorizontalVelocity(int horizontalVelocity) {
+    public void setHorizontalVelocity(double horizontalVelocity) {
         this.horizontalVelocity = horizontalVelocity;
     }
 
     public int getScore() { return score; }
 
     public void setScore(int score) { this.score = score; }
+
+    public static double getACCELERATION() {
+        return ACCELERATION;
+    }
+
+    public double getCurrentAccelleration() {
+        return currentAccelleration;
+    }
+
+    public void setCurrentAccelleration(double currentAccelleration) {
+        this.currentAccelleration = currentAccelleration;
+    }
+
+    public void accelerate(){
+	    if(isMovingRight() && isMovingLeft()){
+	        setHorizontalVelocity(0);
+        }
+	    else if(isMovingRight()){
+	        setHorizontalVelocity(horizontalVelocity + currentAccelleration);
+        }
+        else if(isMovingLeft()){
+	        setHorizontalVelocity(horizontalVelocity - currentAccelleration);
+        }
+
+    }
 }

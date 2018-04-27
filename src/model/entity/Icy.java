@@ -15,6 +15,7 @@ public class Icy extends Bar {
         images[1] = new Image(Paths.get("./images/gameObject/bar_m3.png").toUri().toString());
         images[2] = new Image(Paths.get("./images/gameObject/bar_r3.png").toUri().toString());
         super.setImages(images);
+        slipperiness = 1.3;
     }
 
     public Icy(Image[] images) {

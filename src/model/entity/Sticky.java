@@ -15,6 +15,7 @@ public class Sticky extends Bar {
         images[1] = new Image(Paths.get("./images/gameObject/bar_m1.png").toUri().toString());
         images[2] = new Image(Paths.get("./images/gameObject/bar_r1.png").toUri().toString());
         super.setImages(images);
+        stickyness = 0.7;
     }
 
     public Sticky(Image[] images) {
