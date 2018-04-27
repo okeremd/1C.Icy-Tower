@@ -19,7 +19,7 @@ public class  Map {
 	public static final int GAME_LEFT_LIMIT = 50;
 	public static final int GAME_RIGHT_LIMIT = 630;
 	private ArrayList<GameObject> gameObjects;
-	private Character gameCharacter;
+	//private Character Character.getInstance();
 	private int level;
 	private int passedLevel;
 	int altitude;
@@ -30,12 +30,12 @@ public class  Map {
     private Map() {
 		gameObjects = new ArrayList<>();
 		rand = new Random();
-		gameCharacter = new Character();
-		gameCharacter.setPosX(280);
-		gameCharacter.setPosY(50);
+		//Character.getInstance() = new Character();
+		Character.getInstance().setPosX(280);
+		Character.getInstance().setPosY(50);
 		level = 0;
 		altitude = 0;
-		gameObjects.add(gameCharacter);
+		gameObjects.add(Character.getInstance());
 		gravity = 2;
 		Base init = new Base();
 		init.setPosY(-78);
@@ -46,7 +46,7 @@ public class  Map {
 
     public Map(Map map){
     	this.gameObjects = map.gameObjects;
-    	this.gameCharacter = map.gameCharacter;
+    	//this.Character.getInstance() = map.Character.getInstance();
     	this.level = map.level;
 	}
     /**
@@ -54,7 +54,7 @@ public class  Map {
 	 * @param images
 	 */
 	public void loadCurrentCharactersImages(Image[] images) {
-		gameCharacter.setImages(images);
+		Character.getInstance().setImages(images);
 	}
 
 	/**
@@ -77,8 +77,28 @@ public class  Map {
 	}
 
 	public void createCollectible(int diff){
-		Collectible collectible = new Collectible();
-		gameObjects.add(collectible);
+
+		int bonustype = (int)(Math.random()*5);
+		Collectible bonus;
+		if(bonustype==0){
+			bonus = new BarExtender();
+		}
+		else if(bonustype==1){
+			bonus = new TimeSqueezer();
+		}
+		else if(bonustype==2){
+			bonus = new TimeStretcher();
+		}
+		else if(bonustype==3){
+			bonus = new Balloon();
+		}
+		else{
+			bonus = new Coin();
+		}
+		bonus.setPosY(120 * level - altitude);
+		bonus.setPosX((int)(Math.random()*590) + 50);
+		gameObjects.add(bonus);
+
 	}
 
 	public void createFullWidthLevel() {
@@ -93,8 +113,8 @@ public class  Map {
 	public void updateObjects() {
 		Iterator<GameObject> iter = gameObjects.iterator();
 		int decrease = level/30 - 1;
-		if(gameCharacter.getPosY() > 540){
-			decrease = gameCharacter.getPosY() - 540;
+		if(Character.getInstance().getPosY() > 540){
+			decrease = Character.getInstance().getPosY() - 540;
 		}
 		while(iter.hasNext()){
 			GameObject obj = iter.next(); //TODO bonus falan gelirse buralar değişmeli!!!
@@ -114,7 +134,13 @@ public class  Map {
 			}
 		}
 		altitude+= decrease;
-		Character.getInstance().setScore((altitude/90)*6+(int)Math.sqrt(altitude));
+		if(Character.getInstance().getVerticalVelocity() > 0){
+			if(Character.getInstance().isComboJumping())
+				Character.getInstance().setScore(Character.getInstance().getScore()+(int)(0.3*(int)Math.sqrt(Math.sqrt(altitude))));
+			else
+				Character.getInstance().setScore(Character.getInstance().getScore()+(int)(0.2*(int)Math.sqrt(altitude)));
+		}
+
 	}
 
 	public int getLevel() {
@@ -131,24 +157,25 @@ public class  Map {
 
 	public void updateCharacter() {
 		collisionManager.checkCollision(gameObjects);
-		if (!gameCharacter.isStanding()) {
-			gameCharacter.setVerticalVelocity(gameCharacter.getVerticalVelocity() - gravity);
+		if (!Character.getInstance().isStanding()) {
+			Character.getInstance().setVerticalVelocity(Character.getInstance().getVerticalVelocity() - gravity);
 		}
 
-		gameCharacter.setPosY(gameCharacter.getPosY() + (int)gameCharacter.getVerticalVelocity());
-		gameCharacter.accelerate();
-		if (gameCharacter.isMovingLeft()) {
-			if (gameCharacter.getPosX() + gameCharacter.getHorizontalVelocity() > GAME_LEFT_LIMIT)
-				gameCharacter.setPosX(gameCharacter.getPosX() + (int)gameCharacter.getHorizontalVelocity());
+		Character.getInstance().setPosY(Character.getInstance().getPosY() + (int)Character.getInstance().getVerticalVelocity());
+		Character.getInstance().accelerate();
+		if (Character.getInstance().isMovingLeft()) {
+			if (Character.getInstance().getPosX() + Character.getInstance().getHorizontalVelocity() > GAME_LEFT_LIMIT)
+				Character.getInstance().setPosX(Character.getInstance().getPosX() + (int)Character.getInstance().getHorizontalVelocity());
 			else
-				gameCharacter.setPosX(GAME_LEFT_LIMIT);
+				Character.getInstance().setPosX(GAME_LEFT_LIMIT);
 
-		} else if (gameCharacter.isMovingRight()) {
-			if (gameCharacter.getPosX() + gameCharacter.getHorizontalVelocity() < GAME_RIGHT_LIMIT)
-				gameCharacter.setPosX(gameCharacter.getPosX() + (int)gameCharacter.getHorizontalVelocity());
+		} else if (Character.getInstance().isMovingRight()) {
+			if (Character.getInstance().getPosX() + Character.getInstance().getHorizontalVelocity() < GAME_RIGHT_LIMIT)
+				Character.getInstance().setPosX(Character.getInstance().getPosX() + (int)Character.getInstance().getHorizontalVelocity());
 			else
-				gameCharacter.setPosX(GAME_RIGHT_LIMIT);
+				Character.getInstance().setPosX(GAME_RIGHT_LIMIT);
 		}
+
 	}
 
 	public void createLevel(int type){
@@ -172,42 +199,42 @@ public class  Map {
 	}
 
 	public void moveLeft(){
-		gameCharacter.setMovingLeft(true);
+		Character.getInstance().setMovingLeft(true);
 	}
 
 	public void moveRight(){
 
-		gameCharacter.setMovingRight(true);
+		Character.getInstance().setMovingRight(true);
 	}
 
 	public void stopMoveRight(){
-		gameCharacter.setHorizontalVelocity(0);
-		gameCharacter.setMovingRight(false);
+		Character.getInstance().setHorizontalVelocity(0);
+		Character.getInstance().setMovingRight(false);
 	}
 
 	public void stopMoveLeft(){
-		gameCharacter.setHorizontalVelocity(0);
-		gameCharacter.setMovingLeft(false);
+		Character.getInstance().setHorizontalVelocity(0);
+		Character.getInstance().setMovingLeft(false);
 	}
 	public void stopMoveJump(){
 
 	}
 
 	public void jump(){
-		if(gameCharacter.isStanding()){
-			if(Math.abs(gameCharacter.getHorizontalVelocity()) > 15){
-				gameCharacter.setComboJumping(true);
-				gameCharacter.setVerticalVelocity(gameCharacter.getJumpPower() + Math.abs(gameCharacter.getHorizontalVelocity()));
-				gameCharacter.setStanding(false);
+		if(Character.getInstance().isStanding()){
+			if(Math.abs(Character.getInstance().getHorizontalVelocity()) > 15){
+				Character.getInstance().setComboJumping(true);
+				Character.getInstance().setVerticalVelocity(Character.getInstance().getJumpPower() + Math.abs(Character.getInstance().getHorizontalVelocity()));
+				Character.getInstance().setStanding(false);
 			}
 			else {
-				gameCharacter.setVerticalVelocity(gameCharacter.getJumpPower());
-				gameCharacter.setStanding(false);
+				Character.getInstance().setVerticalVelocity(Character.getInstance().getJumpPower());
+				Character.getInstance().setStanding(false);
 			}
 		}
 	}
 	public boolean gameOver(){
-		if(gameCharacter.getPosY()<-30)
+		if(Character.getInstance().getPosY()<-30)
 		{
 			return true;
 		}

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class CollisionManager {
     Bar current;
+    Collectible currentbonus;
 	public CollisionManager(ArrayList<GameObject> gameObjects) {
 
 	}
@@ -37,6 +38,26 @@ public class CollisionManager {
                         current = looper;
                         break;
                     }
+                }
+                else if(gameObjects.get(i) instanceof Collectible){
+                    if(currentbonus instanceof Coin){
+                        
+
+                    }
+                    else if(currentbonus instanceof Balloon){
+
+                    }
+                    else if(currentbonus instanceof TimeStretcher){
+
+                    }
+                    else if(currentbonus instanceof TimeSqueezer){
+
+                    }
+                    else{ //bar extender
+
+                    }
+
+
                 }
             }
         }
