@@ -26,8 +26,9 @@ public class  Map {
 	private Random rand;
 	private int gravity;
 	CollisionManager collisionManager;
+	private int difficulty;
 
-    private Map() {
+	private Map() {
 		gameObjects = new ArrayList<>();
 		rand = new Random();
 		gameCharacter = new Character();
@@ -42,6 +43,7 @@ public class  Map {
 		init.setPosX(0);
 		gameObjects.add(init);
 		collisionManager = new CollisionManager(gameObjects);
+		setDifficulty(1);
     }
 
     public Map(Map map){
@@ -71,8 +73,11 @@ public class  Map {
 		else if(level % 100 < 75){
 			createLevel(3);
 		}
-		else{
+		else if(level < 99){
 			createLevel(4);
+		}
+		else{
+			createFullWidthLevel();
 		}
 	}
 
@@ -86,8 +91,10 @@ public class  Map {
 	}
 
 	public void createFullWidthLevel() {
-		// TODO - implement Map.createFullWidthLevel
-		throw new UnsupportedOperationException();
+		Base fullWidth = new Base();
+		fullWidth.setPosY(120 * level - altitude);
+		fullWidth.setPosX(0);
+		gameObjects.add(fullWidth);
 	}
 
 	public ArrayList<GameObject> getGameObjects() {
@@ -96,7 +103,7 @@ public class  Map {
 
 	public void updateObjects() {
 		Iterator<GameObject> iter = gameObjects.iterator();
-		int decrease = level/30 - 1;
+		double decrease = (level/30 - 1)*difficulty;
 		if(gameCharacter.getPosY() > 540){
 			decrease = gameCharacter.getPosY() - 540;
 		}
@@ -114,7 +121,7 @@ public class  Map {
 				iter.remove();
 			}
 			else {
-				obj.setPosY(obj.getPosY() - decrease);
+				obj.setPosY((int)(obj.getPosY() - decrease));
 			}
 		}
 		altitude+= decrease;
@@ -178,7 +185,7 @@ public class  Map {
 			}
 			bar.setWidth(12 + rand.nextInt(5));
 			bar.setPosX(rand.nextInt(400) + 50);
-			bar.setPosY(120 * level - altitude + rand.nextInt(50));
+			bar.setPosY(120 * level - altitude - rand.nextInt(50));
 			gameObjects.add(bar);
 	}
 
@@ -234,12 +241,21 @@ public class  Map {
 	}
 
 	public void remove(Bar bar) {
-
 		bar.setPosY(bar.getPosY()-10);
-
+		if(collisionManager.isColliding(bar))
+			gameCharacter.setPosY(gameCharacter.getPosY()-10);
 	}
 
 	public static void setMapNull() {
 		instance = null;
+	}
+
+
+	public int getDifficulty() {
+		return difficulty;
+	}
+
+	public void setDifficulty(int difficulty) {
+		this.difficulty = difficulty;
 	}
 }

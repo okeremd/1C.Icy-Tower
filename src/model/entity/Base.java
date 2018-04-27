@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 
 import java.nio.file.Paths;
 
-public class Base extends GameObject{
+public class Base extends Bar{
     private final int IMAGE_NUM = 3;
     private Image[] images = new Image[IMAGE_NUM];
     private int width = 50;
@@ -28,5 +28,11 @@ public class Base extends GameObject{
 
     public void setWidth(int width) {
         this.width = width;
+    }
+
+    @Override
+    public void remove() {
+        NotBreakable notBreakable = new NotBreakable();
+        notBreakable.react(this);
     }
 }
