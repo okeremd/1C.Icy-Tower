@@ -76,6 +76,10 @@ public class  Map {
 		}
 	}
 
+	public Character getGameCharacter() {
+		return gameCharacter;
+	}
+
 	public void createCollectible(int diff){
 		Collectible collectible = new Collectible();
 		gameObjects.add(collectible);
@@ -114,7 +118,14 @@ public class  Map {
 			}
 		}
 		altitude+= decrease;
-		Character.getInstance().setScore((altitude/90)*6+(int)Math.sqrt(altitude));
+		if(gameCharacter.getVerticalVelocity() > 0){
+			if(gameCharacter.isComboJumping()){
+				gameCharacter.setScore(gameCharacter.getScore() + (int)(0.11*(Math.sqrt(altitude))));
+			}
+			else{
+				gameCharacter.setScore(gameCharacter.getScore() + (int)(0.09*(Math.sqrt(altitude))));
+			}
+		}
 	}
 
 	public int getLevel() {

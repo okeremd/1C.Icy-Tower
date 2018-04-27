@@ -73,7 +73,7 @@ public class GameEngine {
 		textscore.setTranslateY(40);
 		textscore.setTranslateX(700);
 		textscore.setFill(Color.ORANGE);
-		Text tscore = new Text(""+model.entity.Character.getInstance().getScore());
+		Text tscore = new Text(""+Map.getInstance().getGameCharacter().getScore());
 		tscore.setFont(Font.font("score", FontWeight.BOLD, 35));
 		tscore.setTranslateY(77);
 		tscore.setTranslateX(720);
@@ -140,7 +140,7 @@ public class GameEngine {
 		text1.setFill(Color.PALEGREEN);
 		text1.setTranslateX(100);
 		text1.setTranslateY(150);
-		Text text2 = new Text("Score: "+ model.entity.Character.getInstance().getScore());
+		Text text2 = new Text("Score: "+ Map.getInstance().getGameCharacter().getScore());
 		text2.setFont(Font.font("Score: ", FontWeight.BOLD, 60));
 		text2.setFill(Color.PALETURQUOISE);
 		text2.setTranslateX(-350);
