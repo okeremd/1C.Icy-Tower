@@ -1,9 +1,8 @@
 package model.logic;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
-import model.entity.Bar;
+import model.entity.*;
 import model.entity.Character;
-import model.entity.GameObject;
 
 import java.util.ArrayList;
 
@@ -25,6 +24,12 @@ public class CollisionManager {
                             && ((looper.getPosX() - 50 <= character.getPosX())
                             && (looper.getPosX() + (looper.getWidth()) * looper.getImages()[0].getWidth() >= character.getPosX())
                             && character.getVerticalVelocity() <= 0)) {
+                        if(current instanceof Sticky){
+                            character.setCurrentAccelleration(character.getACCELERATION() * ((Sticky) current).getStickyness());
+                        }
+                        else if(current instanceof Icy){
+                            character.setCurrentAccelleration(character.getACCELERATION() * ((Icy) current).getSlipperiness());
+                        }
                         character.setStanding(true);
                         character.setComboJumping(false);
                         character.setVerticalVelocity(0);
@@ -39,6 +44,7 @@ public class CollisionManager {
 	        if(current instanceof Bar && !((current.getPosX() - 50 <= character.getPosX()) && (current.getPosX() + (current.getWidth()) * current.getImages()[0].getWidth() >= character.getPosX()))){
 	            character.setStanding(false);
 	            current = null;
+	            character.setCurrentAccelleration(character.getACCELERATION());
             }
         }
 	}
