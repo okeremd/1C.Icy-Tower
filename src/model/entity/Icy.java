@@ -23,7 +23,8 @@ public class Icy extends Bar {
 
     @Override
     public void remove() {
-
+        NotBreakable notBreakable = new NotBreakable();
+        notBreakable.react(this);
     }
 
     public double getSlipperiness() {
