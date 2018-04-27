@@ -224,7 +224,7 @@ public class  Map {
 
 	public void remove(Bar bar) {
 
-		bar.setPosY(bar.getPosY()-3);
+		bar.setPosY(bar.getPosY()-10);
 
 	}
 
