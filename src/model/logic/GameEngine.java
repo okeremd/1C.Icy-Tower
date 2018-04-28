@@ -164,6 +164,11 @@ public class GameEngine {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+
+			Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			primaryStage.setScene(MainController.getInstance().getMainMenuScene());
+			instance = null; // terminate the gameEngine for that game
+			Map.setMapNull();
 		});
 
 		backToMenu.setOnMouseClicked(event -> {

@@ -70,7 +70,7 @@ public class Display extends Application {
         primaryStage.show();
     }
 
-    private Scene initializeScene(String fxmlName) throws java.io.IOException {
+    public Scene initializeScene(String fxmlName) throws java.io.IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlName));
         Parent base = fxmlLoader.load();
         return new Scene(base, SCENE_WIDTH, SCENE_HEIGHT);
