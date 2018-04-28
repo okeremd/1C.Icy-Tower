@@ -1,9 +1,14 @@
 package model.logic;
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import javafx.scene.Group;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import model.entity.*;
 import model.entity.Character;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class CollisionManager {
@@ -26,6 +31,7 @@ public class CollisionManager {
                             && ((looper.getPosX() - 50 <= character.getPosX())
                             && (looper.getPosX() + (looper.getWidth()) * looper.getImages()[0].getWidth() >= character.getPosX())
                             && character.getVerticalVelocity() <= 0)) {
+
                         if(current instanceof Sticky){
                             character.setCurrentAccelleration(character.getACCELERATION() * ((Sticky) current).getStickyness());
                         }
@@ -41,20 +47,37 @@ public class CollisionManager {
                     }
                 }
                 else if(gameObjects.get(i) instanceof Collectible){
-                    if(currentbonus instanceof Coin){
-                        character.setScore(character.getScore() + ((Coin) currentbonus).getVALUE());
-                    }
-                    else if(currentbonus instanceof Balloon){
-                        
-                    }
-                    else if(currentbonus instanceof TimeStretcher){
+                    currentbonus = (Collectible) gameObjects.get(i);
+                    if((currentbonus.getPosX() + currentbonus.getImages()[0].getWidth()>=character.getPosX())
+                            && (currentbonus.getPosX()<= character.getPosX() + character.getImages()[0].getWidth())
+                            && (currentbonus.getPosY() > character.getPosY() - character.getImages()[0].getHeight()-Math.abs(character.getVerticalVelocity())
+                            && currentbonus.getPosY() < character.getPosY() - character.getImages()[0].getHeight() + Math.abs(character.getVerticalVelocity()))){
 
-                    }
-                    else if(currentbonus instanceof TimeSqueezer){
+                        if (currentbonus instanceof Coin) {
+                            character.setScore(character.getScore() + ((Coin) currentbonus).getVALUE());
+                            gameObjects.remove(currentbonus);
+                        }
+                        else if (currentbonus instanceof Balloon) {
 
-                    }
-                    else{ //bar extender
+                            Image a = new Image(Paths.get("./images/bonus/balloon.png").toUri().toString());
+                            Image b = new Image(Paths.get("./images/character_images/character1_3.png").toUri().toString());
+                            ImageView top = new ImageView(a);
+                            ImageView bottom = new ImageView(b);
+                            top.setBlendMode(BlendMode.OVERLAY);
+                            Group blend = new Group(top,bottom);
 
+
+
+
+                        } else if (currentbonus instanceof TimeStretcher) {
+                            gameObjects.remove(currentbonus);
+
+                        } else if (currentbonus instanceof TimeSqueezer) {
+                            gameObjects.remove(currentbonus);
+
+                        } else { //bar extender
+                            gameObjects.remove(currentbonus);
+                        }
                     }
 
 

@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 public class Coin extends Collectible {
 
-    private final int VALUE=20;
+    private final int VALUE=60;
 
     public Coin(){
         Image[] images = new Image[1];
