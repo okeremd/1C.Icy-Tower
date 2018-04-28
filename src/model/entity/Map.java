@@ -28,7 +28,7 @@ public class  Map {
 	CollisionManager collisionManager;
 	private int difficulty;
 
-	private Map() {
+    private Map() {
 		gameObjects = new ArrayList<>();
 		rand = new Random();
 		gameCharacter = new Character();
@@ -86,8 +86,28 @@ public class  Map {
 	}
 
 	public void createCollectible(int diff){
-		Collectible collectible = new Collectible();
-		gameObjects.add(collectible);
+
+		int bonustype = (int)(Math.random()*5);
+		Collectible bonus;
+		if(bonustype==0){
+			bonus = new BarExtender();
+		}
+		else if(bonustype==1){
+			bonus = new TimeSqueezer();
+		}
+		else if(bonustype==2){
+			bonus = new TimeStretcher();
+		}
+		else if(bonustype==3){
+			bonus = new Balloon();
+		}
+		else{
+			bonus = new Coin();
+		}
+		bonus.setPosY(120 * level - altitude);
+		bonus.setPosX((int)(Math.random()*590) + 50);
+		gameObjects.add(bonus);
+
 	}
 
 	public void createFullWidthLevel() {

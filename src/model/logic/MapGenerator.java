@@ -22,6 +22,9 @@ public class MapGenerator {
 
 	public void createNextLevels(){
         for(int i = 0; i < 30; i++){
+           if(Math.random() < 0.2){
+                map.createCollectible(1);
+            }
             map.setLevel(map.getLevel() + 1);
             map.createNextAltitudeObjects(1);
         }
