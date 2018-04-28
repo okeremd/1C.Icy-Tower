@@ -1,6 +1,7 @@
 package model.logic;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.Character;
 import java.nio.file.Paths;
 import java.util.Timer;
@@ -11,6 +12,7 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -125,10 +127,45 @@ public class GameEngine {
 	}
 
 	private void createGameOverPane() {
-		Button b = new Button("Back to Menu");
-		b.setTranslateY(550);
-		b.setTranslateX(650);
-		b.setOnMouseClicked(event -> {
+
+		int score = Map.getInstance().getGameCharacter().getScore();
+
+		Button backToMenu = new Button("Back to Menu");
+		backToMenu.setTranslateY(550);
+		backToMenu.setTranslateX(650);
+
+		Text highScoreText = new Text("");
+		highScoreText.setFont(Font.font("HighScore", FontWeight.BOLD, 30));
+		highScoreText.setFill(Color.BLUE);
+		highScoreText.setTranslateY(400);
+		highScoreText.setTranslateX(-400);
+
+		Button saveScore = new Button("Save score!");;
+		TextField nameField = new TextField("Write Name");
+
+
+		if(FileManager.getInstance().isHighScore(score) )
+		{
+			highScoreText.setText("New HighScore!!");
+
+
+			nameField.setTranslateX(350);
+			nameField.setTranslateY(500);
+
+			saveScore.setTranslateX(350);
+			saveScore.setTranslateY(520);
+			pane.getChildren().addAll(nameField,saveScore);
+		}
+
+		saveScore.setOnMouseClicked(event ->  {
+			try {
+				FileManager.getInstance().saveNewHighScore(nameField.getText(),score);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
+
+		backToMenu.setOnMouseClicked(event -> {
             Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
             primaryStage.setScene(MainController.getInstance().getMainMenuScene());
             instance = null; // terminate the gameEngine for that game
@@ -145,8 +182,8 @@ public class GameEngine {
 		text2.setFill(Color.PALETURQUOISE);
 		text2.setTranslateX(-350);
 		text2.setTranslateY(270);
-		textflow.getChildren().addAll(text1,text2);
-		pane.getChildren().addAll(b,textflow);
+		textflow.getChildren().addAll(text1,text2,highScoreText);
+		pane.getChildren().addAll(backToMenu,textflow);
 	}
 
 	public GameEngine(int difficulty, KeyCode[] buttons) {

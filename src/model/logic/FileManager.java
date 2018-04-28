@@ -79,5 +79,39 @@ public class FileManager {
 	public void saveHighScoreScores(int scores[]){
 
 	}
+
+    public boolean isHighScore(int score) {
+
+    	if(score > Integer.parseInt(highScoreScores[9]))
+    		return  true;
+    	return false;
+	}
+
+	public void saveNewHighScore(String text, int score) throws IOException {
+		System.out.println("test");
+		int i = 0;
+		while(score < Integer.parseInt(highScoreScores[i])){
+			i++;
+		}
+		int j =9;
+		while(j >i )
+		{
+			highScoreScores[j] = highScoreScores[j-1];
+			highScoreNames[j] = highScoreNames[j-1];
+			j--;
+		}
+		highScoreNames[i] = text;
+		highScoreScores[i] = score+"";
+
+		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("highScores.txt"));
+		for(int index = 0; index< 10; index++)
+		{
+			bufferedWriter.write(highScoreNames[index] + "\n" +highScoreScores[index]);
+			bufferedWriter.write("\n");
+		}
+
+		bufferedWriter.close();
+
+	}
 }
 

@@ -1,11 +1,21 @@
 package controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.logic.FileManager;
 import view.GameFrame;
 
+import java.io.IOException;
+
 public class MainMenuController extends MainController {
+
+    //HighScoresController highScoresController;
+
+
 
     public void openHowToPlayScene(ActionEvent actionEvent) {
 
@@ -25,8 +35,15 @@ public class MainMenuController extends MainController {
         primaryStage.setScene(MainController.getInstance().getSettingsScene());
     }
 
-    public void openHighScoreScene(ActionEvent actionEvent)
-    {
+    public void openHighScoreScene(ActionEvent actionEvent) throws IOException {
+        //Update high score
+        System.out.println("updated");
+        try {
+            FileManager.getInstance().readHighScoreLines();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(MainController.getInstance().getHighScoreScene());
     }

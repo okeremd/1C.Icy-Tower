@@ -22,10 +22,20 @@ public class MainController {
     private static Scene buttonSettingsScene;
     private static Scene characterSettingsScene;
 
+    public static HighScoresController getHighScoresController() {
+        return highScoresController;
+    }
+
+    public static void setHighScoresController(HighScoresController highScoresController) {
+        MainController.highScoresController = highScoresController;
+    }
+
+    private static HighScoresController highScoresController;
+
     //Singleton Pattern
     private static MainController mainController;
     protected MainController() {
-        // Exists only to defeat instantiation.
+
     }
 
     public static MainController getInstance() {
