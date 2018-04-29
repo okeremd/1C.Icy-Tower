@@ -48,7 +48,7 @@ public class MainMenuController extends MainController {
         Display display = new Display();
         //reinitalize high score scen for new high scores
         highScoreScene = display.initializeScene("high_scores.fxml");
-    highScoreScene.getStylesheets().add(this.getClass().getResource("../view/styleOtherMenus.css").toExternalForm());
+        highScoreScene.getStylesheets().add(this.getClass().getResource("../view/styleOtherMenus.css").toExternalForm());
         MainController.getInstance().setHighScoreScene(highScoreScene);
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(MainController.getInstance().getHighScoreScene());

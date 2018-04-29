@@ -9,26 +9,26 @@ import java.util.Random;
 import java.util.ArrayList;
 
 
-public class  Map {
+/**
+ * Generates and manages the game objects.
+ */
+public class Map {
+
+
 	private static Map instance;
+
+	/**
+	 * Singleton Pattern for Map.
+	 * Generate and use only one Map Object.
+	 * @return Map
+	 */
 	public static Map getInstance(){
 		if(instance==null)
 			instance = new Map();
 		return instance;
 	}
-	public static final int GAME_LEFT_LIMIT = 50;
-	public static final int GAME_RIGHT_LIMIT = 630;
-	private ArrayList<GameObject> gameObjects;
-	private Character gameCharacter;
-	private int level;
-	private int passedLevel;
-	int altitude;
-	private Random rand;
-	private int gravity;
-	CollisionManager collisionManager;
-	private int difficulty;
 
-    private Map() {
+	private Map() {
 		gameObjects = new ArrayList<>();
 		rand = new Random();
 		gameCharacter = new Character();
@@ -44,7 +44,20 @@ public class  Map {
 		gameObjects.add(init);
 		collisionManager = new CollisionManager(gameObjects);
 		setDifficulty(1);
-    }
+	}
+	public static final int GAME_LEFT_LIMIT = 50;
+	public static final int GAME_RIGHT_LIMIT = 630;
+	private ArrayList<GameObject> gameObjects;
+	private Character gameCharacter;
+	private int level;
+	private int passedLevel;
+	int altitude;
+	private Random rand;
+	private int gravity;
+	CollisionManager collisionManager;
+	private int difficulty;
+
+
 
     public Map(Map map){
     	this.gameObjects = map.gameObjects;
