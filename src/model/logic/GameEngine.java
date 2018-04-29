@@ -57,11 +57,13 @@ public class GameEngine {
 
 
 	public Pane convertMapToPane(){
-		Map.getInstance().updateCharacter();
-		Map.getInstance().updateObjects();
-		if(Map.getInstance().getLevel() - (Map.getInstance().getAltitude() / 50) < 15){
-			mapGenerator.createNextGameObjects();
-		}
+	    if(!gamePaused) {
+            Map.getInstance().updateCharacter();
+            Map.getInstance().updateObjects();
+            if (Map.getInstance().getLevel() - (Map.getInstance().getAltitude() / 50) < 15) {
+                mapGenerator.createNextGameObjects();
+            }
+        }
 		//map.changeImages();
 		if(Map.getInstance().gameOver()){
 			createGameOverPane();
@@ -249,13 +251,12 @@ public class GameEngine {
 	}
 
 	public void pauseGame() {
-		// TODO - implement GameEngine.pauseGame
-		throw new UnsupportedOperationException();
+	    System.out.println("game is paused");
+		gamePaused = !gamePaused;
 	}
 
 	public void continueGame() {
-		// TODO - implement GameEngine.continueGame
-		throw new UnsupportedOperationException();
+		gamePaused = false;
 	}
 
 	public Map getMap(){

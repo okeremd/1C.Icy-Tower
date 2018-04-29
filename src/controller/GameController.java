@@ -35,9 +35,7 @@ public class GameController{
 			else if(event.getCode() == keyCode[2]){
 				stopJump();
 			}
-			else if(event.getCode() == keyCode[3]){
-				pause();
-			}
+
 		});
 
     }
@@ -67,6 +65,7 @@ public class GameController{
 	}
 
 	public void pause() {
+
 		gameEngine.pauseGame();
 	}
 

@@ -280,8 +280,11 @@ public class Map {
 
 	public void remove(Bar bar) {
 		bar.setPosY(bar.getPosY()-10);
+
 		if(collisionManager.isColliding(bar))
+		{
 			gameCharacter.setPosY(gameCharacter.getPosY()-10);
+		}
 	}
 
 	public static void setMapNull() {

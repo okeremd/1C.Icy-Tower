@@ -94,8 +94,7 @@ public class CollisionManager {
 	}
 
 	public Boolean isColliding(Bar looper){
-        if (looper.getPosY() < character.getPosY() - character.getImages()[0].getHeight() + Math.abs(character.getVerticalVelocity())
-                && looper.getPosY() > character.getPosY() - character.getImages()[0].getHeight() - Math.abs(character.getVerticalVelocity())
+        if (looper.getPosY() < character.getPosY() && looper.getPosY()> character.getPosY()-150
                 && ((looper.getPosX() - 50 <= character.getPosX())
                 && (looper.getPosX() + (looper.getWidth()) * looper.getImages()[0].getWidth() >= character.getPosX())
                 && character.getVerticalVelocity() <= 0))

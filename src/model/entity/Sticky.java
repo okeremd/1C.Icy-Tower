@@ -24,8 +24,8 @@ public class Sticky extends Bar {
 
     @Override
     public void remove() {
-	    NotBreakable notBreakable = new NotBreakable();
-	    notBreakable.react(this);
+	    Breakable breakable = new Breakable();
+	    breakable.react(this);
         }
 
     public double getStickyness() {
