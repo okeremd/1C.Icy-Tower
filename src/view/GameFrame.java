@@ -47,8 +47,12 @@ public class GameFrame {
 
         Image[] charIms = CharacterManager.getInstance().getCharacterImages();
 
-        GameEngine.getInstance().loadCurrentCharactersImages(charIms);
+        /* Give the difficulty here */
+        /* LevelController.getDifficulty */
+        //GameEngine.setDifficulty(LevelController.getDifficulty());
+        //GameEngine.setDifficulty(LevelController.getDifficulty());
 
+        GameEngine.getInstance().loadCurrentCharactersImages(charIms);
         gameScene = new Scene(GameEngine.getInstance().convertMapToPane(), 800, 600);
 
         gameController = new GameController(gameScene, kc, GameEngine.getInstance());

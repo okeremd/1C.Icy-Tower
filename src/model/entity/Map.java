@@ -43,7 +43,7 @@ public class Map {
 		init.setPosX(0);
 		gameObjects.add(init);
 		collisionManager = new CollisionManager(gameObjects);
-		setDifficulty(1);
+		//setDifficulty(1);
 	}
 	public static final int GAME_LEFT_LIMIT = 50;
 	public static final int GAME_RIGHT_LIMIT = 630;

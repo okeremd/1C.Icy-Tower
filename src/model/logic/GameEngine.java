@@ -36,7 +36,16 @@ public class GameEngine {
 	private int currentScore;
 	private boolean gameFinished;
 	private boolean gamePaused;
-	private int difficulty;
+
+	public static int getDifficulty() {
+		return difficulty;
+	}
+
+	public static void setDifficulty(int difficulty) {
+		GameEngine.difficulty = difficulty;
+	}
+
+	private static int difficulty;
 	private Pane pane;
 	int mapLevel;
 	private static GameEngine instance;
@@ -44,6 +53,7 @@ public class GameEngine {
 		if(instance == null)
 		{
 			instance = new GameEngine();
+			Map.getInstance().setDifficulty(difficulty);
 		}
 		return instance;
 	}
