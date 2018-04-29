@@ -25,27 +25,27 @@
            <Image url="@/images/hscup.png" />
        </image>
    </ImageView>
-      <Text fx:id="name1" layoutX="282.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score1" />
-      <Text fx:id="name2" layoutX="282.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text fx:id="name3" layoutX="282.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text fx:id="name4" layoutX="282.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text fx:id="name5" layoutX="282.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text fx:id="name6" layoutX="282.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text fx:id="name7" layoutX="282.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text fx:id="name8" layoutX="282.0" layoutY="513.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text fx:id="name9" layoutX="282.0" layoutY="551.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text fx:id="name10" layoutX="282.0" layoutY="576.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="name1" layoutX="330.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score1" />
+      <Text fx:id="name2" layoutX="330.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="name3" layoutX="330.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="name4" layoutX="330.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="name5" layoutX="330.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="name6" layoutX="330.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="name7" layoutX="330.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="name8" layoutX="330.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="name9" layoutX="330.0" layoutY="437.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="name10" layoutX="330.0" layoutY="470.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
 
-       <Text fx:id="score1" layoutX="403.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text fx:id="score2" layoutX="403.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text fx:id="score3" layoutX="403.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text fx:id="score4" layoutX="403.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text fx:id="score5" layoutX="403.0" layoutY="413.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text fx:id="score6" layoutX="403.0" layoutY="449.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text fx:id="score7" layoutX="403.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text fx:id="score8" layoutX="403.0" layoutY="513.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text fx:id="score9" layoutX="403.0" layoutY="551.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Text fx:id="score10" layoutX="403.0" layoutY="576.0" strokeType="OUTSIDE" strokeWidth="0.0" text="s" />
+       <Text fx:id="score1" layoutX="436.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="score2" layoutX="436.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="score3" layoutX="436.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="score4" layoutX="436.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="score5" layoutX="436.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="score6" layoutX="436.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="score7" layoutX="436.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="score8" layoutX="436.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="score9" layoutX="436.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="score10" layoutX="436.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" text="s" />
        
    </children>
 </AnchorPane>

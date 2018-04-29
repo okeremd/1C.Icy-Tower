@@ -14,6 +14,7 @@ public class MainController {
     private static Scene creditsScene;
     private static Scene exitScene;
     private static Scene startScene;
+    private static Scene difficultyScene;
 
 
     private static Scene gameOverScene;
@@ -145,5 +146,12 @@ public class MainController {
         MainController.gameOverScene = gameOverScene;
     }
 
+    public static Scene getDifficultyScene() {
+        return difficultyScene;
+    }
+
+    public static void setDifficultyScene(Scene difficultyScene) {
+        MainController.difficultyScene = difficultyScene;
+    }
 
 }

@@ -1,3 +1,7 @@
+CANSU
+6926
+cansu
+5420
 deneme
 2834
 muammer
@@ -14,7 +18,3 @@ berke
 179
 Hakan
 100
-Cenk
-90
-asdas
-88

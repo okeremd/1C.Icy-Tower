@@ -59,13 +59,11 @@ public class MainMenuController extends MainController {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(MainController.getInstance().getExitScene());
     }
-    public void openPlayScene(ActionEvent actionEvent){
-        // ToDo add startController Scene
+    public void openDifficultyScene(ActionEvent actionEvent){
+
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        //primaryStage.close();
-        //primaryStage = new Stage();
-        GameFrame gameFrame = new GameFrame();
-        primaryStage.setScene(gameFrame.start());
+        primaryStage.setScene(MainController.getInstance().getDifficultyScene());
+
     }
 
 

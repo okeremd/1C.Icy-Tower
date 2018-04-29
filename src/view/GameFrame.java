@@ -40,17 +40,18 @@ public class GameFrame {
      * This is the default JavaFX method to run animations
      *
      */
+  /* public GameFrame(int difficulty){
+        start(difficulty);
+    }
+    public Scene start(int dif) {*/
     public Scene start() {
 
         playSong();
         KeyCode[] kc = createKeycode();
 
         Image[] charIms = CharacterManager.getInstance().getCharacterImages();
+       //GameEngine.getInstance().setDifficulty(dif);
 
-        /* Give the difficulty here */
-        /* LevelController.getDifficulty */
-        //GameEngine.setDifficulty(LevelController.getDifficulty());
-        //GameEngine.setDifficulty(LevelController.getDifficulty());
 
         GameEngine.getInstance().loadCurrentCharactersImages(charIms);
         gameScene = new Scene(GameEngine.getInstance().convertMapToPane(), 800, 600);
