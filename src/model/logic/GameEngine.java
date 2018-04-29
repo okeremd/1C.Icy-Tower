@@ -1,16 +1,11 @@
 package model.logic;
 
-import java.io.File;
 import java.io.IOException;
-import java.lang.Character;
 import java.nio.file.Paths;
 import java.util.Timer;
 
 import controller.MainController;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -27,7 +22,7 @@ import model.entity.*;
 
 public class GameEngine {
 
-	private MapGenerator mapgen;
+	private MapGenerator mapGenerator;
 	private PauseManager pm;
 	//private GameFrame gf;
 	private CollisionManager cm;
@@ -62,15 +57,15 @@ public class GameEngine {
 		pane = new Pane();
 		BackgroundImage backgroundImage = new BackgroundImage(new Image(Paths.get( "./images/gameObject/gameBack.png").toUri().toString()), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		pane.setBackground(new Background(backgroundImage));
-		mapgen = new MapGenerator(Map.getInstance());
-		mapgen.createNextLevels();
+		mapGenerator = new MapGenerator(Map.getInstance());
+		mapGenerator.createNextGameObjects();
 	}
 
 	public Pane convertMapToPane(){
 		Map.getInstance().updateCharacter();
 		Map.getInstance().updateObjects();
 		if(Map.getInstance().getLevel() - (Map.getInstance().getAltitude() / 50) < 15){
-			mapgen.createNextLevels();
+			mapGenerator.createNextGameObjects();
 		}
 		//map.changeImages();
 		if(Map.getInstance().gameOver()){

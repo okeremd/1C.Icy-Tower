@@ -14,9 +14,30 @@ import java.util.ArrayList;
  */
 public class Map {
 
+    private enum BARTYPE{
+        WOODEN,
+        STICKY,
+        ICY,
+        HARDLYVISIBLE
+    }
 
-	private static Map instance;
+    private static final int GAME_LEFT_LIMIT = 50;
+    private static final int GAME_RIGHT_LIMIT = 630;
+    private static final int CHARACTER_INITIAL_POSX = 280;
+    private static final int CHARACTER_INITIAL_POSY = 50;
+    private static final int BASE_INITIAL_POSY = -78;
+    private static final int BASE_INITIAL_POSX = 0;
+    private static Map instance;
 
+    private ArrayList<GameObject> gameObjects;
+    private Character gameCharacter;
+    private int level;
+    private int passedLevel;
+    int altitude;
+    private Random rand;
+    private int gravity;
+    private CollisionManager collisionManager;
+    private int difficulty;
 	/**
 	 * Singleton Pattern for Map.
 	 * Generate and use only one Map Object.
@@ -32,38 +53,21 @@ public class Map {
 		gameObjects = new ArrayList<>();
 		rand = new Random();
 		gameCharacter = new Character();
-		gameCharacter.setPosX(280);
-		gameCharacter.setPosY(50);
+		gameCharacter.setPosX(CHARACTER_INITIAL_POSX);
+		gameCharacter.setPosY(CHARACTER_INITIAL_POSY);
 		level = 0;
 		altitude = 0;
 		gameObjects.add(gameCharacter);
 		gravity = 2;
 		Base init = new Base();
-		init.setPosY(-78);
-		init.setPosX(0);
+
+		init.setPosX(BASE_INITIAL_POSX);
+        init.setPosY(BASE_INITIAL_POSY);
 		gameObjects.add(init);
 		collisionManager = new CollisionManager(gameObjects);
 		//setDifficulty(1);
 	}
-	public static final int GAME_LEFT_LIMIT = 50;
-	public static final int GAME_RIGHT_LIMIT = 630;
-	private ArrayList<GameObject> gameObjects;
-	private Character gameCharacter;
-	private int level;
-	private int passedLevel;
-	int altitude;
-	private Random rand;
-	private int gravity;
-	CollisionManager collisionManager;
-	private int difficulty;
 
-
-
-    public Map(Map map){
-    	this.gameObjects = map.gameObjects;
-    	this.gameCharacter = map.gameCharacter;
-    	this.level = map.level;
-	}
     /**
 	 * 
 	 * @param images
@@ -74,20 +78,20 @@ public class Map {
 
 	/**
 	 * 
-	 * @param diff
+	 *
 	 */
-	public void createNextAltitudeObjects(int diff) {
+	public void createNextAltitudeObjects() {
 		if(level % 100 < 25){
-			createLevel(1);
+			createLevel(BARTYPE.WOODEN);
 		}
 		else if(level % 100 < 50){
-			createLevel(2);
+			createLevel(BARTYPE.STICKY);
 		}
 		else if(level % 100 < 75){
-			createLevel(3);
+			createLevel(BARTYPE.ICY);
 		}
 		else if(level < 99){
-			createLevel(4);
+			createLevel(BARTYPE.HARDLYVISIBLE);
 		}
 		else{
 			createFullWidthLevel();
@@ -98,7 +102,7 @@ public class Map {
 		return gameCharacter;
 	}
 
-	public void createCollectible(int diff){
+	public void createCollectible(){
 
 		int bonustype = (int)(Math.random()*5);
 		Collectible bonus;
@@ -202,19 +206,19 @@ public class Map {
 		}
 	}
 
-	public void createLevel(int type){
+	public void createLevel(BARTYPE type){
 		Bar bar;
-			if (type == 1) {
+			if (type == BARTYPE.WOODEN) {
 				bar = new Wooden();
 			}
-			else if (type == 2) {
+			else if (type == BARTYPE.STICKY) {
 				bar = new Sticky();
 			}
-			else if (type == 3) {
+			else if (type == BARTYPE.ICY) {
 				bar = new Icy();
 			}
 			else{
-				bar = new HardlyVisible();
+			    bar = new HardlyVisible();
 			}
 			bar.setWidth(12 + rand.nextInt(5));
 			bar.setPosX(rand.nextInt(400) + 50);
