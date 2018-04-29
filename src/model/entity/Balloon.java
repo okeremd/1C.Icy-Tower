@@ -1,12 +1,13 @@
 package model.entity;
 
 import javafx.scene.image.Image;
-
 import java.nio.file.Paths;
 
 public class Balloon extends Collectible {
 
-
+    /**
+     * Constructor for Collectible item Balloon
+     */
     public Balloon(){
 
         Image[] images = new Image[1];

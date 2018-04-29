@@ -7,8 +7,11 @@ import java.nio.file.Paths;
 
 public class Coin extends Collectible {
 
-    private final int VALUE=60;
+    private final int VALUE=60;   //value of the coin is 60 points
 
+    /**
+     * Constructor for Collectible item Coin
+     */
     public Coin(){
         Image[] images = new Image[1];
         images[0] = new Image(Paths.get("./images/bonus/coin.png").toUri().toString());

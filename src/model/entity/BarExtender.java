@@ -8,6 +8,9 @@ public class BarExtender extends Collectible {
 
     private final double RATE = 1.25;
 
+    /**
+     * Constructor for Collectible item BarExtender
+     */
     public BarExtender(){
 
         Image[] images = new Image[1];
