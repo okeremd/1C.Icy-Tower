@@ -41,6 +41,7 @@ public class GameEngine {
 	private int currentScore;
 	private boolean gameFinished;
 	private boolean gamePaused;
+	boolean firstTime;
 
 	private Pane pane;
 	int mapLevel;
@@ -63,6 +64,7 @@ public class GameEngine {
 		pane.setBackground(new Background(backgroundImage));
 		mapGenerator = new MapGenerator(Map.getInstance());
 		mapGenerator.createNextGameObjects();
+		firstTime=true;
 	}
 
 
@@ -88,11 +90,11 @@ public class GameEngine {
 			Text resumetext = new Text(">>");
 			resumetext.setTranslateX(200);
 			resumetext.setTranslateY(300);
-			resumetext.setFont(Font.font("resume",FontWeight.BOLD,25));
+			resumetext.setFont(Font.font("resume", FontWeight.BOLD, 25));
 			Button resume = new Button("Resume Game");
 			resume.setTranslateX(260);
 			resume.setTranslateY(290);
-			resume.setMinSize(20,20);
+			resume.setMinSize(20, 20);
 			resume.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
@@ -104,25 +106,31 @@ public class GameEngine {
 			voltext.setTranslateY(155);
 			voltext.setFont(Font.font("vol", FontWeight.BOLD, 15));
 			Slider volume = new Slider();
-			volume.setPrefWidth(200);
 			volume.setTranslateX(260);
 			volume.setTranslateY(150);
+			volume.setShowTickMarks(true);
+			volume.setMin(0);
+			volume.setMax(200);
+			volume.setMajorTickUnit(50);
+			volume.setValue(SoundManager.getInstance().getVolume() / 200);
 			volume.valueProperty().addListener((ov, old_val, new_val) -> {
 
 				int newvolume = new_val.intValue();
-				double volumeNormalized = newvolume/ 200;
+				double volumeNormalized = newvolume / 200;
 				SoundManager.getInstance().setVolume(volumeNormalized);
 			});
 			Text songtext = new Text("Songs");
 			songtext.setTranslateX(200);
 			songtext.setTranslateY(220);
-			songtext.setFont(Font.font("song",FontWeight.BOLD,15));
+			songtext.setFont(Font.font("song", FontWeight.BOLD, 15));
 			ChoiceBox songlist = new ChoiceBox(FXCollections.observableArrayList("Requiem for a dream", "Never gonna give you up", "Light my fire"));
 			songlist.setTranslateX(260);
 			songlist.setTranslateY(210);
-			int songNo= songlist.getSelectionModel().getSelectedIndex();
+			int songNo = songlist.getSelectionModel().getSelectedIndex();
 			SoundManager.getInstance().setSong(songNo);
-			pane.getChildren().addAll(rectangle,pausetext,resumetext,resume,volume,voltext,songtext,songlist);
+			pane.getChildren().addAll(rectangle, pausetext, resumetext, resume, volume, voltext, songtext, songlist);
+
+
 			return pane;
 
 		}
