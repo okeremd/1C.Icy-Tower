@@ -1,13 +1,23 @@
 package model.logic;
 
+import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Timer;
 
-import controller.MainController;
-import javafx.scene.Node;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.shape.Rectangle;
+import controller.MainController;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -64,6 +74,58 @@ public class GameEngine {
                 mapGenerator.createNextGameObjects();
             }
         }
+        else{
+			Rectangle rectangle = new Rectangle();
+			rectangle.setX(170);
+			rectangle.setY(50);
+			rectangle.setWidth(400);
+			rectangle.setHeight(400);
+			rectangle.setFill(Color.LIGHTSALMON);
+			Text pausetext = new Text("Pause Menu");
+			pausetext.setTranslateX(250);
+			pausetext.setTranslateY(100);
+			pausetext.setFont(Font.font("PauseMenu", FontWeight.BOLD, 35));
+			Text resumetext = new Text(">>");
+			resumetext.setTranslateX(200);
+			resumetext.setTranslateY(300);
+			resumetext.setFont(Font.font("resume",FontWeight.BOLD,25));
+			Button resume = new Button("Resume Game");
+			resume.setTranslateX(260);
+			resume.setTranslateY(290);
+			resume.setMinSize(20,20);
+			resume.setOnAction(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					continueGame();
+				}
+			});
+			Text voltext = new Text("Volume");
+			voltext.setTranslateX(200);
+			voltext.setTranslateY(155);
+			voltext.setFont(Font.font("vol", FontWeight.BOLD, 15));
+			Slider volume = new Slider();
+			volume.setPrefWidth(200);
+			volume.setTranslateX(260);
+			volume.setTranslateY(150);
+			volume.valueProperty().addListener((ov, old_val, new_val) -> {
+
+				int newvolume = new_val.intValue();
+				double volumeNormalized = newvolume/ 200;
+				SoundManager.getInstance().setVolume(volumeNormalized);
+			});
+			Text songtext = new Text("Songs");
+			songtext.setTranslateX(200);
+			songtext.setTranslateY(220);
+			songtext.setFont(Font.font("song",FontWeight.BOLD,15));
+			ChoiceBox songlist = new ChoiceBox(FXCollections.observableArrayList("Requiem for a dream", "Never gonna give you up", "Light my fire"));
+			songlist.setTranslateX(260);
+			songlist.setTranslateY(210);
+			int songNo= songlist.getSelectionModel().getSelectedIndex();
+			SoundManager.getInstance().setSong(songNo);
+			pane.getChildren().addAll(rectangle,pausetext,resumetext,resume,volume,voltext,songtext,songlist);
+			return pane;
+
+		}
 		//map.changeImages();
 		if(Map.getInstance().gameOver()){
 			createGameOverPane();
