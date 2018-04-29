@@ -20,13 +20,13 @@ public class MapGenerator {
         this.map = map;
     }
 
-	public void createNextLevels(){
+	public void createNextGameObjects(){
         for(int i = 0; i < 30; i++){
            if(Math.random() < 0.2){
-                map.createCollectible(1);
+                map.createCollectible();
             }
             map.setLevel(map.getLevel() + 1);
-            map.createNextAltitudeObjects(1);
+            map.createNextAltitudeObjects();
         }
     }
 }
