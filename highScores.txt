@@ -2,6 +2,8 @@ CANSU
 6926
 cansu
 5420
+CONO
+3570
 deneme
 2834
 muammer
@@ -10,11 +12,9 @@ asdas
 1751
 hakangunduz
 1291
+cok zor ahaha
+720
 cemkao
 692
-gokberk
-229
-berke
-179
-Hakan
-100
+ezik
+480

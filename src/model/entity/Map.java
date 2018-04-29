@@ -139,6 +139,7 @@ public class Map {
 	}
 
 	public void updateObjects() {
+
 		Iterator<GameObject> iter = gameObjects.iterator();
 		double decrease = (level/30 - 1)*difficulty;
 		if(gameCharacter.getPosY() > 540){

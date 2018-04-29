@@ -14,10 +14,6 @@ import java.io.IOException;
 
 public class MainMenuController extends MainController {
 
-    //HighScoresController highScoresController;
-
-
-
     public void openHowToPlayScene(ActionEvent actionEvent) {
 
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -38,7 +34,6 @@ public class MainMenuController extends MainController {
 
     public void openHighScoreScene(ActionEvent actionEvent) throws IOException {
         //Update high score
-        System.out.println("updated");
         try {
             FileManager.getInstance().readHighScoreLines();
         } catch (IOException e) {

@@ -88,7 +88,7 @@ public class FileManager {
 	}
 
 	public void saveNewHighScore(String text, int score) throws IOException {
-		System.out.println("test");
+		
 		int i = 0;
 		while(score < Integer.parseInt(highScoreScores[i])){
 			i++;

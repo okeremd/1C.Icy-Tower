@@ -36,21 +36,20 @@ public class GameFrame {
      */
     public MediaPlayer mediaplayer;
 
-    /**
-     * This is the default JavaFX method to run animations
-     *
-     */
-  /* public GameFrame(int difficulty){
-        start(difficulty);
+    private int difficulty;
+
+    public GameFrame(int difficulty){
+        this.difficulty = difficulty;
     }
-    public Scene start(int dif) {*/
+
     public Scene start() {
 
         playSong();
         KeyCode[] kc = createKeycode();
 
         Image[] charIms = CharacterManager.getInstance().getCharacterImages();
-       //GameEngine.getInstance().setDifficulty(dif);
+
+        GameEngine.init(difficulty);
 
 
         GameEngine.getInstance().loadCurrentCharactersImages(charIms);

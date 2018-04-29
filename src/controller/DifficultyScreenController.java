@@ -13,7 +13,7 @@ public class DifficultyScreenController extends MainController{
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         //GameFrame gameFrame = new GameFrame(1);
         //primaryStage.setScene(gameFrame.start(1));
-        GameFrame gameFrame = new GameFrame();
+        GameFrame gameFrame = new GameFrame(1);
         primaryStage.setScene(gameFrame.start());
 
     }
@@ -21,7 +21,7 @@ public class DifficultyScreenController extends MainController{
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         //GameFrame gameFrame = new GameFrame(2);
         //primaryStage.setScene(gameFrame.start(2));
-        GameFrame gameFrame = new GameFrame();
+        GameFrame gameFrame = new GameFrame(2);
         primaryStage.setScene(gameFrame.start());
 
     }
@@ -29,7 +29,7 @@ public class DifficultyScreenController extends MainController{
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         //GameFrame gameFrame = new GameFrame(3);
         //primaryStage.setScene(gameFrame.start(3));
-        GameFrame gameFrame = new GameFrame();
+        GameFrame gameFrame = new GameFrame(3);
         primaryStage.setScene(gameFrame.start());
 
     }
