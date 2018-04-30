@@ -18,7 +18,17 @@ import model.logic.SoundManager;
 
 
 public class GameFrame {
+    private GameFrame instance;
+    private GameFrame(){
 
+    }
+    public GameFrame getInstance(){
+        if(instance == null)
+        {
+            instance = new GameFrame();
+        }
+        return  instance;
+    }
     /**
      * GameController instance that will take input from user
      */
@@ -34,7 +44,7 @@ public class GameFrame {
     /**
      * MediaPlayer instance will play the musics in game
      */
-    public MediaPlayer mediaplayer;
+    public static MediaPlayer mediaplayer;
 
     private int difficulty;
 
@@ -80,7 +90,7 @@ public class GameFrame {
      * This method gets the sound settings from SoundManager and plays them
      *
      */
-    public void playSong(){
+    public static MediaPlayer  playSong(){
 
         Media media = SoundManager.getInstance().getSelectedSong();
         mediaplayer = new MediaPlayer(media);
@@ -88,6 +98,7 @@ public class GameFrame {
         mediaplayer.setVolume(SoundManager.getInstance().getVolume());
         mediaplayer.setOnEndOfMedia(() -> mediaplayer.seek(Duration.ZERO));
         mediaplayer.play();
+        return mediaplayer;
     }
 
     /**
@@ -102,5 +113,13 @@ public class GameFrame {
             mediaplayer.stop();
         }
 
+    }
+
+    public static void changeVolume() {
+        mediaplayer.setVolume(SoundManager.getInstance().getVolume());
+    }
+
+    public static void stopSong() {
+        mediaplayer.stop();
     }
 }

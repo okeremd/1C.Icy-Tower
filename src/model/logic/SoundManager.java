@@ -50,5 +50,7 @@ public class SoundManager {
     public void setSong(int song) {
         currentsong = song;
     }
-
+    public int getSong(){
+        return currentsong;
+    }
 }

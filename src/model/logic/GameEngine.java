@@ -29,6 +29,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import model.entity.*;
+import view.GameFrame;
 
 public class GameEngine {
 
@@ -41,6 +42,7 @@ public class GameEngine {
 	private int currentScore;
 	private boolean gameFinished;
 	private boolean gamePaused;
+	private boolean firstTimeSettings;
 	boolean firstTime;
 
 	private Pane pane;
@@ -69,134 +71,154 @@ public class GameEngine {
 
 
 	public Pane convertMapToPane(){
-	    if(!gamePaused) {
-            Map.getInstance().updateCharacter();
-            Map.getInstance().updateObjects();
-            if (Map.getInstance().getLevel() - (Map.getInstance().getAltitude() / 50) < 15) {
-                mapGenerator.createNextGameObjects();
-            }
-        }
-        else{
-			Rectangle rectangle = new Rectangle();
-			rectangle.setX(170);
-			rectangle.setY(50);
-			rectangle.setWidth(400);
-			rectangle.setHeight(400);
-			rectangle.setFill(Color.LIGHTSALMON);
-			Text pausetext = new Text("Pause Menu");
-			pausetext.setTranslateX(250);
-			pausetext.setTranslateY(100);
-			pausetext.setFont(Font.font("PauseMenu", FontWeight.BOLD, 35));
-			Text resumetext = new Text(">>");
-			resumetext.setTranslateX(200);
-			resumetext.setTranslateY(300);
-			resumetext.setFont(Font.font("resume", FontWeight.BOLD, 25));
-			Button resume = new Button("Resume Game");
-			resume.setTranslateX(260);
-			resume.setTranslateY(290);
-			resume.setMinSize(20, 20);
-			resume.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent event) {
-					continueGame();
+
+
+
+
+
+
+
+
+		if(!gamePaused) {
+
+			pane.getChildren().clear();
+			Text textscore = new Text("score");
+			textscore.setFont(Font.font("score", FontWeight.BOLD, 35));
+			textscore.setTranslateY(40);
+			textscore.setTranslateX(700);
+			textscore.setFill(Color.ORANGE);
+			Text tscore = new Text(""+Map.getInstance().getGameCharacter().getScore());
+			tscore.setFont(Font.font("score", FontWeight.BOLD, 35));
+			tscore.setTranslateY(77);
+			tscore.setTranslateX(720);
+			tscore.setFill(Color.ORANGE);
+
+			pane.getChildren().addAll(textscore,tscore);
+			for(GameObject g: Map.getInstance().getGameObjects()){
+				int xsofar = 0;
+				if(g instanceof model.entity.Character){
+					ImageView add = new ImageView(((model.entity.Character) g).getCurrentImage());
+					add.setTranslateX(g.getPosX() + xsofar);
+					add.setTranslateY(500 - g.getPosY());
+					pane.getChildren().add(add);
 				}
-			});
-			Text voltext = new Text("Volume");
-			voltext.setTranslateX(200);
-			voltext.setTranslateY(155);
-			voltext.setFont(Font.font("vol", FontWeight.BOLD, 15));
-			Slider volume = new Slider();
-			volume.setTranslateX(260);
-			volume.setTranslateY(150);
-			volume.setShowTickMarks(true);
-			volume.setMin(0);
-			volume.setMax(200);
-			volume.setMajorTickUnit(50);
-			volume.setValue(SoundManager.getInstance().getVolume() / 200);
-			volume.valueProperty().addListener((ov, old_val, new_val) -> {
+				else {
+					for (int i = 0; i < g.getImages().length; i++) {
+						ImageView add = new ImageView(g.getImages()[i]);
+						add.setTranslateX(g.getPosX() + xsofar);
+						xsofar += g.getImages()[i].getWidth();
+						add.setTranslateY(500 - g.getPosY());
+						pane.getChildren().add(add);
+						if (g instanceof Bar&& i == 0) {
+							for (int j = 0; j < ((Bar) g).getWidth(); j++) {
+								add = new ImageView(g.getImages()[1]);
+								add.setTranslateX(g.getPosX() + xsofar);
+								xsofar += g.getImages()[1].getWidth();
+								add.setTranslateY(500 - g.getPosY());
+								if(g instanceof HardlyVisible){
+									add.setOpacity(0.3);
+								}
+								pane.getChildren().add(add);
+							}
+							i++;
+						}
+						else if(g instanceof Base && i == 0){
+							for (int j = 0; j < ((Base) g).getWidth(); j++) {
+								add = new ImageView(g.getImages()[1]);
+								add.setTranslateX(g.getPosX() + xsofar);
+								xsofar += g.getImages()[1].getWidth();
+								add.setTranslateY(500 - g.getPosY());
+								pane.getChildren().add(add);
+							}
+							i++;
+						}
 
-				int newvolume = new_val.intValue();
-				double volumeNormalized = newvolume / 200;
-				SoundManager.getInstance().setVolume(volumeNormalized);
-			});
-			Text songtext = new Text("Songs");
-			songtext.setTranslateX(200);
-			songtext.setTranslateY(220);
-			songtext.setFont(Font.font("song", FontWeight.BOLD, 15));
-			ChoiceBox songlist = new ChoiceBox(FXCollections.observableArrayList("Requiem for a dream", "Never gonna give you up", "Light my fire"));
-			songlist.setTranslateX(260);
-			songlist.setTranslateY(210);
-			int songNo = songlist.getSelectionModel().getSelectedIndex();
-			SoundManager.getInstance().setSong(songNo);
-			pane.getChildren().addAll(rectangle, pausetext, resumetext, resume, volume, voltext, songtext, songlist);
+					}
+				}
+			}
+			Map.getInstance().updateCharacter();
+			Map.getInstance().updateObjects();
+			if (Map.getInstance().getLevel() - (Map.getInstance().getAltitude() / 50) < 15) {
+				mapGenerator.createNextGameObjects();
+			}
 
-
-			return pane;
-
+		}
+		else{
+			if(firstTimeSettings)
+				createSettingsPane();
 		}
 		//map.changeImages();
 		if(Map.getInstance().gameOver()){
 			createGameOverPane();
-
 			return pane;
 		}
 
-		pane.getChildren().clear();
-		Text textscore = new Text("score");
-		textscore.setFont(Font.font("score", FontWeight.BOLD, 35));
-		textscore.setTranslateY(40);
-		textscore.setTranslateX(700);
-		textscore.setFill(Color.ORANGE);
-		Text tscore = new Text(""+Map.getInstance().getGameCharacter().getScore());
-		tscore.setFont(Font.font("score", FontWeight.BOLD, 35));
-		tscore.setTranslateY(77);
-		tscore.setTranslateX(720);
-		tscore.setFill(Color.ORANGE);
-
-		pane.getChildren().addAll(textscore,tscore);
-		for(GameObject g: Map.getInstance().getGameObjects()){
-			int xsofar = 0;
-			if(g instanceof model.entity.Character){
-				ImageView add = new ImageView(((model.entity.Character) g).getCurrentImage());
-				add.setTranslateX(g.getPosX() + xsofar);
-				add.setTranslateY(500 - g.getPosY());
-				pane.getChildren().add(add);
-			}
-			else {
-				for (int i = 0; i < g.getImages().length; i++) {
-					ImageView add = new ImageView(g.getImages()[i]);
-					add.setTranslateX(g.getPosX() + xsofar);
-					xsofar += g.getImages()[i].getWidth();
-					add.setTranslateY(500 - g.getPosY());
-					pane.getChildren().add(add);
-					if (g instanceof Bar&& i == 0) {
-						for (int j = 0; j < ((Bar) g).getWidth(); j++) {
-							add = new ImageView(g.getImages()[1]);
-							add.setTranslateX(g.getPosX() + xsofar);
-							xsofar += g.getImages()[1].getWidth();
-							add.setTranslateY(500 - g.getPosY());
-							if(g instanceof HardlyVisible){
-								add.setOpacity(0.3);
-							}
-							pane.getChildren().add(add);
-						}
-						i++;
-					}
-					else if(g instanceof Base && i == 0){
-						for (int j = 0; j < ((Base) g).getWidth(); j++) {
-							add = new ImageView(g.getImages()[1]);
-							add.setTranslateX(g.getPosX() + xsofar);
-							xsofar += g.getImages()[1].getWidth();
-							add.setTranslateY(500 - g.getPosY());
-							pane.getChildren().add(add);
-						}
-						i++;
-					}
-
-				}
-			}
-		}
 		return pane;
+	}
+
+	private void createSettingsPane() {
+		firstTimeSettings=false;
+		Rectangle rectangle = new Rectangle();
+		rectangle.setX(170);
+		rectangle.setY(50);
+		rectangle.setWidth(400);
+		rectangle.setHeight(400);
+		rectangle.setFill(Color.LIGHTSALMON);
+		Text pausetext = new Text("Pause Menu");
+		pausetext.setTranslateX(250);
+		pausetext.setTranslateY(100);
+		pausetext.setFont(Font.font("PauseMenu", FontWeight.BOLD, 35));
+		Text resumetext = new Text(">>");
+		resumetext.setTranslateX(200);
+		resumetext.setTranslateY(300);
+		resumetext.setFont(Font.font("resume", FontWeight.BOLD, 25));
+		Button resume = new Button("Resume Game");
+		resume.setTranslateX(260);
+		resume.setTranslateY(290);
+		resume.setMinSize(20, 20);
+		resume.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                continueGame();
+            }
+        });
+		Text voltext = new Text("Volume");
+		voltext.setTranslateX(200);
+		voltext.setTranslateY(155);
+		voltext.setFont(Font.font("vol", FontWeight.BOLD, 15));
+		Slider volume = new Slider();
+		volume.setTranslateX(260);
+		volume.setTranslateY(150);
+		volume.setShowTickMarks(true);
+		volume.setMin(0);
+		volume.setMax(200);
+		volume.setMajorTickUnit(50);
+		volume.setValue((int)(SoundManager.getInstance().getVolume() * 200));
+		volume.valueProperty().addListener((ov, old_val, new_val) -> {
+
+            int newvolume = new_val.intValue();
+            double volumeNormalized = newvolume / 200.0;
+            SoundManager.getInstance().setVolume(volumeNormalized);
+            GameFrame.changeVolume();
+        });
+		Text songtext = new Text("Songs");
+		songtext.setTranslateX(200);
+		songtext.setTranslateY(220);
+		songtext.setFont(Font.font("song", FontWeight.BOLD, 15));
+		ChoiceBox songlist = new ChoiceBox(FXCollections.observableArrayList("Requiem for a dream", "Never gonna give you up", "Light my fire"));
+		songlist.setTranslateX(260);
+		songlist.setTranslateY(210);
+		songlist.getSelectionModel().select(SoundManager.getInstance().getSong());
+
+		songlist.setOnAction(event -> {
+			int songNo = songlist.getSelectionModel().getSelectedIndex();
+			SoundManager.getInstance().setSong(songNo);
+			GameFrame.stopSong();
+			GameFrame.playSong();
+		});
+
+
+		pane.getChildren().addAll(rectangle, pausetext, resumetext, resume, volume, voltext, songtext, songlist);
 	}
 
 	private void createGameOverPane() {
@@ -321,7 +343,7 @@ public class GameEngine {
 	}
 
 	public void pauseGame() {
-	    System.out.println("game is paused");
+	    firstTimeSettings=true;
 		gamePaused = !gamePaused;
 	}
 
