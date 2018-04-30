@@ -69,7 +69,6 @@ public class GameEngine {
 
 
 	public Pane convertMapToPane(){
-		System.out.println(comboCounter);
 	    if(!gamePaused) {
 
 	    	pane.getChildren().clear();
@@ -79,8 +78,10 @@ public class GameEngine {
 			if(comboJump)
 			{
 				Text comboCount = new Text(comboCounter + "Floors!");
-				comboCount.setTranslateX(670);
-				comboCount.setTranslateY(130);
+				comboCount.setFont(Font.font("adas",FontWeight.BOLD,30));
+				comboCount.setTranslateX(650);
+				comboCount.setTranslateY(270);
+				comboCount.setFill(Color.LIGHTBLUE);
 				if(comboJumpInitial)
 				{
 					comboJumpInitial = false;
