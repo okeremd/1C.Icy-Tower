@@ -99,7 +99,6 @@ public class CollisionManager {
                 && (looper.getPosX() + (looper.getWidth()) * looper.getImages()[0].getWidth() >= character.getPosX())
                 && character.getVerticalVelocity() <= 0))
         {
-            System.out.println("hey");
             return true;
         }
 

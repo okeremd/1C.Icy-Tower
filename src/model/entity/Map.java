@@ -2,6 +2,7 @@ package model.entity;
 
 import javafx.scene.image.Image;
 import model.logic.CollisionManager;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
 import java.util.Iterator;
 import java.util.Random;
@@ -197,13 +198,30 @@ public class Map {
 			if (gameCharacter.getPosX() + gameCharacter.getHorizontalVelocity() > GAME_LEFT_LIMIT)
 				gameCharacter.setPosX(gameCharacter.getPosX() + (int)gameCharacter.getHorizontalVelocity());
 			else
-				gameCharacter.setPosX(GAME_LEFT_LIMIT);
+			{
+				if(gameCharacter.getVerticalVelocity()!=0 && gameCharacter.getHorizontalVelocity()<0)
+				{
+					gameCharacter.setHorizontalVelocity(-gameCharacter.getHorizontalVelocity());
+					gameCharacter.setVerticalVelocity(gameCharacter.getVerticalVelocity()*1.0);
+				}
+				else
+					gameCharacter.setPosX(GAME_LEFT_LIMIT);
+			}
 
 		} else if (gameCharacter.isMovingRight()) {
 			if (gameCharacter.getPosX() + gameCharacter.getHorizontalVelocity() < GAME_RIGHT_LIMIT)
 				gameCharacter.setPosX(gameCharacter.getPosX() + (int)gameCharacter.getHorizontalVelocity());
 			else
-				gameCharacter.setPosX(GAME_RIGHT_LIMIT);
+			{
+				if(gameCharacter.getVerticalVelocity()!=0 && gameCharacter.getHorizontalVelocity()>0)
+				{
+					System.out.println("he");
+					gameCharacter.setHorizontalVelocity(-gameCharacter.getHorizontalVelocity());
+					gameCharacter.setVerticalVelocity(gameCharacter.getVerticalVelocity()*1.0);
+				}
+				else
+					gameCharacter.setPosX(GAME_RIGHT_LIMIT);
+			}
 		}
 	}
 
@@ -288,7 +306,6 @@ public class Map {
 	}
 	public void slide(Bar bar)
 	{
-		System.out.println("slide");
 		bar.setPosX(bar.getPosX()+5);
 		if(collisionManager.isColliding(bar))
 		{
