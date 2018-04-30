@@ -32,7 +32,7 @@ public class Base extends Bar{
 
     @Override
     public void remove() {
-        NotBreakable notBreakable = new NotBreakable();
-        notBreakable.react(this);
+       StandingBehaviour standingBehaviour = new StandingBehaviour();
+       standingBehaviour.react(this);
     }
 }

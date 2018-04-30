@@ -24,8 +24,8 @@ public class Sticky extends Bar {
 
     @Override
     public void remove() {
-	    Breakable breakable = new Breakable();
-	    breakable.react(this);
+	    FallingBehaviour FallingBehaviour = new FallingBehaviour();
+	    FallingBehaviour.react(this);
         }
 
     public double getStickyness() {

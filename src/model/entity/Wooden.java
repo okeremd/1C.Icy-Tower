@@ -23,7 +23,7 @@ public class Wooden extends Bar {
 
     @Override
     public void remove() {
-        NotBreakable breakable = new NotBreakable();
+        SlidingBehaviour breakable = new SlidingBehaviour();
         breakable.react(this);
     }
 

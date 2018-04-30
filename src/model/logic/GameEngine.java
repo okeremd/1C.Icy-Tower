@@ -71,15 +71,7 @@ public class GameEngine {
 
 
 	public Pane convertMapToPane(){
-
-
-
-
-
-
-
-
-		if(!gamePaused) {
+	    if(!gamePaused) {
 
 			pane.getChildren().clear();
 			Text textscore = new Text("score");

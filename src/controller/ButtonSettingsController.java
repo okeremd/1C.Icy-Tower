@@ -6,6 +6,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import model.logic.ButtonManager;
 
+/**
+ * The controller for the Button Settings Menu.
+ * User can change the button configurations for the game.
+ */
 public class ButtonSettingsController extends SettingsController {
 
     @FXML

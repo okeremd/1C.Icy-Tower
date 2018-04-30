@@ -1,6 +1,7 @@
 package model.entity;
 
-public class NotBreakable implements BreakingBehaviour {
+public class StandingBehaviour implements MovingBehaviour{
+
     @Override
     public void react(Bar bar) {
 

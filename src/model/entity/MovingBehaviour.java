@@ -1,6 +1,6 @@
 package model.entity;
 
-public interface BreakingBehaviour {
+public interface MovingBehaviour {
 
     public void react(Bar bar);
 }

@@ -147,7 +147,7 @@ public class Map {
 		}
 		while(iter.hasNext()){
 			GameObject obj = iter.next(); //TODO bonus falan gelirse buralar değişmeli!!!
-			if(obj.getPosY() < 20)
+			if(obj.getPosY() < 60)
 			{
 				if(obj instanceof Bar)
 				{
@@ -278,7 +278,7 @@ public class Map {
 		this.passedLevel = passedLevel;
 	}
 
-	public void remove(Bar bar) {
+	public void fall(Bar bar) {
 		bar.setPosY(bar.getPosY()-10);
 
 		if(collisionManager.isColliding(bar))
@@ -286,6 +286,16 @@ public class Map {
 			gameCharacter.setPosY(gameCharacter.getPosY()-10);
 		}
 	}
+	public void slide(Bar bar)
+	{
+		System.out.println("slide");
+		bar.setPosX(bar.getPosX()+5);
+		if(collisionManager.isColliding(bar))
+		{
+			gameCharacter.setPosX(gameCharacter.getPosX()+5);
+		}
+	}
+
 
 	public static void setMapNull() {
 		instance = null;
