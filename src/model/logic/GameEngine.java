@@ -255,9 +255,9 @@ public class GameEngine {
 
 		Text highScoreText = new Text("");
 		highScoreText.setFont(Font.font("HighScore", FontWeight.BOLD, 30));
-		highScoreText.setFill(Color.BLUE);
-		highScoreText.setTranslateY(400);
-		highScoreText.setTranslateX(-400);
+		highScoreText.setFill(Color.YELLOW);
+		highScoreText.setTranslateY(320);
+		highScoreText.setTranslateX(-380);
 
 		Button saveScore = new Button("Save score!");;
 		TextField nameField = new TextField("Write Name");
@@ -267,12 +267,11 @@ public class GameEngine {
 		{
 			highScoreText.setText("New HighScore!!");
 
+			nameField.setTranslateX(250);
+			nameField.setTranslateY(450);
 
-			nameField.setTranslateX(350);
-			nameField.setTranslateY(500);
-
-			saveScore.setTranslateX(350);
-			saveScore.setTranslateY(520);
+			saveScore.setTranslateX(390);
+			saveScore.setTranslateY(450);
 			pane.getChildren().addAll(nameField,saveScore);
 		}
 
