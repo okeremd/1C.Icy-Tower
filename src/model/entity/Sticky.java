@@ -10,6 +10,7 @@ public class Sticky extends Bar {
 	private final int IMAGE_NUM = 3;
 
 	public Sticky(){
+	    super();
         Image[] images = new Image[IMAGE_NUM];
         images[0] = new Image(Paths.get("./images/gameObject/bar_l1.png").toUri().toString());
         images[1] = new Image(Paths.get("./images/gameObject/bar_m1.png").toUri().toString());

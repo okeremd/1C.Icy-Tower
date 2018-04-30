@@ -1,17 +1,12 @@
 package model.logic;
 
-import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Timer;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -44,9 +39,12 @@ public class GameEngine {
 	private boolean gamePaused;
 	private boolean firstTimeSettings;
 	boolean firstTime;
-
+	private boolean comboJumpInitial;
+	private boolean comboJump;
 	private Pane pane;
 	int mapLevel;
+	private int comboCounter;
+	private static Rectangle innerRectangle;
 	private static GameEngine instance;
 	public static void init(int difficulty){
         Map.getInstance().setDifficulty(difficulty);
@@ -55,7 +53,7 @@ public class GameEngine {
 		if(instance == null)
 		{
 			instance = new GameEngine();
-
+			innerRectangle = new Rectangle();
 		}
 		return instance;
 	}
@@ -71,9 +69,30 @@ public class GameEngine {
 
 
 	public Pane convertMapToPane(){
+		System.out.println(comboCounter);
 	    if(!gamePaused) {
 
-			pane.getChildren().clear();
+	    	pane.getChildren().clear();
+			Rectangle outerRectangle = genereateRectangle(140, 60, 700, 90, Color.DARKGRAY);
+			pane.getChildren().add(outerRectangle);
+
+			if(comboJump)
+			{
+				Text comboCount = new Text(comboCounter + "Floors!");
+				comboCount.setTranslateX(670);
+				comboCount.setTranslateY(130);
+				if(comboJumpInitial)
+				{
+					comboJumpInitial = false;
+					innerRectangle = genereateRectangle(120, 50, 705, 100, Color.RED);
+				}
+				pane.getChildren().add(comboCount);
+				pane.getChildren().add(innerRectangle);
+				innerRectangle.setHeight(innerRectangle.getHeight()-1);
+			}
+			if(innerRectangle.getHeight()==0)
+				comboJump=false;
+			System.out.println(comboJump);
 			Text textscore = new Text("score");
 			textscore.setFont(Font.font("score", FontWeight.BOLD, 35));
 			textscore.setTranslateY(40);
@@ -141,11 +160,23 @@ public class GameEngine {
 		}
 		//map.changeImages();
 		if(Map.getInstance().gameOver()){
+	    	Bar.resetId();
 			createGameOverPane();
 			return pane;
 		}
 
 		return pane;
+	}
+
+	private Rectangle genereateRectangle(int height, int width, int xpos, int ypos, Color red) {
+		Rectangle innerRectangleCombo = new Rectangle();
+		innerRectangleCombo.setHeight(height);
+		innerRectangleCombo.setWidth(width);
+		innerRectangleCombo.setTranslateX(xpos);
+		innerRectangleCombo.setTranslateY(ypos);
+		innerRectangleCombo.setFill(red);
+		return innerRectangleCombo;
+
 	}
 
 	private void createSettingsPane() {
@@ -347,4 +378,18 @@ public class GameEngine {
 		return Map.getInstance();
 	}
 
+	public void setComboJump(boolean comboJump) {
+		if(comboJump)
+			comboJumpInitial = true;
+
+		this.comboJump = comboJump;
+	}
+
+	public void setComboCounter(int comboCounter) {
+		this.comboCounter = comboCounter;
+	}
+
+	public int getComboCounter() {
+		return comboCounter;
+	}
 }

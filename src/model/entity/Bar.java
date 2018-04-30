@@ -5,8 +5,11 @@ import javafx.scene.image.Image;
 public abstract class Bar extends GameObject {
 
 	private int width;
-
-	public Bar(){ }
+	private  int id;
+	private static int idCounter=0;
+	public Bar(){
+		this.id=idCounter++;
+	}
 
     public Bar(Image[] images) {
         super(images);
@@ -22,4 +25,10 @@ public abstract class Bar extends GameObject {
 
 	abstract public void remove();
 
+	public int getId() {
+		return id;
+	}
+	public static void resetId(){
+		idCounter=0;
+	}
 }

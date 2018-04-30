@@ -10,6 +10,7 @@ public class Icy extends Bar {
 	private final int IMAGE_NUM = 3;
 
 	public Icy(){
+	    super();
 	    Image[] images = new Image[IMAGE_NUM];
 	    images[0] = new Image(Paths.get("./images/gameObject/bar_l3.png").toUri().toString());
         images[1] = new Image(Paths.get("./images/gameObject/bar_m3.png").toUri().toString());

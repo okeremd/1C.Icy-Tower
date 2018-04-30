@@ -19,7 +19,7 @@ public class CollisionManager {
 	    character = (Character) gameObjects.get(0);
 	}
 
-
+    int prevBarId = 0;
 	public void checkCollision(ArrayList<GameObject> gameObjects) {
 
 	    if(!character.isStanding()) {
@@ -31,7 +31,16 @@ public class CollisionManager {
                             && ((looper.getPosX() - 50 <= character.getPosX())
                             && (looper.getPosX() + (looper.getWidth()) * looper.getImages()[0].getWidth() >= character.getPosX())
                             && character.getVerticalVelocity() <= 0)) {
-
+                        if(prevBarId<looper.getId()-1)
+                        {
+                            GameEngine.getInstance().setComboJump(true);
+                            GameEngine.getInstance().setComboCounter(GameEngine.getInstance().getComboCounter()+looper.getId()-prevBarId);
+                        }
+                        else {
+                            GameEngine.getInstance().setComboJump(false);
+                            GameEngine.getInstance().setComboCounter(0);
+                        }
+                        prevBarId=looper.getId();
                         if(current instanceof Sticky){
                             character.setCurrentAccelleration(character.getACCELERATION() * ((Sticky) current).getStickyness());
                         }

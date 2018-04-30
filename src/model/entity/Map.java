@@ -2,6 +2,7 @@ package model.entity;
 
 import javafx.scene.image.Image;
 import model.logic.CollisionManager;
+import model.logic.GameEngine;
 import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
 import java.util.Iterator;
@@ -166,7 +167,7 @@ public class Map {
 		altitude+= decrease;
 		if(gameCharacter.getVerticalVelocity() > 0){
 			if(gameCharacter.isComboJumping()){
-				gameCharacter.setScore(gameCharacter.getScore() + (int)(0.11*(Math.sqrt(altitude))));
+				gameCharacter.setScore(gameCharacter.getScore() + (int)(0.11*(Math.sqrt(altitude) + GameEngine.getInstance().getComboCounter()*25)));
 			}
 			else{
 				gameCharacter.setScore(gameCharacter.getScore() + (int)(0.09*(Math.sqrt(altitude))));

@@ -10,6 +10,7 @@ public class Wooden extends Bar {
     private final int IMAGE_NUM = 3;
 
     public Wooden(){
+        super();
         Image[] images = new Image[IMAGE_NUM];
         images[0] = new Image(Paths.get("./images/gameObject/bar_l2.png").toUri().toString());
         images[1] = new Image(Paths.get("./images/gameObject/bar_m2.png").toUri().toString());
