@@ -6,6 +6,7 @@ public abstract class Bar extends GameObject {
 
 	private int width;
 	private  int id;
+	private boolean extended;
 	private static int idCounter=0;
 	public Bar(){
 		this.id=idCounter++;
@@ -13,6 +14,7 @@ public abstract class Bar extends GameObject {
 
     public Bar(Image[] images) {
         super(images);
+        extended=false;
     }
 
     public int getWidth() {
@@ -30,5 +32,12 @@ public abstract class Bar extends GameObject {
 	}
 	public static void resetId(){
 		idCounter=0;
+	}
+
+	public boolean isExtended() {
+		return extended;
+	}
+	public void setExtended(){
+		extended=true;
 	}
 }

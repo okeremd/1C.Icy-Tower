@@ -44,14 +44,7 @@ public class GameEngine {
 	private Pane pane;
 	int mapLevel;
 	private int comboCounter;
-	private static int barExtend;
-	public static int getBarExtend() {
-		return barExtend;
-	}
-
-	public static void setBarExtend(int barExtender) {
-		barExtend = barExtender;
-	}
+	private static final int barExtend= 5;
 
 
 	private static Rectangle innerRectangle;
@@ -131,16 +124,33 @@ public class GameEngine {
 						add.setTranslateY(500 - g.getPosY());
 						pane.getChildren().add(add);
 						if (g instanceof Bar && i == 0) {
-							for (int j = 0; j < ((Bar) g).getWidth() + barExtend; j++) {
+							for (int j = 0; j < ((Bar) g).getWidth() ; j++) {
 								add = new ImageView(g.getImages()[1]);
 								add.setTranslateX(g.getPosX() + xsofar);
 								xsofar += g.getImages()[1].getWidth();
 								add.setTranslateY(500 - g.getPosY());
-								if(g instanceof HardlyVisible){
+								if (g instanceof HardlyVisible) {
 									add.setOpacity(0.3);
 								}
 								pane.getChildren().add(add);
 							}
+								if( (Map.getInstance().getBarExtendTakenBar() != -1 &&
+										((Bar) g).getId()>Map.getInstance().getBarExtendTakenBar() &&
+										((Bar) g).getId() < Map.getInstance().getBarExtendTakenBar() + 10) || ((Bar)g).isExtended())
+								{
+									((Bar) g).setExtended();
+									for (int j = 0; j < barExtend ; j++) {
+										add = new ImageView(g.getImages()[1]);
+										add.setTranslateX(g.getPosX() + xsofar);
+										xsofar += g.getImages()[1].getWidth();
+										add.setTranslateY(500 - g.getPosY());
+										if(g instanceof HardlyVisible){
+											add.setOpacity(0.3);
+										}
+										pane.getChildren().add(add);
+								}
+
+								}
 							i++;
 						}
 						else if(g instanceof Base && i == 0){

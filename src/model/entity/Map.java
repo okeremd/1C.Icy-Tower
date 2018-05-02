@@ -93,6 +93,8 @@ public class Map {
         base.setPosY(BASE_INITIAL_POSY);
         gameObjects.add(base);
 
+        barExtendTakenBar=-1;
+
         collisionManager = new CollisionManager(gameObjects);
 	}
 
@@ -378,11 +380,11 @@ public class Map {
             slowBonusActivatedBar = 0;
             setDifficulty((getDifficulty() * DECREMENT_SPEED));
         }
-		if(barExtendTaken && collisionManager.getPrevBarId() > barExtendTakenBar + 4)
+		if(barExtendTaken && collisionManager.getPrevBarId() > barExtendTakenBar + 10)
 		{
 			barExtendTaken = false;
-			barExtendTakenBar = 0;
-			GameEngine.setBarExtend(0);
+			barExtendTakenBar = -1;
+			//GameEngine.setBarExtend(0);
 		}
     }
 
@@ -408,7 +410,14 @@ public class Map {
     }
 
 	public void extendBar(int activatedBar) {
-		barExtendTaken=true;
-		barExtendTakenBar= activatedBar;
+		if(!barExtendTaken)
+		{
+			barExtendTaken=true;
+			barExtendTakenBar= activatedBar;
+		}
+
+	}
+	public int getBarExtendTakenBar(){
+		return barExtendTakenBar;
 	}
 }

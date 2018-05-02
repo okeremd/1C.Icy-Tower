@@ -97,7 +97,7 @@ public class CollisionManager {
                             Map.getInstance().increaseSpeed(prevBarId);
 
                         } else { //bar extender
-                            GameEngine.setBarExtend(BAR_EXTEND_LENGTH);
+
                             Map.getInstance().extendBar(prevBarId);
                             gameObjects.remove(currentbonus);
                         }
