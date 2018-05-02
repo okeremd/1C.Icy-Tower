@@ -44,6 +44,16 @@ public class GameEngine {
 	private Pane pane;
 	int mapLevel;
 	private int comboCounter;
+	private static int barExtend;
+	public static int getBarExtend() {
+		return barExtend;
+	}
+
+	public static void setBarExtend(int barExtender) {
+		barExtend = barExtender;
+	}
+
+
 	private static Rectangle innerRectangle;
 	private static GameEngine instance;
 	public static void init(int difficulty){
@@ -120,8 +130,8 @@ public class GameEngine {
 						xsofar += g.getImages()[i].getWidth();
 						add.setTranslateY(500 - g.getPosY());
 						pane.getChildren().add(add);
-						if (g instanceof Bar&& i == 0) {
-							for (int j = 0; j < ((Bar) g).getWidth(); j++) {
+						if (g instanceof Bar && i == 0) {
+							for (int j = 0; j < ((Bar) g).getWidth() + barExtend; j++) {
 								add = new ImageView(g.getImages()[1]);
 								add.setTranslateX(g.getPosX() + xsofar);
 								xsofar += g.getImages()[1].getWidth();

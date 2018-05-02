@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class CollisionManager {
+    public static final int BAR_EXTEND_LENGTH = 5;
     Bar current;
     Collectible currentbonus;
     private Character character;
@@ -96,6 +97,8 @@ public class CollisionManager {
                             Map.getInstance().increaseSpeed(prevBarId);
 
                         } else { //bar extender
+                            GameEngine.setBarExtend(BAR_EXTEND_LENGTH);
+                            Map.getInstance().extendBar(prevBarId);
                             gameObjects.remove(currentbonus);
                         }
                     }

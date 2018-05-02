@@ -25,7 +25,10 @@ public class Map {
     public static final int DECREMENT_SPEED = 2;
 
 
-    private enum BarType {
+
+
+
+	private enum BarType {
         WOODEN,
         STICKY,
         ICY,
@@ -53,7 +56,8 @@ public class Map {
     private int speedBonusActivatedBar;
     private boolean slowIncreaseBonusTaken;
     private int slowBonusActivatedBar;
-
+	private boolean barExtendTaken;
+    private int barExtendTakenBar;
 	/**
 	 * Singleton Pattern for Map.
 	 * Generate and use only one Map Object.
@@ -374,6 +378,12 @@ public class Map {
             slowBonusActivatedBar = 0;
             setDifficulty((getDifficulty() * DECREMENT_SPEED));
         }
+		if(barExtendTaken && collisionManager.getPrevBarId() > barExtendTakenBar + 4)
+		{
+			barExtendTaken = false;
+			barExtendTakenBar = 0;
+			GameEngine.setBarExtend(0);
+		}
     }
 
 
@@ -397,4 +407,8 @@ public class Map {
         setDifficulty(getDifficulty()/ DECREMENT_SPEED);
     }
 
+	public void extendBar(int activatedBar) {
+		barExtendTaken=true;
+		barExtendTakenBar= activatedBar;
+	}
 }
