@@ -22,7 +22,9 @@ public class Map {
 	public static final double SCORE_MULTIPLIER_COMBO = 0.11;
 	public static final double SCORE_MULTIPLIER_DEFAULT = 0.09;
 
-	private enum BarType {
+
+
+    private enum BarType {
         WOODEN,
         STICKY,
         ICY,
@@ -348,4 +350,13 @@ public class Map {
 	public void setDifficulty(int difficulty) {
 		this.difficulty = difficulty;
 	}
+
+    public void extraPoints() {
+        getGameCharacter().setScore(getGameCharacter().getScore()+500);
+    }
+
+    public void increaseSpeed() {
+	    System.out.println("gotchu");
+	    setDifficulty(getDifficulty()+2);
+    }
 }

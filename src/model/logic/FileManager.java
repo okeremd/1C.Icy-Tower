@@ -12,6 +12,8 @@ public class FileManager {
 
     public static final int TOTAL_HIGHSCORE = 10;
     public static final String HIGH_SCORE_FILE = "highScores.txt";
+    public static final String DEFAULT_SCORE = "0";
+    public static final String DEFAULT_NAME = "none";
     private String highScoreNames[];
     private String highScoreScores[];
 
@@ -113,8 +115,8 @@ public class FileManager {
     public void resetHighScores() throws IOException {
 
 		for(int i = 0; i<10; i++){
-			highScoreScores[i] = "0";
-			highScoreNames[i] = "none";
+			highScoreScores[i] = DEFAULT_SCORE;
+			highScoreNames[i] = DEFAULT_NAME;
 		}
 		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(HIGH_SCORE_FILE));
 		for(int index = 0; index< 10; index++)

@@ -1,6 +1,5 @@
 package model.logic;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.scene.Group;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
@@ -65,6 +64,7 @@ public class CollisionManager {
                         if (currentbonus instanceof Coin) {
                             character.setScore(character.getScore() + ((Coin) currentbonus).getVALUE());
                             gameObjects.remove(currentbonus);
+                            Map.getInstance().extraPoints();
                         }
                         else if (currentbonus instanceof Balloon) {
 
@@ -76,13 +76,14 @@ public class CollisionManager {
                             Group blend = new Group(top,bottom);
 
 
-
-
                         } else if (currentbonus instanceof TimeStretcher) {
+
                             gameObjects.remove(currentbonus);
+
 
                         } else if (currentbonus instanceof TimeSqueezer) {
                             gameObjects.remove(currentbonus);
+                            Map.getInstance().increaseSpeed();
 
                         } else { //bar extender
                             gameObjects.remove(currentbonus);
