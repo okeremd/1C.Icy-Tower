@@ -10,9 +10,15 @@ import java.util.Scanner;
 
 public class FileManager {
 
-	private FileManager(){
-		highScoreScores = new String[10];
-		highScoreNames = new String[10];
+    public static final int TOTAL_HIGHSCORE = 10;
+    public static final String HIGH_SCORE_FILE = "highScores.txt";
+    private String highScoreNames[];
+    private String highScoreScores[];
+
+
+    private FileManager(){
+		highScoreScores = new String[TOTAL_HIGHSCORE];
+		highScoreNames = new String[TOTAL_HIGHSCORE];
 	}
 
 	private static FileManager instance;
@@ -23,10 +29,6 @@ public class FileManager {
 		}
 		return instance;
 	}
-
-
-	private final String PATH = "~/";
-	private final int MAX_HIGH_SCORE = 10;
 
 	public String[] getHighScoreNames() {
 		return highScoreNames;
@@ -44,8 +46,6 @@ public class FileManager {
 		this.highScoreScores = highScoreScores;
 	}
 
-	private String highScoreNames[];
-	private String highScoreScores[];
 
 
 
@@ -54,7 +54,7 @@ public class FileManager {
 	public void readHighScoreLines() throws IOException {
 
 
-    	File file = new File("highScores.txt");
+    	File file = new File(HIGH_SCORE_FILE);
 		FileReader fileReader = new FileReader(file);
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
 
@@ -68,40 +68,36 @@ public class FileManager {
 		}
 	}
 
-	public int[] readHighScoreScores(){
-    	return null;
-	}
-
-	public void saveHighScoreNames(String names[]){
-
-	}
-
-	public void saveHighScoreScores(int scores[]){
-
-	}
-
     public boolean isHighScore(int score) {
 
-    	if(score > Integer.parseInt(highScoreScores[9]))
-    		return  true;
+    	if(score > getLowestScoreOnList())
+        {
+            return  true;
+        }
     	return false;
+
 	}
+
+	private int getLowestScoreOnList(){
+
+	    return Integer.parseInt(highScoreScores[9]);
+    }
 
 	public void saveNewHighScore(String text, int score) throws IOException {
 
-		int i = 0;
-		while(score < Integer.parseInt(highScoreScores[i])){
-			i++;
+		int placingOfNewHighScore = 0;
+		while(score < Integer.parseInt(highScoreScores[placingOfNewHighScore])){
+			placingOfNewHighScore++;
 		}
-		int j =9;
-		while(j >i )
+		int j =TOTAL_HIGHSCORE-1;
+		while(j >placingOfNewHighScore )
 		{
 			highScoreScores[j] = highScoreScores[j-1];
 			highScoreNames[j] = highScoreNames[j-1];
 			j--;
 		}
-		highScoreNames[i] = text;
-		highScoreScores[i] = score+"";
+		highScoreNames[placingOfNewHighScore] = text;
+		highScoreScores[placingOfNewHighScore] = score+"";
 
 		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("highScores.txt"));
 		for(int index = 0; index< 10; index++)
@@ -115,11 +111,12 @@ public class FileManager {
 	}
 
     public void resetHighScores() throws IOException {
+
 		for(int i = 0; i<10; i++){
 			highScoreScores[i] = "0";
 			highScoreNames[i] = "none";
 		}
-		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("highScores.txt"));
+		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(HIGH_SCORE_FILE));
 		for(int index = 0; index< 10; index++)
 		{
 			bufferedWriter.write(highScoreNames[index] + "\n" +highScoreScores[index]);
