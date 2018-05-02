@@ -46,6 +46,14 @@ public class GameFrame {
      */
     public static MediaPlayer mediaplayer;
 
+    public int getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(int difficulty) {
+        this.difficulty = difficulty;
+    }
+
     private int difficulty;
 
     public GameFrame(int difficulty){

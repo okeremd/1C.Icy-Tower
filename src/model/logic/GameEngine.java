@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Timer;
 
+import controller.DifficultyScreenController;
+import controller.MainMenuController;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -249,6 +251,11 @@ public class GameEngine {
 
 		int score = Map.getInstance().getGameCharacter().getScore();
 
+		Button restart = new Button("Restart Game");
+		restart.setTranslateX(550);
+		restart.setTranslateY(550);
+
+
 		Button backToMenu = new Button("Back to Menu");
 		backToMenu.setTranslateY(550);
 		backToMenu.setTranslateX(650);
@@ -275,17 +282,25 @@ public class GameEngine {
 			pane.getChildren().addAll(nameField,saveScore);
 		}
 
+		restart.setOnMouseClicked(event -> {
+
+			instance = null;
+			Map.setMapNull();
+			Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+			GameFrame gameFrame = new GameFrame(2);
+			primaryStage.setScene(gameFrame.start());
+
+
+		});
+
 		saveScore.setOnMouseClicked(event ->  {
 			try {
 				FileManager.getInstance().saveNewHighScore(nameField.getText(),score);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
-			Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			primaryStage.setScene(MainController.getInstance().getMainMenuScene());
-			instance = null; // terminate the gameEngine for that game
-			Map.setMapNull();
+			saveScore.visibleProperty().set(false);
 		});
 
 		backToMenu.setOnMouseClicked(event -> {
@@ -306,7 +321,7 @@ public class GameEngine {
 		text2.setTranslateX(-350);
 		text2.setTranslateY(270);
 		textflow.getChildren().addAll(text1,text2,highScoreText);
-		pane.getChildren().addAll(backToMenu,textflow);
+		pane.getChildren().addAll(backToMenu,textflow,restart);
 	}
 
 	public GameEngine(int difficulty, KeyCode[] buttons) {
