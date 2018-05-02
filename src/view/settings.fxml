@@ -15,6 +15,7 @@
          <Button mnemonicParsing="false" onAction="#openSoundSettings" prefHeight="51.0" prefWidth="193.0" text="Sound Settings" />
          <Button mnemonicParsing="false" onAction="#openCharacterSettings" prefHeight="51.0" prefWidth="193.0" text="Character Settings" />
          <Button mnemonicParsing="false" onAction="#openButtonSettings" prefHeight="48.0" prefWidth="192.0" text="Button Settings" />
+         <Button layoutX="10.0" layoutY="194.0" mnemonicParsing="false" onAction="#resetHighScore" prefHeight="48.0" prefWidth="192.0" text="Reset High Scores" />
       </children>
    </VBox>
    <Text layoutX="343.0" layoutY="136.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings">
@@ -27,7 +28,7 @@
       <Image url="@/images/settingsym.png" />
    </image>
 </ImageView>
-   <ImageView fitHeight="124.0" fitWidth="174.0" layoutX="227.0" layoutY="381.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="124.0" fitWidth="174.0" layoutX="190.0" layoutY="381.0" pickOnBounds="true" preserveRatio="true">
 <image>
 <Image url="@/images/settingsym.png" />
 </image>

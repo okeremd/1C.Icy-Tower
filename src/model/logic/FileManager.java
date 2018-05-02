@@ -113,5 +113,20 @@ public class FileManager {
 		bufferedWriter.close();
 
 	}
+
+    public void resetHighScores() throws IOException {
+		for(int i = 0; i<10; i++){
+			highScoreScores[i] = "0";
+			highScoreNames[i] = "none";
+		}
+		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("highScores.txt"));
+		for(int index = 0; index< 10; index++)
+		{
+			bufferedWriter.write(highScoreNames[index] + "\n" +highScoreScores[index]);
+			bufferedWriter.write("\n");
+		}
+
+		bufferedWriter.close();
+    }
 }
 

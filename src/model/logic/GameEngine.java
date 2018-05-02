@@ -95,7 +95,6 @@ public class GameEngine {
 			}
 			if(innerRectangle.getHeight()==0)
 				comboJump=false;
-			System.out.println(comboJump);
 			Text textscore = new Text("score");
 			textscore.setFont(Font.font("score", FontWeight.BOLD, 35));
 			textscore.setTranslateY(40);
@@ -104,7 +103,7 @@ public class GameEngine {
 			Text tscore = new Text(""+Map.getInstance().getGameCharacter().getScore());
 			tscore.setFont(Font.font("score", FontWeight.BOLD, 35));
 			tscore.setTranslateY(77);
-			tscore.setTranslateX(720);
+			tscore.setTranslateX(690);
 			tscore.setFill(Color.ORANGE);
 
 			pane.getChildren().addAll(textscore,tscore);
