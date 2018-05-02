@@ -23,7 +23,7 @@ public abstract class Bar extends GameObject {
 		this.width = width;
 	}
 
-	abstract public void remove();
+	abstract public void move();
 
 	public int getId() {
 		return id;

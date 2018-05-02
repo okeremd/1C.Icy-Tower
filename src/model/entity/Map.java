@@ -3,7 +3,6 @@ package model.entity;
 import javafx.scene.image.Image;
 import model.logic.CollisionManager;
 import model.logic.GameEngine;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
 import java.util.Iterator;
 import java.util.Random;
@@ -16,62 +15,78 @@ import java.util.ArrayList;
  */
 public class Map {
 
-    private enum BARTYPE{
+	private static final int GAME_BOTTOM_LIMIT = -60;
+	private static final int GRAVITY_INITIAL = 2;
+	private static final int ALTITUDE_INITIAL = 0;
+	private static final int LEVEL_INITIAL = 0;
+	public static final double SCORE_MULTIPLIER_COMBO = 0.11;
+	public static final double SCORE_MULTIPLIER_DEFAULT = 0.09;
+
+	private enum BarType {
         WOODEN,
         STICKY,
         ICY,
         HARDLYVISIBLE
     }
 
-    private static final int GAME_LEFT_LIMIT = 50;
-    private static final int GAME_RIGHT_LIMIT = 630;
+	private static final int GAME_LEFT_LIMIT = 0;
+    private static final int GAME_RIGHT_LIMIT = 720;
     private static final int CHARACTER_INITIAL_POSX = 280;
     private static final int CHARACTER_INITIAL_POSY = 50;
     private static final int BASE_INITIAL_POSY = -78;
     private static final int BASE_INITIAL_POSX = 0;
-    private static Map instance;
 
+    private static Map instance;
     private ArrayList<GameObject> gameObjects;
     private Character gameCharacter;
     private int level;
     private int passedLevel;
-    int altitude;
+    private int altitude;
     private Random rand;
     private int gravity;
     private CollisionManager collisionManager;
     private int difficulty;
+
 	/**
 	 * Singleton Pattern for Map.
 	 * Generate and use only one Map Object.
 	 * @return Map
 	 */
 	public static Map getInstance(){
-		if(instance==null)
+
+		if(instance==null){
 			instance = new Map();
+		}
+
 		return instance;
 	}
 
 	private Map() {
-		gameObjects = new ArrayList<>();
+
 		rand = new Random();
+
+		gameObjects = new ArrayList<>();
+
 		gameCharacter = new Character();
 		gameCharacter.setPosX(CHARACTER_INITIAL_POSX);
 		gameCharacter.setPosY(CHARACTER_INITIAL_POSY);
-		level = 0;
-		altitude = 0;
-		gameObjects.add(gameCharacter);
-		gravity = 2;
-		Base init = new Base();
 
-		init.setPosX(BASE_INITIAL_POSX);
-        init.setPosY(BASE_INITIAL_POSY);
-		gameObjects.add(init);
-		collisionManager = new CollisionManager(gameObjects);
-		//setDifficulty(1);
+		gameObjects.add(gameCharacter);
+
+		level = LEVEL_INITIAL;
+		altitude = ALTITUDE_INITIAL;
+		gravity = GRAVITY_INITIAL;
+
+		Base base = new Base();
+		base.setPosX(BASE_INITIAL_POSX);
+        base.setPosY(BASE_INITIAL_POSY);
+        gameObjects.add(base);
+
+        collisionManager = new CollisionManager(gameObjects);
 	}
 
     /**
-	 * 
+	 * Loads the selected Character's images.
 	 * @param images
 	 */
 	public void loadCurrentCharactersImages(Image[] images) {
@@ -79,21 +94,21 @@ public class Map {
 	}
 
 	/**
-	 * 
+	 * Creates the bars as the height increases.
 	 *
 	 */
-	public void createNextAltitudeObjects() {
+	public void createNextBar() {
 		if(level % 100 < 25){
-			createLevel(BARTYPE.WOODEN);
+			createBar(BarType.WOODEN);
 		}
 		else if(level % 100 < 50){
-			createLevel(BARTYPE.STICKY);
+			createBar(BarType.STICKY);
 		}
 		else if(level % 100 < 75){
-			createLevel(BARTYPE.ICY);
+			createBar(BarType.ICY);
 		}
 		else if(level < 99){
-			createLevel(BARTYPE.HARDLYVISIBLE);
+			createBar(BarType.HARDLYVISIBLE);
 		}
 		else{
 			createFullWidthLevel();
@@ -101,30 +116,28 @@ public class Map {
 	}
 
 	public Character getGameCharacter() {
+
 		return gameCharacter;
+
 	}
 
 	public void createCollectible(){
 
 		int bonustype = (int)(Math.random()*5);
-		Collectible bonus;
-		if(bonustype==0){
-			bonus = new BarExtender();
+		Collectible bonus = new Collectible();
+		switch (bonustype)
+		{
+			case 0: bonus = new BarExtender(); break;
+			case 1: bonus = new TimeSqueezer(); break;
+			case 2: bonus = new TimeStretcher(); break;
+			case 3: bonus = new Balloon(); break;
+			case 4: bonus = new Coin(); break;
+			default:
 		}
-		else if(bonustype==1){
-			bonus = new TimeSqueezer();
-		}
-		else if(bonustype==2){
-			bonus = new TimeStretcher();
-		}
-		else if(bonustype==3){
-			bonus = new Balloon();
-		}
-		else{
-			bonus = new Coin();
-		}
+
 		bonus.setPosY(120 * level - altitude);
 		bonus.setPosX((int)(Math.random()*590) + 50);
+
 		gameObjects.add(bonus);
 
 	}
@@ -140,7 +153,7 @@ public class Map {
 		return gameObjects;
 	}
 
-	public void updateObjects() {
+	public void moveBars() {
 
 		Iterator<GameObject> iter = gameObjects.iterator();
 		double decrease = (level/30 - 1)*difficulty;
@@ -148,13 +161,13 @@ public class Map {
 			decrease = gameCharacter.getPosY() - 540;
 		}
 		while(iter.hasNext()){
-			GameObject obj = iter.next(); //TODO bonus falan gelirse buralar değişmeli!!!
+			GameObject obj = iter.next();
 			if(obj.getPosY() < 60)
 			{
 				if(obj instanceof Bar)
 				{
 					Bar bar =(Bar) obj;
-					bar.remove();
+					bar.move();
 				}
 			}
 			if(obj.getPosY() < -130){
@@ -165,12 +178,16 @@ public class Map {
 			}
 		}
 		altitude+= decrease;
+
+	}
+
+	public void incrementScore(){
 		if(gameCharacter.getVerticalVelocity() > 0){
 			if(gameCharacter.isComboJumping()){
-				gameCharacter.setScore(gameCharacter.getScore() + (int)(0.11*(Math.sqrt(altitude) + GameEngine.getInstance().getComboCounter()*25)));
+				gameCharacter.setScore(gameCharacter.getScore() + (int)(SCORE_MULTIPLIER_COMBO *(Math.sqrt(altitude) + GameEngine.getInstance().getComboCounter()*25)));
 			}
 			else{
-				gameCharacter.setScore(gameCharacter.getScore() + (int)(0.09*(Math.sqrt(altitude))));
+				gameCharacter.setScore(gameCharacter.getScore() + (int)(SCORE_MULTIPLIER_DEFAULT *(Math.sqrt(altitude))));
 			}
 		}
 	}
@@ -216,7 +233,6 @@ public class Map {
 			{
 				if(gameCharacter.getVerticalVelocity()!=0 && gameCharacter.getHorizontalVelocity()>0)
 				{
-					System.out.println("he");
 					gameCharacter.setHorizontalVelocity(-gameCharacter.getHorizontalVelocity());
 					gameCharacter.setVerticalVelocity(gameCharacter.getVerticalVelocity()*1.0);
 				}
@@ -226,15 +242,15 @@ public class Map {
 		}
 	}
 
-	public void createLevel(BARTYPE type){
+	public void createBar(BarType type){
 		Bar bar;
-			if (type == BARTYPE.WOODEN) {
+			if (type == BarType.WOODEN) {
 				bar = new Wooden();
 			}
-			else if (type == BARTYPE.STICKY) {
+			else if (type == BarType.STICKY) {
 				bar = new Sticky();
 			}
-			else if (type == BARTYPE.ICY) {
+			else if (type == BarType.ICY) {
 				bar = new Icy();
 			}
 			else{
@@ -247,6 +263,7 @@ public class Map {
 	}
 
 	public void moveLeft(){
+
 		gameCharacter.setMovingLeft(true);
 	}
 
@@ -256,13 +273,17 @@ public class Map {
 	}
 
 	public void stopMoveRight(){
+
 		gameCharacter.setHorizontalVelocity(0);
 		gameCharacter.setMovingRight(false);
+
 	}
 
 	public void stopMoveLeft(){
+
 		gameCharacter.setHorizontalVelocity(0);
 		gameCharacter.setMovingLeft(false);
+
 	}
 	public void stopMoveJump(){
 
@@ -282,7 +303,7 @@ public class Map {
 		}
 	}
 	public boolean gameOver(){
-		if(gameCharacter.getPosY()<-30)
+		if(gameCharacter.getPosY()< GAME_BOTTOM_LIMIT || gameCharacter.getPosX() < GAME_LEFT_LIMIT|| gameCharacter.getPosX()> GAME_RIGHT_LIMIT)
 		{
 			return true;
 		}

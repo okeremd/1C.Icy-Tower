@@ -24,7 +24,7 @@ public class Sticky extends Bar {
     }
 
     @Override
-    public void remove() {
+    public void move() {
 	    FallingBehaviour FallingBehaviour = new FallingBehaviour();
 	    FallingBehaviour.react(this);
         }

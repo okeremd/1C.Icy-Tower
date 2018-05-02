@@ -2,8 +2,6 @@ package model.logic;
 
 import model.entity.Map;
 
-import javafx.scene.image.Image;
-
 public class MapGenerator {
 
 	private Map map;
@@ -26,7 +24,7 @@ public class MapGenerator {
                 map.createCollectible();
             }
             map.setLevel(map.getLevel() + 1);
-            map.createNextAltitudeObjects();
+            map.createNextBar();
         }
     }
 }

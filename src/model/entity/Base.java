@@ -31,7 +31,7 @@ public class Base extends Bar{
     }
 
     @Override
-    public void remove() {
+    public void move() {
        StandingBehaviour standingBehaviour = new StandingBehaviour();
        standingBehaviour.react(this);
     }

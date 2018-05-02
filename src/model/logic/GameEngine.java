@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Timer;
 
-import controller.DifficultyScreenController;
-import controller.MainMenuController;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -149,8 +147,9 @@ public class GameEngine {
 					}
 				}
 			}
+			Map.getInstance().incrementScore();
 			Map.getInstance().updateCharacter();
-			Map.getInstance().updateObjects();
+			Map.getInstance().moveBars();
 			if (Map.getInstance().getLevel() - (Map.getInstance().getAltitude() / 50) < 15) {
 				mapGenerator.createNextGameObjects();
 			}
