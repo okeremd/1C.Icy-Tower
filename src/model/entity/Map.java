@@ -16,12 +16,13 @@ import java.util.ArrayList;
 public class Map {
 
 	private static final int GAME_BOTTOM_LIMIT = -60;
-	private static final int GRAVITY_INITIAL = 2;
+    private static final int GRAVITY_INITIAL = 2;
 	private static final int ALTITUDE_INITIAL = 0;
 	private static final int LEVEL_INITIAL = 0;
 	public static final double SCORE_MULTIPLIER_COMBO = 0.11;
 	public static final double SCORE_MULTIPLIER_DEFAULT = 0.09;
-
+    public static final int INCREMENT_SPEED = 3;
+    public static final int DECREMENT_SPEED = 2;
 
 
     private enum BarType {
@@ -47,7 +48,11 @@ public class Map {
     private Random rand;
     private int gravity;
     private CollisionManager collisionManager;
-    private int difficulty;
+    private double  difficulty;
+    private boolean speedIncreaseBonusTaken;
+    private int speedBonusActivatedBar;
+    private boolean slowIncreaseBonusTaken;
+    private int slowBonusActivatedBar;
 
 	/**
 	 * Singleton Pattern for Map.
@@ -242,6 +247,7 @@ public class Map {
 					gameCharacter.setPosX(GAME_RIGHT_LIMIT);
 			}
 		}
+		deActivateBonus();
 	}
 
 	public void createBar(BarType type){
@@ -343,20 +349,52 @@ public class Map {
 	}
 
 
-	public int getDifficulty() {
+	public double getDifficulty() {
 		return difficulty;
 	}
 
-	public void setDifficulty(int difficulty) {
+	public void setDifficulty(double difficulty) {
 		this.difficulty = difficulty;
 	}
 
     public void extraPoints() {
         getGameCharacter().setScore(getGameCharacter().getScore()+500);
     }
+    public void deActivateBonus(){
+	    if(speedIncreaseBonusTaken && collisionManager.getPrevBarId() > speedBonusActivatedBar + 4)
+        {
+            speedIncreaseBonusTaken = false;
+            speedBonusActivatedBar = 0;
+            setDifficulty((getDifficulty() - INCREMENT_SPEED));
+        }
 
-    public void increaseSpeed() {
-	    System.out.println("gotchu");
-	    setDifficulty(getDifficulty()+2);
+        if(slowIncreaseBonusTaken && collisionManager.getPrevBarId() > slowBonusActivatedBar + 4)
+        {
+            slowIncreaseBonusTaken = false;
+            slowBonusActivatedBar = 0;
+            setDifficulty((getDifficulty() * DECREMENT_SPEED));
+        }
     }
+
+
+    public void increaseSpeed(int activatedBar) {
+	    if(!speedIncreaseBonusTaken)
+        {
+            speedIncreaseBonusTaken = true;
+            speedBonusActivatedBar = activatedBar;
+        }
+
+	    setDifficulty(getDifficulty()+ INCREMENT_SPEED);
+    }
+
+    public void decreaseSpeed(int activatedBar) {
+        if(!speedIncreaseBonusTaken)
+        {
+            slowIncreaseBonusTaken = true;
+            slowBonusActivatedBar = activatedBar;
+        }
+
+        setDifficulty(getDifficulty()/ DECREMENT_SPEED);
+    }
+
 }
