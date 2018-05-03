@@ -89,12 +89,8 @@ public class CollisionManager {
 	                }
                     else if (currentbonus instanceof Balloon) {
 
-                        Image a = new Image(Paths.get("./images/bonus/balloon.png").toUri().toString());
-                        Image b = new Image(Paths.get("./images/character_images/character1_3.png").toUri().toString());
-                        ImageView top = new ImageView(a);
-                        ImageView bottom = new ImageView(b);
-                        top.setBlendMode(BlendMode.OVERLAY);
-                        Group blend = new Group(top,bottom);
+                       // ((Balloon) currentbonus).setVelocity();
+
 
 
                     } else if (currentbonus instanceof TimeStretcher) {
