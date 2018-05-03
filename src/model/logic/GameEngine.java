@@ -184,7 +184,10 @@ public class GameEngine {
 										((Bar) g).getId()>Map.getInstance().getBarExtendTakenBar() &&
 										((Bar) g).getId() < Map.getInstance().getBarExtendTakenBar() + 10) || ((Bar)g).isExtended())
 								{
+									if(!((Bar) g).isExtended())
+										((Bar) g).setWidth(((Bar) g).getWidth()+barExtend);
 									((Bar) g).setExtended();
+
 									for (int j = 0; j < barExtend ; j++) {
 										add = new ImageView(g.getImages()[1]);
 										add.setTranslateX(g.getPosX() + xsofar);
@@ -268,6 +271,25 @@ public class GameEngine {
 		resume.setTranslateX(260);
 		resume.setTranslateY(290);
 		resume.setMinSize(20, 20);
+
+		Button restart = new Button("Restart Game");
+		restart.setTranslateX(360);
+		restart.setTranslateY(290);
+		restart.setMinSize(20, 20);
+
+		restart.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				GameFrame.stopSong();
+				instance = null;
+				Map.setMapNull();
+				Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+				GameFrame gameFrame = new GameFrame((int)Map.getInstance().getDifficulty());
+				primaryStage.setScene(gameFrame.start());
+			}
+		});
+
 		resume.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -310,7 +332,7 @@ public class GameEngine {
 		});
 
 
-		pane.getChildren().addAll(rectangle, pausetext, resumetext, resume, volume, voltext, songtext, songlist);
+		pane.getChildren().addAll(rectangle, pausetext, resumetext, resume, volume, voltext, songtext, songlist,restart);
 	}
 
 	/**
