@@ -1,12 +1,9 @@
 package test;
 
 import model.logic.FileManager;
-
 import java.io.IOException;
-
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
+
 
 class FileManagerTest {
 

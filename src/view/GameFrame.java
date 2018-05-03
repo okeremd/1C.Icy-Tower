@@ -56,8 +56,19 @@ public class GameFrame {
 
     private int difficulty;
 
+
+
+    private int gameSpeed;
+
+
     public GameFrame(int difficulty){
         this.difficulty = difficulty;
+        gameSpeed = 50;
+        timeline = new Timeline(new KeyFrame(
+                Duration.millis(gameSpeed),
+                ae -> updateFrame()));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
     public Scene start() {
@@ -75,11 +86,8 @@ public class GameFrame {
 
         gameController = new GameController(gameScene, kc, GameEngine.getInstance());
 
-        timeline = new Timeline(new KeyFrame(
-                Duration.millis(50),
-                ae -> updateFrame()));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
+
+
 
         return gameScene;
     }
@@ -120,7 +128,22 @@ public class GameFrame {
             timeline.stop();
             mediaplayer.stop();
         }
-
+        if(GameEngine.getInstance().isIncreaseGameSpeed())
+        {
+            setRate(2);
+        }
+        if(GameEngine.getInstance().isDecreaseGameSpeed())
+        {
+            setRate(0.75);
+        }
+        if(GameEngine.getInstance().deActivateIncraseGameSpeed())
+        {
+            setRate(1);
+        }
+        if(GameEngine.getInstance().deActivateDecreaseGameSpeed())
+        {
+            setRate(1);
+        }
     }
 
     public static void changeVolume() {
@@ -129,5 +152,11 @@ public class GameFrame {
 
     public static void stopSong() {
         mediaplayer.stop();
+    }
+
+
+    public  void setRate(double rate){
+        timeline.setRate(rate);
+        System.out.println(timeline.getRate());
     }
 }
