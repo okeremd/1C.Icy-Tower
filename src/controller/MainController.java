@@ -15,8 +15,6 @@ public class MainController {
     private static Scene exitScene;
     private static Scene startScene;
     private static Scene difficultyScene;
-
-
     private static Scene gameOverScene;
     // Setting scenes
     private static Scene soundSettingsScene;
@@ -60,16 +58,11 @@ public class MainController {
         MainController.howToPlayScene = scene;
     }
 
-
-
     public void setMainMenuScene(Scene scene) {
 
         mainMenuScene = scene;
     }
 
-    public void setStartScene(Scene scene){
-        startScene = scene;
-    }
     public Scene getMainMenuScene(){
 
         return mainMenuScene;
@@ -96,13 +89,9 @@ public class MainController {
         MainController.settingsScene = settingsScene;
     }
 
-
     public static Scene getHighScoreScene() {
         return highScoreScene;
     }
-
-    public static Scene getStartScene(){return startScene; }
-
     public static void setHighScoreScene(Scene highScoreScene) {
         MainController.highScoreScene = highScoreScene;
     }
@@ -137,13 +126,6 @@ public class MainController {
 
     public static void setCharacterSettingsScene(Scene characterSettingsScene) {
         MainController.characterSettingsScene = characterSettingsScene;
-    }
-    public static Scene getGameOverScene() {
-        return gameOverScene;
-    }
-
-    public static void setGameOverScene(Scene gameOverScene) {
-        MainController.gameOverScene = gameOverScene;
     }
 
     public static Scene getDifficultyScene() {
