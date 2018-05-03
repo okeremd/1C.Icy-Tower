@@ -6,7 +6,7 @@ public class Collectible extends GameObject {
 	private int width;
 
     public Collectible() {
-        // ToDo implement Collectibles
+
 
     }
 

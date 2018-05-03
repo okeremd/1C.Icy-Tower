@@ -32,9 +32,6 @@ public class GameController{
 			else if(event.getCode() == keyCode[1]){
 				stopMoveRight();
 			}
-			else if(event.getCode() == keyCode[2]){
-				stopJump();
-			}
 
 		});
 
@@ -56,17 +53,12 @@ public class GameController{
     	gameEngine.stopMoveCharacterRight();
 	}
 
-	public void stopJump(){
-    	gameEngine.stopJump();
-	}
-
 	public void jump() {
 		gameEngine.jumpCharacter();
 	}
 
 	public void pause() {
-
-		gameEngine.pauseGame();
+    	gameEngine.pauseGame();
 	}
 
 

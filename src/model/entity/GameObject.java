@@ -4,8 +4,19 @@ import javafx.scene.image.Image;
 
 public abstract class GameObject {
 
+    /**
+     * Holds the images of this object
+     */
     private Image[] images;
+
+    /**
+     * Holds the horizontal position of this object
+     */
     private int posX;
+
+    /**
+     * Holds the vertical position of this object
+     */
     private int posY;
 
     public GameObject() { }

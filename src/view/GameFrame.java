@@ -2,7 +2,6 @@ package view;
 
 import controller.GameController;
 import javafx.animation.Animation;
-import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Scene;
@@ -130,6 +129,7 @@ public class GameFrame {
         }
         if(GameEngine.getInstance().isIncreaseGameSpeed())
         {
+            timeline.setRate(1);
             setRate(2);
         }
         if(GameEngine.getInstance().isDecreaseGameSpeed())
@@ -142,6 +142,7 @@ public class GameFrame {
         }
         if(GameEngine.getInstance().deActivateDecreaseGameSpeed())
         {
+            timeline.setRate(1);
             setRate(1);
         }
     }

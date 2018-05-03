@@ -6,6 +6,9 @@ import java.nio.file.Paths;
 
 public class Sticky extends Bar {
 
+    /**
+     * The stickines decreases the acceleration of the character
+     */
 	private double stickyness;
 	private final int IMAGE_NUM = 3;
 

@@ -6,6 +6,9 @@ import java.nio.file.Paths;
 
 public class HardlyVisible extends Bar {
 
+    /**
+     * Holds the opacity of the bar, which will cause it to seen hardly
+     */
 	private double opacity;
 	private final int IMAGE_NUM = 3;
 

@@ -4,10 +4,9 @@ import javafx.scene.image.Image;
 import model.logic.CollisionManager;
 import model.logic.GameEngine;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
-
-import java.util.ArrayList;
 
 
 /**
@@ -42,15 +41,54 @@ public class Map {
     private static final int BASE_INITIAL_POSY = -78;
     private static final int BASE_INITIAL_POSX = 0;
 
-    private static Map instance;
+	/**
+	 * Singleton instance
+	 */
+	private static Map instance;
+
+	/**
+	 * ArrayList that holds all GameObjects shown
+	 */
     private ArrayList<GameObject> gameObjects;
-    private Character gameCharacter;
+
+	/**
+	 * Character that controlled by the player
+	 */
+	private Character gameCharacter;
+
+	/**
+	 * The number of levels that created by Map Generator so far
+	 */
     private int level;
-    private int passedLevel;
+
+	/**
+	 * The number of levels that passed by Character so far
+	 */
+	private int passedLevel;
+
+	/**
+	 * The total number of pixels that character travelled vertically
+	 */
     private int altitude;
-    private Random rand;
+
+	/**
+	 * Random generator
+	 */
+	private Random rand;
+
+	/**
+	 * The acceleration of the character downwards
+	 */
     private int gravity;
-    private CollisionManager collisionManager;
+
+	/**
+	 * collision manager attribute
+	 */
+	private CollisionManager collisionManager;
+
+	/**
+	 * The difficulty that determined by player
+	 */
     private double  difficulty;
     private boolean speedIncreaseBonusTaken;
     private int speedBonusActivatedBar;
@@ -72,6 +110,9 @@ public class Map {
 		return instance;
 	}
 
+	/**
+	 * Default constructor
+	 */
 	private Map() {
 
 		rand = new Random();
@@ -134,6 +175,9 @@ public class Map {
 
 	}
 
+	/**
+	 * Creates collectibles as character increases
+	 */
 	public void createCollectible(){
 
 		int bonustype = (int)(Math.random()*5);
@@ -155,6 +199,9 @@ public class Map {
 
 	}
 
+	/**
+	 * Creates a level that fits in the length of screen
+	 */
 	public void createFullWidthLevel() {
 		Base fullWidth = new Base();
 		fullWidth.setPosY(120 * level - altitude);
@@ -166,12 +213,15 @@ public class Map {
 		return gameObjects;
 	}
 
+	/**
+	 * the increasing visual is provided with decreasing bar altitudes
+	 */
 	public void moveBars() {
 
 		Iterator<GameObject> iter = gameObjects.iterator();
 		double decrease = (level/30 - 1)*difficulty;
-		if(gameCharacter.getPosY() > 540){
-			decrease = gameCharacter.getPosY() - 540;
+		if(gameCharacter.getPosY() > 400){
+			decrease = gameCharacter.getPosY() - 400;
 		}
 		while(iter.hasNext()){
 			GameObject obj = iter.next();
@@ -194,6 +244,9 @@ public class Map {
 
 	}
 
+	/**
+	 * Increments player's score
+	 */
 	public void incrementScore(){
 		if(gameCharacter.getVerticalVelocity() > 0){
 			if(gameCharacter.isComboJumping()){
@@ -217,6 +270,9 @@ public class Map {
 		return altitude;
 	}
 
+	/**
+	 * Checks the collisions of the character and updates locations
+	 */
 	public void updateCharacter() {
 		collisionManager.checkCollision(gameObjects);
 		if (!gameCharacter.isStanding()) {
@@ -256,6 +312,10 @@ public class Map {
 		deActivateBonus();
 	}
 
+	/**
+	 * Creates a bar with given type at predetermined altitude
+	 * @param type one of four types from Bars
+	 */
 	public void createBar(BarType type){
 		Bar bar;
 			if (type == BarType.WOODEN) {
@@ -299,9 +359,6 @@ public class Map {
 		gameCharacter.setMovingLeft(false);
 
 	}
-	public void stopMoveJump(){
-
-	}
 
 	public void jump(){
 		if(gameCharacter.isStanding()){
@@ -316,12 +373,13 @@ public class Map {
 			}
 		}
 	}
+
+	/**
+	 * Ends the game
+	 * @return whether the game ended
+	 */
 	public boolean gameOver(){
-		if(gameCharacter.getPosY()< GAME_BOTTOM_LIMIT || gameCharacter.getPosX() < GAME_LEFT_LIMIT|| gameCharacter.getPosX()> GAME_RIGHT_LIMIT)
-		{
-			return true;
-		}
-		return false;
+		return gameCharacter.getPosY() < GAME_BOTTOM_LIMIT || gameCharacter.getPosX() < GAME_LEFT_LIMIT || gameCharacter.getPosX() > GAME_RIGHT_LIMIT;
 	}
 
 	public int getPassedLevel() {
@@ -332,6 +390,10 @@ public class Map {
 		this.passedLevel = passedLevel;
 	}
 
+	/**
+	 * Provides the falling effect of some types of bars
+	 * @param bar
+	 */
 	public void fall(Bar bar) {
 		bar.setPosY(bar.getPosY()-10);
 
@@ -340,6 +402,11 @@ public class Map {
 			gameCharacter.setPosY(gameCharacter.getPosY()-10);
 		}
 	}
+
+	/**
+	 * Provides the sliding effect of some types of bars
+	 * @param bar
+	 */
 	public void slide(Bar bar)
 	{
 		bar.setPosX(bar.getPosX()+5);

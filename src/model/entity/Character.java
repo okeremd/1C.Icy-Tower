@@ -1,20 +1,37 @@
 package model.entity;
 
-import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
-
-import java.awt.*;
 
 public class Character extends GameObject {
 
     public static final int JUMP_POWER = 30;
     public static final double ACCELERATION = 1;
+
+    /**
+     * the horizontal and vertical velocities of the character
+     */
     private double verticalVelocity, horizontalVelocity;
-	private int jumpPower;
-	private int score;
+
+    /**
+     * Holds the jump power of the character
+     */
+    private int jumpPower;
+
+    /**
+     * Holds the score of the character
+     */
+    private int score;
 	private final int IMAGE_NO = 7;
+
+    /**
+     * Hold the current situation of the character
+     */
 	private boolean movingLeft, movingRight, standing, comboJumping;
 	private static Character character;
+
+    /**
+     * Holds the current acceleration of the character
+     */
 	private double currentAccelleration;
 
 	public Character(){
