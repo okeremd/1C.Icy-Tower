@@ -14,7 +14,7 @@
       <Button fx:id="backToMainMenuButton" layoutX="676.0" layoutY="546.0" mnemonicParsing="false" onAction="#openMainMenuScene" text="Back To Menu" />
       <Pane layoutX="147.0" layoutY="128.0" prefHeight="415.0" prefWidth="540.0">
          <children>
-            <TextArea fx:id="HowToPlayText" layoutX="65.0" prefHeight="389.0" prefWidth="412.0" text="You have to jump to the bars without falling&#10;down to the space !!&#10;If you hit the wall and jump at the same time, &#10;you will jump higher!!&#10;You should be fast !! &#10;unless the game screen will preclude you !! &#10;This means you die !!&#10;If you saw a balloon, go and take it. &#10;It will help you to go up easily !!&#10;If you saw a bomb, run away !! &#10;It will try to kill you&#10;                                               Good Luck !! &#10;">
+            <TextArea fx:id="HowToPlayText" layoutX="65.0" prefHeight="389.0" prefWidth="412.0" text="Welcome to Icy tower Game!&#10;All you have to do is jump as much as you can&#10;If you fall down to&#10;the space,you will die&#10;You should be fast !! &#10;unless the game screen can preclude you !! &#10;This means you die too!!&#10;You will play the game with arrows and space&#10;You can change it from settings if you want&#10;You can change sound and character too&#10;check the settings&#10;If you saw bonus, try to take it&#10;see what happens:)&#10;If you want to pause, press P&#10;If you made a new score&#10;don't froget to save it&#10;Good Luck!!&#10;                                               Good Luck !! &#10;">
                <font>
                   <Font size="19.0" />
                </font></TextArea>
