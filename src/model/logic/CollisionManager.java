@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.entity.*;
 import model.entity.Character;
+import view.GameFrame;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -89,12 +90,13 @@ public class CollisionManager {
                         } else if (currentbonus instanceof TimeStretcher) {
 
                             gameObjects.remove(currentbonus);
-                            Map.getInstance().decreaseSpeed(prevBarId);
+                            GameEngine.getInstance().decreaseGameSpeed();
+
 
 
                         } else if (currentbonus instanceof TimeSqueezer) {
                             gameObjects.remove(currentbonus);
-                            Map.getInstance().increaseSpeed(prevBarId);
+                            GameEngine.getInstance().increaseGameSpeed();
 
                         } else { //bar extender
 

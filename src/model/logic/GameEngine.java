@@ -41,6 +41,26 @@ public class GameEngine {
 	boolean firstTime;
 	private boolean comboJumpInitial;
 	private boolean comboJump;
+
+	public boolean isDecreaseGameSpeed() {
+		return decreaseGameSpeed;
+	}
+
+	public void setDecreaseGameSpeed(boolean decreaseGameSpeed) {
+		this.decreaseGameSpeed = decreaseGameSpeed;
+	}
+
+	private boolean decreaseGameSpeed;
+
+	public boolean isIncreaseGameSpeed() {
+		return increaseGameSpeed;
+	}
+
+	public void setIncreaseGameSpeed(boolean increaseGameSpeed) {
+		this.increaseGameSpeed = increaseGameSpeed;
+	}
+
+	private boolean increaseGameSpeed;
 	private Pane pane;
 	int mapLevel;
 	private int comboCounter;
@@ -68,6 +88,7 @@ public class GameEngine {
 		mapGenerator = new MapGenerator(Map.getInstance());
 		mapGenerator.createNextGameObjects();
 		firstTime=true;
+		increaseGameSpeed=false;
 	}
 
 
@@ -424,5 +445,23 @@ public class GameEngine {
 
 	public int getComboCounter() {
 		return comboCounter;
+	}
+
+	public void increaseGameSpeed() {
+		increaseGameSpeed = true;
+	}
+
+	public void decreaseGameSpeed() {
+		decreaseGameSpeed = true;
+	}
+
+	public boolean deActivateIncraseGameSpeed() {
+		//TODO
+		return false;
+	}
+
+	public boolean deActivateDecreaseGameSpeed() {
+		//TODO
+		return false;
 	}
 }
