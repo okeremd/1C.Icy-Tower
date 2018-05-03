@@ -5,7 +5,9 @@ import javafx.scene.image.Image;
 import java.nio.file.Paths;
 
 public class Icy extends Bar {
-
+    /**
+     * Holds the slipperiness of the bar, which causes character to accelerate
+     */
 	private double slipperiness;
 	private final int IMAGE_NUM = 3;
 
@@ -22,6 +24,7 @@ public class Icy extends Bar {
     public Icy(Image[] images) {
         super(images);
     }
+
 
     @Override
     public void move() {

@@ -1,23 +1,19 @@
 package model.logic;
 
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.Timer;
-
+import controller.MainController;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.shape.Rectangle;
-import controller.MainController;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -26,16 +22,12 @@ import javafx.stage.Stage;
 import model.entity.*;
 import view.GameFrame;
 
+import java.io.IOException;
+import java.nio.file.Paths;
+
 public class GameEngine {
 
 	private MapGenerator mapGenerator;
-	private PauseManager pm;
-	//private GameFrame gf;
-	private CollisionManager cm;
-	private Timer timer;
-	private int currentAltitude;
-	private int currentScore;
-	private boolean gameFinished;
 	private boolean gamePaused;
 	private boolean firstTimeSettings;
 	boolean firstTime;
@@ -61,17 +53,41 @@ public class GameEngine {
 	}
 
 	private boolean increaseGameSpeed;
+	/**
+	 * pane holds game screen and textfields on gamescreen
+	 */
 	private Pane pane;
-	int mapLevel;
+
+	/**
+	 * counts combo jumps
+	 */
 	private int comboCounter;
+
+	/**
+	 * Counts how much width one Bar Extender bonus adds to the bars
+	 */
 	private static final int barExtend= 5;
 
 
 	private static Rectangle innerRectangle;
+
+	/**
+	 * Singleton instance
+	 */
 	private static GameEngine instance;
+
+	/**
+	 *
+	 * @param difficulty
+	 */
 	public static void init(int difficulty){
         Map.getInstance().setDifficulty(difficulty);
     }
+
+	/**
+	 * Singleton method
+	 * @return this
+	 */
 	public static GameEngine getInstance(){
 		if(instance == null)
 		{
@@ -80,8 +96,11 @@ public class GameEngine {
 		}
 		return instance;
 	}
+
+	/**
+	 * Default constructor
+	 */
 	private GameEngine() {
-		currentAltitude = 0;
 		pane = new Pane();
 		BackgroundImage backgroundImage = new BackgroundImage(new Image(Paths.get( "./images/gameObject/gameBack.png").toUri().toString()), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		pane.setBackground(new Background(backgroundImage));
@@ -92,6 +111,10 @@ public class GameEngine {
 	}
 
 
+	/**
+	 * Put images of the object in order, add textviews before adding it to stage
+	 * @return
+	 */
 	public Pane convertMapToPane(){
 	    if(!gamePaused) {
 
@@ -286,6 +309,9 @@ public class GameEngine {
 		pane.getChildren().addAll(rectangle, pausetext, resumetext, resume, volume, voltext, songtext, songlist);
 	}
 
+	/**
+	 * Creates the end screen of the game, that still holds the game screen and additionally shows score
+	 */
 	private void createGameOverPane() {
 
 		int score = Map.getInstance().getGameCharacter().getScore();
@@ -305,7 +331,7 @@ public class GameEngine {
 		highScoreText.setTranslateY(320);
 		highScoreText.setTranslateX(-380);
 
-		Button saveScore = new Button("Save score!");;
+		Button saveScore = new Button("Save score!");
 		TextField nameField = new TextField("Write Name");
 
 
@@ -363,46 +389,55 @@ public class GameEngine {
 		pane.getChildren().addAll(backToMenu,textflow,restart);
 	}
 
-	public GameEngine(int difficulty, KeyCode[] buttons) {
-
-	}
-
 	/**
-	 * 
+	 * Prepares the images of the character that chosen by player
 	 * @param images
 	 */
 	public void loadCurrentCharactersImages(Image[] images) {
 		Map.getInstance().loadCurrentCharactersImages(CharacterManager.getInstance().getCharacterImages());
 	}
 
+	/**
+	 * signals map to move character left
+	 */
 	public void moveCharacterLeft(){
 
 		Map.getInstance().moveLeft();
 	}
 
+
+	/**
+	 * signals map to move character right
+	 */
 	public void moveCharacterRight(){
 
 		Map.getInstance().moveRight();
 	}
+
+
+	/**
+	 * signals map to jump character
+	 */
 	public void jumpCharacter() {
 
 		Map.getInstance().jump();
 	}
 
 
+	/**
+	 * signals map to stop moving character left
+	 */
 	public void stopMoveCharacterLeft(){
 
 		Map.getInstance().stopMoveLeft();
 	}
 
+	/**
+	 * signals map to stop moving character right
+	 */
 	public void stopMoveCharacterRight(){
 
 		Map.getInstance().stopMoveRight();
-	}
-
-	public void stopJump(){
-
-		Map.getInstance().stopMoveJump();
 	}
 
 	public void updateScore() {

@@ -18,6 +18,9 @@ public class MapGenerator {
         this.map = map;
     }
 
+    /**
+     * Creates next 30 bars and less amount of collectibles
+     */
 	public void createNextGameObjects(){
         for(int i = 0; i < 30; i++){
            if(Math.random() < 0.2){
