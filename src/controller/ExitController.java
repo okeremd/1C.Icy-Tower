@@ -1,15 +1,13 @@
 package controller;
 
-import controller.MainController;
-import javafx.fxml.FXML;
-
-import java.awt.*;
-
+/**
+ * Controller for Exit Menu
+ */
 public class ExitController extends MainController {
 
-    @FXML
-    private TextField textField;
-
+    /**
+     * Ends the game when yes button is selected from the Exit menu (fxml)
+     */
     public void quitGame(){
     System.exit(0);
     }

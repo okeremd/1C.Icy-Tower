@@ -5,7 +5,7 @@ import java.io.IOException;
 import static org.junit.Assert.assertNotNull;
 
 
-class FileManagerTest {
+/*class FileManagerTest {
 
     @org.junit.jupiter.api.Test
     void getInstance() {
@@ -35,4 +35,4 @@ class FileManagerTest {
     @org.junit.jupiter.api.Test
     void saveHighScoreScores() {
     }
-}
+}*/
