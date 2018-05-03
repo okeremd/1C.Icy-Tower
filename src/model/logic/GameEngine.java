@@ -184,7 +184,10 @@ public class GameEngine {
 										((Bar) g).getId()>Map.getInstance().getBarExtendTakenBar() &&
 										((Bar) g).getId() < Map.getInstance().getBarExtendTakenBar() + 10) || ((Bar)g).isExtended())
 								{
+									if(!((Bar) g).isExtended())
+										((Bar) g).setWidth(((Bar) g).getWidth()+barExtend);
 									((Bar) g).setExtended();
+
 									for (int j = 0; j < barExtend ; j++) {
 										add = new ImageView(g.getImages()[1]);
 										add.setTranslateX(g.getPosX() + xsofar);

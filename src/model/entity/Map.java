@@ -479,6 +479,7 @@ public class Map {
 	public void extendBar(int activatedBar) {
 		if(!barExtendTaken)
 		{
+			System.out.println(activatedBar);
 			barExtendTaken=true;
 			barExtendTakenBar= activatedBar;
 		}
