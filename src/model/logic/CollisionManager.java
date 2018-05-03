@@ -1,13 +1,8 @@
 package model.logic;
 
-import javafx.scene.Group;
-import javafx.scene.effect.BlendMode;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import model.entity.*;
 import model.entity.Character;
 
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class CollisionManager {
@@ -29,8 +24,13 @@ public class CollisionManager {
 
     public int prevBarId = 0;
 
+    /**
+     * Checks collisions between character and other game objects
+     * @param gameObjects all objects on the map
+     */
 	public void checkCollision(ArrayList<GameObject> gameObjects) {
 
+	    // If character was not on a bar, checks all bars to determine whether character is on a bar now
 	    if(!character.isStanding()) {
             for (int i = 1; i < gameObjects.size(); i++) {
                 if (gameObjects.get(i) instanceof Bar) {
@@ -51,10 +51,10 @@ public class CollisionManager {
                         }
                         prevBarId=looper.getId();
                         if(current instanceof Sticky){
-                            character.setCurrentAccelleration(character.getACCELERATION() * ((Sticky) current).getStickyness());
+                            character.setCurrentAccelleration(Character.getACCELERATION() * ((Sticky) current).getStickyness());
                         }
                         else if(current instanceof Icy){
-                            character.setCurrentAccelleration(character.getACCELERATION() * ((Icy) current).getSlipperiness());
+                            character.setCurrentAccelleration(Character.getACCELERATION() * ((Icy) current).getSlipperiness());
                         }
                         character.setStanding(true);
                         character.setComboJumping(false);
@@ -71,9 +71,11 @@ public class CollisionManager {
             if(current instanceof Bar && !((current.getPosX() - 50 <= character.getPosX()) && (current.getPosX() + (current.getWidth()) * current.getImages()[0].getWidth() >= character.getPosX()))){
                 character.setStanding(false);
                 current = null;
-                character.setCurrentAccelleration(character.getACCELERATION());
+                character.setCurrentAccelleration(Character.getACCELERATION());
             }
         }
+
+        // Checks collectibles and character to determine if character is in a position to collect a bonus
         for (int i = 1; i < gameObjects.size(); i++) {
 	        if(gameObjects.get(i) instanceof Collectible){
 	            currentbonus = (Collectible) gameObjects.get(i);
@@ -88,9 +90,19 @@ public class CollisionManager {
 	                    Map.getInstance().extraPoints();
 	                }
                     else if (currentbonus instanceof Balloon) {
+                        if(!((Balloon)currentbonus).isTouched()){
+                            character.setComboJumping(false);
+                            ((Balloon)currentbonus).setVelocity(Math.sqrt(Map.getInstance().getAltitude()/70)+3);
+                            ((Balloon)currentbonus).setTouched();
+                            ((Balloon)currentbonus).setStartingAltitude(Map.getInstance().getAltitude());
+                        }
+                        character.setVerticalVelocity(((Balloon)currentbonus).getVelocity());
+                        currentbonus.setPosX(character.getPosX() + (int)(character.getCurrentImage().getWidth() - currentbonus.getImages()[0].getWidth())/2);
+                        currentbonus.setPosY(character.getPosY() + (int)currentbonus.getImages()[0].getHeight() - 10);
 
-                       // ((Balloon) currentbonus).setVelocity();
-
+                        if(((Balloon)currentbonus).isPassed(Map.getInstance().getAltitude(), 60)){
+                                gameObjects.remove(currentbonus);
+                            }
 
 
                     } else if (currentbonus instanceof TimeStretcher) {
@@ -113,15 +125,16 @@ public class CollisionManager {
 	    }
 	}
 
+    /**
+     * Checks whether the character is standing on the given bar
+     * @param looper is the bar that checked
+     * @return true if character stands on the given bar
+     */
 	public Boolean isColliding(Bar looper){
-        if (looper.getPosY() < character.getPosY() && looper.getPosY()> character.getPosY()-150
+        return looper.getPosY() < character.getPosY() && looper.getPosY() > character.getPosY() - 150
                 && ((looper.getPosX() - 50 <= character.getPosX())
                 && (looper.getPosX() + (looper.getWidth()) * looper.getImages()[0].getWidth() >= character.getPosX())
-                && character.getVerticalVelocity() <= 0))
-        {
-            return true;
-        }
+                && character.getVerticalVelocity() <= 0);
 
-        return false;
     }
 }
