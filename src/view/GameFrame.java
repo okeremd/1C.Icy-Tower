@@ -129,12 +129,13 @@ public class GameFrame {
         }
         if(GameEngine.getInstance().isIncreaseGameSpeed())
         {
-            timeline.setRate(1);
-            setRate(2);
+            if(timeline.getRate()!=2)
+               timeline.setRate(2);
         }
         if(GameEngine.getInstance().isDecreaseGameSpeed())
         {
-            setRate(0.75);
+            if(timeline.getRate()!=0.75)
+                setRate(0.75);
         }
         if(GameEngine.getInstance().deActivateIncraseGameSpeed())
         {
@@ -142,7 +143,6 @@ public class GameFrame {
         }
         if(GameEngine.getInstance().deActivateDecreaseGameSpeed())
         {
-            timeline.setRate(1);
             setRate(1);
         }
     }

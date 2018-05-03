@@ -14,7 +14,7 @@ public class CollisionManager {
 	    character = (Character) gameObjects.get(0);
 	}
 
-    public int getPrevBarId() {
+    public static int getPrevBarId() {
         return prevBarId;
     }
 
@@ -22,7 +22,7 @@ public class CollisionManager {
         this.prevBarId = prevBarId;
     }
 
-    public int prevBarId = 0;
+    public static int prevBarId = 0;
 
     /**
      * Checks collisions between character and other game objects
@@ -108,12 +108,13 @@ public class CollisionManager {
                     } else if (currentbonus instanceof TimeStretcher) {
 
                         gameObjects.remove(currentbonus);
-                        Map.getInstance().decreaseSpeed(prevBarId);
-
+                        GameEngine.getInstance().decreaseGameSpeed();
+                        GameEngine.getInstance().setPrevBarDecreaseGameSpeed(prevBarId);
 
                     } else if (currentbonus instanceof TimeSqueezer) {
                         gameObjects.remove(currentbonus);
-                        Map.getInstance().increaseSpeed(prevBarId);
+                        GameEngine.getInstance().increaseGameSpeed();
+                        GameEngine.getInstance().setPrevBarIncreaseGameSpeed(prevBarId);
 
                     } else { //bar extender
 

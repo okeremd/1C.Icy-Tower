@@ -33,6 +33,8 @@ public class GameEngine {
 	boolean firstTime;
 	private boolean comboJumpInitial;
 	private boolean comboJump;
+	private static int barIdIncreaseSpeed;
+	private static int barIdDecreaseSpeed;
 
 	public boolean isDecreaseGameSpeed() {
 		return decreaseGameSpeed;
@@ -211,6 +213,8 @@ public class GameEngine {
 					}
 				}
 			}
+			deActivateDecreaseGameSpeed();
+			deActivateIncraseGameSpeed();
 			Map.getInstance().incrementScore();
 			Map.getInstance().updateCharacter();
 			Map.getInstance().moveBars();
@@ -483,20 +487,42 @@ public class GameEngine {
 	}
 
 	public void increaseGameSpeed() {
+
+		decreaseGameSpeed=false;
 		increaseGameSpeed = true;
+
 	}
 
 	public void decreaseGameSpeed() {
+
 		decreaseGameSpeed = true;
+		increaseGameSpeed = false;
 	}
 
 	public boolean deActivateIncraseGameSpeed() {
-		//TODO
+		if(CollisionManager.getPrevBarId() > barIdIncreaseSpeed + 6 && increaseGameSpeed==true)
+		{
+			increaseGameSpeed=false;
+			return true;
+		}
 		return false;
 	}
 
 	public boolean deActivateDecreaseGameSpeed() {
-		//TODO
+
+		if(CollisionManager.getPrevBarId() > barIdDecreaseSpeed + 6 && decreaseGameSpeed==true)
+		{
+			decreaseGameSpeed=false;
+			return true;
+		}
 		return false;
+	}
+
+	public void setPrevBarDecreaseGameSpeed(int prevBarId) {
+		barIdDecreaseSpeed=prevBarId;
+	}
+
+	public void setPrevBarIncreaseGameSpeed(int prevBarId) {
+		barIdIncreaseSpeed = prevBarId;
 	}
 }
