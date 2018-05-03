@@ -9,9 +9,11 @@ public class HardlyVisible extends Bar {
     /**
      * Holds the opacity of the bar, which will cause it to seen hardly
      */
-	private double opacity;
 	private final int IMAGE_NUM = 3;
 
+    /**
+     * Constructor for the HardyVisible bar
+     */
 	public HardlyVisible(){
 	    super();
         Image[] images = new Image[IMAGE_NUM];
@@ -21,26 +23,13 @@ public class HardlyVisible extends Bar {
         super.setImages(images);
     }
 
-    public HardlyVisible(Image[] images) {
-        super(images);
-    }
-
+    /**
+     * It has falling behaviour. After a while hardyvisible bars will fall down
+     */
     @Override
     public void move() {
         FallingBehaviour FallingBehaviour = new FallingBehaviour();
         FallingBehaviour.react(this);
-    }
-
-    public double getOpacity() {
-        return opacity;
-    }
-
-    public void setOpacity(double opacity) {
-        this.opacity = opacity;
-    }
-
-    public int getIMAGE_NUM() {
-        return IMAGE_NUM;
     }
 
 }

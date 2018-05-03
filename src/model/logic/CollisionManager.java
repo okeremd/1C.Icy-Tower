@@ -6,10 +6,15 @@ import model.entity.Character;
 import java.util.ArrayList;
 
 public class CollisionManager {
-    public static final int BAR_EXTEND_LENGTH = 5;
+
     Bar current;
-    Collectible currentbonus;
-    private Character character;
+    Collectible currentbonus;  //bonus which is taken currently by the character
+    private Character character;  //game character
+
+    /**
+     * Constructor for CollisionManager
+     * @param gameObjects list of game objects in the game
+     */
 	public CollisionManager(ArrayList<GameObject> gameObjects) {
 	    character = (Character) gameObjects.get(0);
 	}
@@ -84,15 +89,17 @@ public class CollisionManager {
                         && (currentbonus.getPosY() - currentbonus.getImages()[0].getHeight() <= character.getPosY())
                         && (currentbonus.getPosY() >= character.getPosY() - character.getImages()[0].getHeight())){
 
+	                //if the bonus is a coin, its value is added to the score
 	                if (currentbonus instanceof Coin) {
 	                    character.setScore(character.getScore() + ((Coin) currentbonus).getVALUE());
 	                    gameObjects.remove(currentbonus);
 	                    Map.getInstance().extraPoints();
 	                }
+	                //if the bonus is a balloon, character goes up easily for a while with the balloon
                     else if (currentbonus instanceof Balloon) {
                         if(!((Balloon)currentbonus).isTouched()){
                             character.setComboJumping(false);
-                            ((Balloon)currentbonus).setVelocity(Math.sqrt(Map.getInstance().getAltitude()/70)+3);
+                            ((Balloon)currentbonus).setVelocity(Math.sqrt(Map.getInstance().getAltitude()/50)+8);
                             ((Balloon)currentbonus).setTouched();
                             ((Balloon)currentbonus).setStartingAltitude(Map.getInstance().getAltitude());
                         }
@@ -103,20 +110,21 @@ public class CollisionManager {
                         if(((Balloon)currentbonus).isPassed(Map.getInstance().getAltitude(), 60)){
                                 gameObjects.remove(currentbonus);
                             }
-
-
+                     //if the bonus is a timestretcher, the game screen speed decreases for a while
                     } else if (currentbonus instanceof TimeStretcher) {
 
                         gameObjects.remove(currentbonus);
                         GameEngine.getInstance().decreaseGameSpeed();
                         GameEngine.getInstance().setPrevBarDecreaseGameSpeed(prevBarId);
 
+                     //if the bonus is a timesqueezer, the game screen increases for a while
                     } else if (currentbonus instanceof TimeSqueezer) {
                         gameObjects.remove(currentbonus);
                         GameEngine.getInstance().increaseGameSpeed();
                         GameEngine.getInstance().setPrevBarIncreaseGameSpeed(prevBarId);
 
-                    } else { //bar extender
+                     //bonus is barextender and it increases the lenght of the bars
+                    } else {
 
                         Map.getInstance().extendBar(prevBarId);
                         gameObjects.remove(currentbonus);
