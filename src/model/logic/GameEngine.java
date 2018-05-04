@@ -188,19 +188,8 @@ public class GameEngine {
 										((Bar) g).getId() < Map.getInstance().getBarExtendTakenBar() + 10) || ((Bar)g).isExtended())
 								{
 									if(!((Bar) g).isExtended())
-										((Bar) g).setWidth(((Bar) g).getWidth()+barExtend);
+										((Bar) g).setWidth(((Bar) g).getWidth()+10);
 									((Bar) g).setExtended();
-
-									for (int j = 0; j < barExtend ; j++) {
-										add = new ImageView(g.getImages()[1]);
-										add.setTranslateX(g.getPosX() + xsofar);
-										xsofar += g.getImages()[1].getWidth();
-										add.setTranslateY(500 - g.getPosY());
-										if(g instanceof HardlyVisible){
-											add.setOpacity(0.3);
-										}
-										pane.getChildren().add(add);
-								}
 
 								}
 							i++;
