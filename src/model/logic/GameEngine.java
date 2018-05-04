@@ -36,6 +36,8 @@ public class GameEngine {
 	private static int barIdIncreaseSpeed;
 	private static int barIdDecreaseSpeed;
 
+	private int activeBonusCount;
+
 	public boolean isDecreaseGameSpeed() {
 		return decreaseGameSpeed;
 	}
@@ -110,6 +112,7 @@ public class GameEngine {
 		mapGenerator.createNextGameObjects();
 		firstTime=true;
 		increaseGameSpeed=false;
+		activeBonusCount = 0;
 	}
 
 
@@ -509,22 +512,19 @@ public class GameEngine {
 	}
 
 	public void increaseGameSpeed() {
-
-		decreaseGameSpeed=false;
 		increaseGameSpeed = true;
-
+		activeBonusCount++;
 	}
 
 	public void decreaseGameSpeed() {
-
 		decreaseGameSpeed = true;
-		increaseGameSpeed = false;
+		activeBonusCount--;
 	}
 
 	public boolean deActivateIncraseGameSpeed() {
-		if(CollisionManager.getPrevBarId() > barIdIncreaseSpeed + 6 && increaseGameSpeed==true)
+		if(CollisionManager.getPrevBarId() > barIdIncreaseSpeed + 12 && activeBonusCount > 0)
 		{
-			increaseGameSpeed=false;
+			activeBonusCount--;
 			return true;
 		}
 		return false;
@@ -532,9 +532,9 @@ public class GameEngine {
 
 	public boolean deActivateDecreaseGameSpeed() {
 
-		if(CollisionManager.getPrevBarId() > barIdDecreaseSpeed + 6 && decreaseGameSpeed==true)
+		if(CollisionManager.getPrevBarId() > barIdDecreaseSpeed + 12 && activeBonusCount < 0)
 		{
-			decreaseGameSpeed=false;
+			activeBonusCount++;
 			return true;
 		}
 		return false;

@@ -129,21 +129,21 @@ public class GameFrame {
         }
         if(GameEngine.getInstance().isIncreaseGameSpeed())
         {
-            if(timeline.getRate()!=2)
-               timeline.setRate(2);
+            timeline.setRate(timeline.getCurrentRate() * (1.25));
+            GameEngine.getInstance().setIncreaseGameSpeed(false);
         }
         if(GameEngine.getInstance().isDecreaseGameSpeed())
         {
-            if(timeline.getRate()!=0.75)
-                setRate(0.75);
+                timeline.setRate(timeline.getCurrentRate() * (0.8));
+                GameEngine.getInstance().setDecreaseGameSpeed(false);
         }
         if(GameEngine.getInstance().deActivateIncraseGameSpeed())
         {
-            setRate(1);
+            timeline.setRate(timeline.getRate() * 0.8);
         }
         if(GameEngine.getInstance().deActivateDecreaseGameSpeed())
         {
-            setRate(1);
+            timeline.setRate(timeline.getRate() * 1.25);
         }
     }
 

@@ -24,7 +24,7 @@ public class CollisionManager {
     }
 
     public void setPrevBarId(int prevBarId) {
-        this.prevBarId = prevBarId;
+        CollisionManager.prevBarId = prevBarId;
     }
 
     public static int prevBarId = 0;
@@ -45,6 +45,7 @@ public class CollisionManager {
                             && ((looper.getPosX() - 50 <= character.getPosX())
                             && (looper.getPosX() + (looper.getWidth()) * looper.getImages()[0].getWidth() >= character.getPosX())
                             && character.getVerticalVelocity() <= 0)) {
+                        current = looper;
                         if(prevBarId<looper.getId()-1)
                         {
                             GameEngine.getInstance().setComboJump(true);
@@ -65,7 +66,6 @@ public class CollisionManager {
                         character.setComboJumping(false);
                         character.setVerticalVelocity(0);
                         character.setPosY(looper.getPosY() + (int) character.getImages()[0].getHeight());
-                        current = looper;
                         break;
                     }
                 }

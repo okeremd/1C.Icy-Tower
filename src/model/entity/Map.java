@@ -361,6 +361,7 @@ public class Map {
 	}
 
 	public void jump(){
+		gameCharacter.setCurrentAccelleration(Character.getACCELERATION());
 		if(gameCharacter.isStanding()){
 			if(Math.abs(gameCharacter.getHorizontalVelocity()) > 15){
 				gameCharacter.setComboJumping(true);
@@ -434,20 +435,20 @@ public class Map {
         getGameCharacter().setScore(getGameCharacter().getScore()+500);
     }
     public void deActivateBonus(){
-	    if(speedIncreaseBonusTaken && collisionManager.getPrevBarId() > speedBonusActivatedBar + 4)
+	    if(speedIncreaseBonusTaken && CollisionManager.getPrevBarId() > speedBonusActivatedBar + 4)
         {
             speedIncreaseBonusTaken = false;
             speedBonusActivatedBar = 0;
             setDifficulty((getDifficulty() - INCREMENT_SPEED));
         }
 
-        if(slowIncreaseBonusTaken && collisionManager.getPrevBarId() > slowBonusActivatedBar + 4)
+        if(slowIncreaseBonusTaken && CollisionManager.getPrevBarId() > slowBonusActivatedBar + 4)
         {
             slowIncreaseBonusTaken = false;
             slowBonusActivatedBar = 0;
             setDifficulty((getDifficulty() * DECREMENT_SPEED));
         }
-		if(barExtendTaken && collisionManager.getPrevBarId() > barExtendTakenBar + 10)
+		if(barExtendTaken && CollisionManager.getPrevBarId() > barExtendTakenBar + 10)
 		{
 			barExtendTaken = false;
 			barExtendTakenBar = -1;
