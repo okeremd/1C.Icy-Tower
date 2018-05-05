@@ -62,7 +62,7 @@ public class GameFrame {
 
     public GameFrame(int difficulty){
         this.difficulty = difficulty;
-        gameSpeed = 30;
+        gameSpeed = 40;
         timeline = new Timeline(new KeyFrame(
                 Duration.millis(gameSpeed),
                 ae -> updateFrame()));
