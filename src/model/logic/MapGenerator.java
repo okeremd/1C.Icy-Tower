@@ -3,7 +3,7 @@ package model.logic;
 import model.entity.Map;
 
 /**
- * Generates a map and crates bars and collectibles
+ * Generates a map and creates bars and collectibles
  */
 public class MapGenerator {
 
