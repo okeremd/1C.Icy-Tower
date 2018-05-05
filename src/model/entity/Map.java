@@ -133,7 +133,7 @@ public class Map {
         base.setPosY(BASE_INITIAL_POSY);
         gameObjects.add(base);
 
-        barExtendTakenBar=-1;
+        barExtendTakenBar=0;
 
         collisionManager = new CollisionManager(gameObjects);
 	}
@@ -477,13 +477,12 @@ public class Map {
     }
 
 	public void extendBar(int activatedBar) {
-		if(!barExtendTaken)
-		{
-			System.out.println(activatedBar);
 			barExtendTaken=true;
 			barExtendTakenBar= activatedBar;
-		}
 
+	}
+	public boolean isBarExtendTaken(){
+		return barExtendTaken;
 	}
 	public int getBarExtendTakenBar(){
 		return barExtendTakenBar;
