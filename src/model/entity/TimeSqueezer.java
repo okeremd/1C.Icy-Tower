@@ -6,8 +6,6 @@ import java.nio.file.Paths;
 
 public class TimeSqueezer extends Collectible {
 
-    private final double SQUEEZE_RATE = 1.5; //game screen speed will be faster with the rate of 1.5
-
     /**
      * Constructor for Collectible item TimeSqueezer
      */

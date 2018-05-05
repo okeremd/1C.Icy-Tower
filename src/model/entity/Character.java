@@ -21,8 +21,6 @@ public class Character extends GameObject {
      * Holds the score of the character
      */
     private int score;
-	private final int IMAGE_NO = 7;
-
     /**
      * Hold the current situation of the character
      */
@@ -47,7 +45,7 @@ public class Character extends GameObject {
 
     public Character(Image[] images) {
 	    super(images);
-        jumpPower = 30;
+        jumpPower = JUMP_POWER;
         horizontalVelocity = 10;
         movingLeft = false;
         movingRight = false;
@@ -56,6 +54,10 @@ public class Character extends GameObject {
 
     }
 
+    /**
+     * According to the character's moves, returns the proper image
+     * @return image
+     */
     public Image getCurrentImage(){
 	    if(isComboJumping()){
 	        return getImages()[6];
@@ -81,6 +83,11 @@ public class Character extends GameObject {
 	        return getImages()[3];
         }
     }
+
+    /**
+     * Singleton method
+     * @return this
+     */
     public static Character getInstance(){
         if(character== null)
             character = new Character();

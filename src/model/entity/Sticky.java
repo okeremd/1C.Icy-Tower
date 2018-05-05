@@ -40,8 +40,5 @@ public class Sticky extends Bar {
         this.stickyness = stickyness;
     }
 
-    public int getIMAGE_NUM() {
-        return IMAGE_NUM;
-    }
 
 }

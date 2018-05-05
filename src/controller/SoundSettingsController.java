@@ -11,25 +11,15 @@ import model.logic.SoundManager;
 import java.util.ArrayList;
 
 public class SoundSettingsController extends SettingsController  {
-    /**
-     * last limit of the slider bar
-     */
+
     public static final double SLIDERLIMIT = 200.0;
-
     @FXML
-    /**
-     * ChoiceBox for the songs
-     */
-    private ChoiceBox<FXCollections> selectSongBox;
-
+    private ChoiceBox<FXCollections> selectSongBox;  //choicebox for list of songs
     @FXML
-    /**
-     * Slider bar for volume
-     */
-    private Slider soundSlider;
+    private Slider soundSlider;  //volume slider
 
     /**
-     * Constructor for SoundSetingsController
+     * Default constructor for SoundSetingsController
      */
     public SoundSettingsController(){
 

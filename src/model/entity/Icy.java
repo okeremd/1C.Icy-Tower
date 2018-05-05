@@ -27,6 +27,9 @@ public class Icy extends Bar {
 
 
     @Override
+    /**
+     * It has falling behaviour. After a while icy bars will fall
+     */
     public void move() {
         FallingBehaviour FallingBehaviour = new FallingBehaviour();
         FallingBehaviour.react(this);
@@ -40,8 +43,5 @@ public class Icy extends Bar {
         this.slipperiness = slipperiness;
     }
 
-    public int getIMAGE_NO() {
-        return IMAGE_NUM;
-    }
 
 }
