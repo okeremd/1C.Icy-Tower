@@ -4,6 +4,9 @@ import javafx.scene.image.Image;
 
 import java.nio.file.Paths;
 
+/**
+ * Base bar which the character stands on at the beginning
+ */
 public class Base extends Bar{
     private final int IMAGE_NUM = 3;
     private Image[] images = new Image[IMAGE_NUM];

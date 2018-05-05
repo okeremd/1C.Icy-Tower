@@ -5,6 +5,9 @@ import javafx.scene.image.Image;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * Coin bonus which increase the score when it is collected
+ */
 public class Coin extends Collectible {
 
     private final int VALUE=60;   //value of the coin is 60 points

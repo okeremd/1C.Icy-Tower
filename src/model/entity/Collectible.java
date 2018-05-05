@@ -1,10 +1,13 @@
 package model.entity;
 
+/**
+ * Bonuses which are collectible game objects
+ */
 public class Collectible extends GameObject {
 
-	private double time;
-	private int width;
-
+    /**
+     * default constructor for Collectibles
+     */
     public Collectible() {
 
 

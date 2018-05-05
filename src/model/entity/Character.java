@@ -2,6 +2,9 @@ package model.entity;
 
 import javafx.scene.image.Image;
 
+/**
+ * Character of the game which has images, moves and score
+ */
 public class Character extends GameObject {
 
     public static final int JUMP_POWER = 30;

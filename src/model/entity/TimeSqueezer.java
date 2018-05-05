@@ -4,6 +4,9 @@ import javafx.scene.image.Image;
 
 import java.nio.file.Paths;
 
+/**
+ * TimeSqueezzer bonus to increase the game screen speed for a while when it is collected
+ */
 public class TimeSqueezer extends Collectible {
 
     /**

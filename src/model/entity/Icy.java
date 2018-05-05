@@ -4,6 +4,9 @@ import javafx.scene.image.Image;
 
 import java.nio.file.Paths;
 
+/**
+ * Icy type of bar which makes character moves easier on it
+ */
 public class Icy extends Bar {
     /**
      * Holds the slipperiness of the bar, which causes character to accelerate
