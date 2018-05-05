@@ -2,11 +2,15 @@ package model.entity;
 
 import javafx.scene.image.Image;
 
+/**
+ * GameObject class for getting images and positions of the game objects
+ */
 public abstract class GameObject {
 
-    private Image[] images;
-    private int posX;
-    private int posY;
+
+    private Image[] images; //Holds the images of this object
+    private int posX;   //Holds the horizontal position of this object
+    private int posY; //Holds the vertical position of this object
 
     public GameObject() { }
 	

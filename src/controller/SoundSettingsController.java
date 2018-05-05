@@ -10,23 +10,28 @@ import javafx.scene.media.Media;
 import model.logic.SoundManager;
 import java.util.ArrayList;
 
+/**
+ * Controller for Sound Settings Menu
+ */
 public class SoundSettingsController extends SettingsController  {
+
     public static final double SLIDERLIMIT = 200.0;
-
     @FXML
-    private ChoiceBox<FXCollections> selectSongBox;
-
+    private ChoiceBox<FXCollections> selectSongBox;  //choicebox for list of songs
     @FXML
-    private Slider soundSlider;
+    private Slider soundSlider;  //volume slider
 
-    SoundManager sounds;
-    private ArrayList<Media> songsmedia;
-
+    /**
+     * Default constructor for SoundSetingsController
+     */
     public SoundSettingsController(){
 
     }
 
     @FXML
+    /**
+     * Initializes the volume on the slider
+     */
     public void initialize() {
         soundSlider.valueProperty().addListener((ov, old_val, new_val) -> {
 
@@ -36,10 +41,12 @@ public class SoundSettingsController extends SettingsController  {
         });
     }
 
+    /**
+     * According to user's choice, it sends the selected song to SoundManager
+     */
     public void changeSelectedSong(ActionEvent actionEvent){
 
         int selectedSong = selectSongBox.getSelectionModel().getSelectedIndex();
-        System.out.println(selectedSong);
         SoundManager.getInstance().setSong(selectedSong);
     }
 

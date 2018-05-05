@@ -5,6 +5,9 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Controller for regulating all the menus for game
+ */
 public class MainController {
 
     private static Scene mainMenuScene;
@@ -13,19 +16,26 @@ public class MainController {
     private static Scene settingsScene;
     private static Scene creditsScene;
     private static Scene exitScene;
-
-
-
-    private static Scene gameOverScene;
+    private static Scene difficultyScene;
     // Setting scenes
     private static Scene soundSettingsScene;
     private static Scene buttonSettingsScene;
     private static Scene characterSettingsScene;
 
+    public static HighScoresController getHighScoresController() {
+        return highScoresController;
+    }
+
+    public static void setHighScoresController(HighScoresController highScoresController) {
+        MainController.highScoresController = highScoresController;
+    }
+
+    private static HighScoresController highScoresController;
+
     //Singleton Pattern
     private static MainController mainController;
     protected MainController() {
-        // Exists only to defeat instantiation.
+
     }
 
     public static MainController getInstance() {
@@ -49,12 +59,11 @@ public class MainController {
         MainController.howToPlayScene = scene;
     }
 
-
-
     public void setMainMenuScene(Scene scene) {
 
         mainMenuScene = scene;
     }
+
     public Scene getMainMenuScene(){
 
         return mainMenuScene;
@@ -81,11 +90,9 @@ public class MainController {
         MainController.settingsScene = settingsScene;
     }
 
-
     public static Scene getHighScoreScene() {
         return highScoreScene;
     }
-
     public static void setHighScoreScene(Scene highScoreScene) {
         MainController.highScoreScene = highScoreScene;
     }
@@ -121,13 +128,13 @@ public class MainController {
     public static void setCharacterSettingsScene(Scene characterSettingsScene) {
         MainController.characterSettingsScene = characterSettingsScene;
     }
-    public static Scene getGameOverScene() {
-        return gameOverScene;
+
+    public static Scene getDifficultyScene() {
+        return difficultyScene;
     }
 
-    public static void setGameOverScene(Scene gameOverScene) {
-        MainController.gameOverScene = gameOverScene;
+    public static void setDifficultyScene(Scene difficultyScene) {
+        MainController.difficultyScene = difficultyScene;
     }
-
 
 }
