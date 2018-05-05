@@ -28,7 +28,7 @@
       <Image url="@/images/settingsym.png" />
    </image>
 </ImageView>
-   <ImageView fitHeight="124.0" fitWidth="174.0" layoutX="190.0" layoutY="381.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="123.0" fitWidth="121.0" layoutX="210.0" layoutY="416.0" pickOnBounds="true" preserveRatio="true">
 <image>
 <Image url="@/images/settingsym.png" />
 </image>

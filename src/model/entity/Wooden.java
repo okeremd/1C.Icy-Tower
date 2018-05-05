@@ -29,16 +29,4 @@ public class Wooden extends Bar {
     }
 
 
-    public double getBreaktime() {
-        return breaktime;
-    }
-
-    public void setBreaktime(double breaktime) {
-        this.breaktime = breaktime;
-    }
-
-    public int getIMAGE_NUM() {
-        return IMAGE_NUM;
-    }
-
 }

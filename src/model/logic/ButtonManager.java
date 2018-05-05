@@ -7,6 +7,10 @@ public class ButtonManager {
 	private KeyCode[] buttons;
 	private static ButtonManager buttonManager;
 
+	/**
+	 * Constructor for Button Manager
+	 * Default control buttons are arrows and space
+	 */
 	public ButtonManager(){
 		buttons = new KeyCode[4];
 		buttons[0] = KeyCode.LEFT;
@@ -15,6 +19,11 @@ public class ButtonManager {
 		buttons[3] = KeyCode.P;
 
 	}
+
+	/**
+	 * Singleton method
+	 * @return this
+	 */
 	public static ButtonManager getInstance(){
 		if(buttonManager== null)
 			buttonManager = new ButtonManager();

@@ -14,6 +14,9 @@ public class SoundManager {
 
     private static SoundManager soundManager;
 
+    /**
+     * Contructor for SoundManager
+     */
     private SoundManager() {
         sounds = new ArrayList<>();
         for (int no = 0; no < SOUND_NO; no++) {
@@ -22,6 +25,10 @@ public class SoundManager {
         currentvolume = 0.5;
     }
 
+    /**
+     * Singleton method
+     * @return this
+     */
     public static SoundManager getInstance() {
         if (soundManager == null) {
             soundManager = new SoundManager();

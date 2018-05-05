@@ -6,8 +6,6 @@ import java.nio.file.Paths;
 
 public class BarExtender extends Collectible {
 
-    private final double RATE = 1.25;
-
     /**
      * Constructor for Collectible item BarExtender
      */
