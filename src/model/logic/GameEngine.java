@@ -204,7 +204,9 @@ public class GameEngine {
 								}
 								pane.getChildren().add(add);
 							}
-								if( (Map.getInstance().getBarExtendTakenBar() != -1 &&
+								if(
+										Map.getInstance().isBarExtendTaken() &&
+										(Map.getInstance().getBarExtendTakenBar() != -1 &&
 										((Bar) g).getId()>Map.getInstance().getBarExtendTakenBar() &&
 										((Bar) g).getId() < Map.getInstance().getBarExtendTakenBar() + 10) || ((Bar)g).isExtended())
 								{
@@ -392,7 +394,7 @@ public class GameEngine {
 			Map.setMapNull();
 			Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-			GameFrame gameFrame = new GameFrame(2);
+			GameFrame gameFrame = new GameFrame((int)Map.getInstance().getDifficulty());
 			primaryStage.setScene(gameFrame.start());
 
 
