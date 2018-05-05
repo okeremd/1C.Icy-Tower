@@ -14,7 +14,7 @@ import java.util.Random;
  */
 public class Map {
 
-	private static final int GAME_BOTTOM_LIMIT = -60;
+	private static final int GAME_BOTTOM_LIMIT = -120;
     private static final int GRAVITY_INITIAL = 2;
 	private static final int ALTITUDE_INITIAL = 0;
 	private static final int LEVEL_INITIAL = 0;
@@ -22,9 +22,8 @@ public class Map {
 	public static final double SCORE_MULTIPLIER_DEFAULT = 0.09;
     public static final int INCREMENT_SPEED = 3;
     public static final int DECREMENT_SPEED = 2;
-
-
-
+	public static final int GAME_OVER_LEFT_LIMIT = 780;
+	public static final int GAME_OVER_RIGHT_LIMIT = 780;
 
 
 	private enum BarType {
@@ -380,7 +379,7 @@ public class Map {
 	 * @return whether the game ended
 	 */
 	public boolean gameOver(){
-		return gameCharacter.getPosY() < GAME_BOTTOM_LIMIT || gameCharacter.getPosX() < GAME_LEFT_LIMIT || gameCharacter.getPosX() > GAME_RIGHT_LIMIT;
+		return gameCharacter.getPosY() < GAME_BOTTOM_LIMIT || gameCharacter.getPosX() < GAME_LEFT_LIMIT || gameCharacter.getPosX() > GAME_OVER_RIGHT_LIMIT;
 	}
 
 	public int getPassedLevel() {
