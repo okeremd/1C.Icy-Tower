@@ -7,7 +7,9 @@ import java.io.*;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-
+/**
+ * Responsible for storing high scores in a txt file.
+ */
 public class FileManager {
 
     public static final int TOTAL_HIGHSCORE = 10;
@@ -25,6 +27,10 @@ public class FileManager {
 
 	private static FileManager instance;
 
+	/**
+	 * Singleton pattern
+	 * @return FileManager
+	 */
 	public static FileManager getInstance() {
 		if(instance == null) {
 			instance = new FileManager();
@@ -48,11 +54,10 @@ public class FileManager {
 		this.highScoreScores = highScoreScores;
 	}
 
-
-
-
-
-
+	/**
+	 * Reads the highScore.txt and stores the names and scores in an array
+	 * @throws IOException
+	 */
 	public void readHighScoreLines() throws IOException {
 
 
@@ -70,6 +75,12 @@ public class FileManager {
 		}
 	}
 
+	/**
+	 * Checks if the players score a high score
+	 * If it's higher than the lowest score on the list, it is high score.
+	 * @param score
+	 * @return boolean
+	 */
     public boolean isHighScore(int score) {
 
     	if(score > getLowestScoreOnList())
@@ -80,11 +91,21 @@ public class FileManager {
 
 	}
 
+	/**
+	 * Chekcs if the user's score is higher than the lowest score
+	 * @return
+	 */
 	private int getLowestScoreOnList(){
 
-	    return Integer.parseInt(highScoreScores[9]);
+	    return Integer.parseInt(highScoreScores[TOTAL_HIGHSCORE-1]);
     }
 
+	/**
+	 * Finds the placing for the new high score and stores it on the array, also saves it to txt.
+	 * @param text
+	 * @param score
+	 * @throws IOException
+	 */
 	public void saveNewHighScore(String text, int score) throws IOException {
 
 		int placingOfNewHighScore = 0;
@@ -112,6 +133,10 @@ public class FileManager {
 
 	}
 
+	/**
+	 * Sets all scores to 0.
+	 * @throws IOException
+	 */
     public void resetHighScores() throws IOException {
 
 		for(int i = 0; i<10; i++){

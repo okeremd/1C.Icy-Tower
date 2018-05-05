@@ -4,22 +4,15 @@ import javafx.scene.image.Image;
 
 import java.nio.file.Paths;
 
+/**
+ * Balloon bonus which makes the character to go up easily for a while when it is collected
+ */
 public class Balloon extends Collectible {
 
-    /**
-     * Holds the vertical velocity of the balloon
-     */
-    private  double velocity;
 
-    /**
-     * Holds the initial altitude of the balloon
-     */
-    private int startingAltitude;
-
-    /**
-     * Determines whether the character has touched the balloon yet
-     */
-    private Boolean touched;
+    private  double velocity; //Holds the vertical velocity of the balloon
+    private int startingAltitude; //Holds the initial altitude of the balloon
+    private Boolean touched; //Determines whether the character has touched the balloon yet
 
     /**
      * Constructor for Collectible item Balloon

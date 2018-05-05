@@ -7,6 +7,11 @@ import model.logic.GameEngine;
 public class GameController{
 	Scene sc;
 	GameEngine gameEngine;
+
+	/**
+	 * Constructor for GameController class
+	 * Due to the control buttons that user selected, it gives that buttons moving feature
+	 */
     public GameController(Scene scene, KeyCode[] keyCode, GameEngine gameEngine) {
     	sc = scene;
     	this.gameEngine = gameEngine;

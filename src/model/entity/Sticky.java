@@ -4,6 +4,9 @@ import javafx.scene.image.Image;
 
 import java.nio.file.Paths;
 
+/**
+ * Sticky bar which makes the character moves harder
+ */
 public class Sticky extends Bar {
 
     /**
@@ -40,8 +43,5 @@ public class Sticky extends Bar {
         this.stickyness = stickyness;
     }
 
-    public int getIMAGE_NUM() {
-        return IMAGE_NUM;
-    }
 
 }

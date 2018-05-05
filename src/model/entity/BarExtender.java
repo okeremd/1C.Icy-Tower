@@ -4,9 +4,10 @@ import javafx.scene.image.Image;
 
 import java.nio.file.Paths;
 
+/**
+ * Barextender bonus which increase the length of the bars for a while when it is collected
+ */
 public class BarExtender extends Collectible {
-
-    private final double RATE = 1.25;
 
     /**
      * Constructor for Collectible item BarExtender

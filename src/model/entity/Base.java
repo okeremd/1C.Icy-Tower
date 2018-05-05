@@ -4,10 +4,14 @@ import javafx.scene.image.Image;
 
 import java.nio.file.Paths;
 
+/**
+ * Base bar which the character stands on at the beginning
+ */
 public class Base extends Bar{
     private final int IMAGE_NUM = 3;
     private Image[] images = new Image[IMAGE_NUM];
     private int width = 50;
+    
     public Base(){
         images[0] = new Image(Paths.get("./images/gameObject/bar_l1.png").toUri().toString());
         images[1] = new Image(Paths.get("./images/gameObject/bar_m1.png").toUri().toString());
@@ -31,6 +35,9 @@ public class Base extends Bar{
     }
 
     @Override
+    /**
+     * Base bar has the standing behaviour
+     */
     public void move() {
        StandingBehaviour standingBehaviour = new StandingBehaviour();
        standingBehaviour.react(this);

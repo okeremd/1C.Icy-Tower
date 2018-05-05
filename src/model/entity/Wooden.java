@@ -4,9 +4,11 @@ import javafx.scene.image.Image;
 
 import java.nio.file.Paths;
 
+/**
+ * Wooden type of bar with no special feature
+ */
 public class Wooden extends Bar {
 
-    private double breaktime;
     private final int IMAGE_NUM = 3;
 
     public Wooden(){
@@ -23,22 +25,13 @@ public class Wooden extends Bar {
     }
 
     @Override
+    /**
+     * Wooden bar has the sliding behaviour. After a while, it starts to move right
+     */
     public void move() {
         SlidingBehaviour breakable = new SlidingBehaviour();
         breakable.react(this);
     }
 
-
-    public double getBreaktime() {
-        return breaktime;
-    }
-
-    public void setBreaktime(double breaktime) {
-        this.breaktime = breaktime;
-    }
-
-    public int getIMAGE_NUM() {
-        return IMAGE_NUM;
-    }
 
 }

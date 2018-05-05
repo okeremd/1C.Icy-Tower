@@ -1,6 +1,9 @@
 package model.entity;
 
+/**
+ * Moving behaviour interface for bars
+ */
 public interface MovingBehaviour {
 
-    public void react(Bar bar);
+    void react(Bar bar);
 }

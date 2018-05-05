@@ -4,9 +4,10 @@ import javafx.scene.image.Image;
 
 import java.nio.file.Paths;
 
+/**
+ * Timestretcher bonus to slow down the game screen speed for a while when it is collected
+ */
 public class TimeStretcher extends Collectible {
-
-    private final double STRETCH_RATE = 1.5; //game screen speed will be slower with the rate of 1.5
 
     /**
      * Constructor for Collectible item TimeStretcher

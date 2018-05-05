@@ -15,6 +15,10 @@ public class CharacterManager{
         setCharacterImages(1);
     }
 
+    /**
+     * Singleton method
+     * @return this
+     */
     public static CharacterManager getInstance(){
         if(characterManager== null)
             characterManager = new CharacterManager();

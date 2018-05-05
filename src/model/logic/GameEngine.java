@@ -25,6 +25,9 @@ import view.GameFrame;
 import java.io.IOException;
 import java.nio.file.Paths;
 
+/**
+ * Starts the game, updates the game objects and checks the game is over or not.
+ */
 public class GameEngine {
 
 	private MapGenerator mapGenerator;
@@ -89,7 +92,7 @@ public class GameEngine {
     }
 
 	/**
-	 * Singleton method
+	 * Singleton Instance for GameEngine
 	 * @return this
 	 */
 	public static GameEngine getInstance(){
@@ -106,7 +109,11 @@ public class GameEngine {
 	 */
 	private GameEngine() {
 		pane = new Pane();
-		BackgroundImage backgroundImage = new BackgroundImage(new Image(Paths.get( "./images/gameObject/gameBack.png").toUri().toString()), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+		BackgroundImage backgroundImage = new BackgroundImage(
+				new Image(Paths.get( "./images/gameObject/gameBack.png")
+						.toUri().toString()),
+				BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		pane.setBackground(new Background(backgroundImage));
 		mapGenerator = new MapGenerator(Map.getInstance());
 		mapGenerator.createNextGameObjects();
@@ -123,42 +130,56 @@ public class GameEngine {
 	public Pane convertMapToPane(){
 	    if(!gamePaused) {
 
+	    	//Clean the pane at every frame first
 	    	pane.getChildren().clear();
-			Rectangle outerRectangle = genereateRectangle(140, 60, 700, 90, Color.DARKGRAY);
+
+	    	//Rectangle for combo box
+	    	Rectangle outerRectangle = genereateRectangle(140, 60, 700, 90, Color.DARKGRAY);
 			pane.getChildren().add(outerRectangle);
 
+			//If combo jump occurs, the inner rectangle should be created and start decreasing.
 			if(comboJump)
 			{
+				//Create text to show how many floor is passed with combo
 				Text comboCount = new Text(comboCounter + "Floors!");
 				comboCount.setFont(Font.font("adas",FontWeight.BOLD,30));
 				comboCount.setTranslateX(650);
 				comboCount.setTranslateY(270);
 				comboCount.setFill(Color.LIGHTBLUE);
+
+				//If it's the initial state of combo jump, create the inner rectangle
 				if(comboJumpInitial)
 				{
 					comboJumpInitial = false;
 					innerRectangle = genereateRectangle(120, 50, 705, 100, Color.RED);
 				}
+
 				pane.getChildren().add(comboCount);
 				pane.getChildren().add(innerRectangle);
+				//Decrease rectangle anytime if user not making a combo jump
 				innerRectangle.setHeight(innerRectangle.getHeight()-1);
 			}
+			//Combo jump ends if user not able to do it until inner rectangle ends
 			if(innerRectangle.getHeight()==0)
 				comboJump=false;
-			Text textscore = new Text("score");
-			textscore.setFont(Font.font("score", FontWeight.BOLD, 35));
-			textscore.setTranslateY(40);
-			textscore.setTranslateX(700);
-			textscore.setFill(Color.ORANGE);
+
+			Text scoreText = new Text("score");
+			scoreText.setFont(Font.font("score", FontWeight.BOLD, 35));
+			scoreText.setTranslateY(40);
+			scoreText.setTranslateX(700);
+			scoreText.setFill(Color.ORANGE);
+
 			Text tscore = new Text(""+Map.getInstance().getGameCharacter().getScore());
 			tscore.setFont(Font.font("score", FontWeight.BOLD, 35));
 			tscore.setTranslateY(77);
 			tscore.setTranslateX(690);
 			tscore.setFill(Color.ORANGE);
 
-			pane.getChildren().addAll(textscore,tscore);
+			pane.getChildren().addAll(scoreText,tscore);
+
 			for(GameObject g: Map.getInstance().getGameObjects()){
 				int xsofar = 0;
+				//Add game character to the pane
 				if(g instanceof model.entity.Character){
 					ImageView add = new ImageView(((model.entity.Character) g).getCurrentImage());
 					add.setTranslateX(g.getPosX() + xsofar);
@@ -188,19 +209,8 @@ public class GameEngine {
 										((Bar) g).getId() < Map.getInstance().getBarExtendTakenBar() + 10) || ((Bar)g).isExtended())
 								{
 									if(!((Bar) g).isExtended())
-										((Bar) g).setWidth(((Bar) g).getWidth()+barExtend);
+										((Bar) g).setWidth(((Bar) g).getWidth()+10);
 									((Bar) g).setExtended();
-
-									for (int j = 0; j < barExtend ; j++) {
-										add = new ImageView(g.getImages()[1]);
-										add.setTranslateX(g.getPosX() + xsofar);
-										xsofar += g.getImages()[1].getWidth();
-										add.setTranslateY(500 - g.getPosY());
-										if(g instanceof HardlyVisible){
-											add.setOpacity(0.3);
-										}
-										pane.getChildren().add(add);
-								}
 
 								}
 							i++;

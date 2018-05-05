@@ -2,6 +2,9 @@ package model.entity;
 
 import javafx.scene.image.Image;
 
+/**
+ * Bar gameobject which the character jumps onto to reach higher
+ */
 public abstract class Bar extends GameObject {
 
 	/**

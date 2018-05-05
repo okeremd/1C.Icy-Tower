@@ -4,11 +4,12 @@ import javafx.scene.image.Image;
 
 import java.nio.file.Paths;
 
+/**
+ * Hardly Visible bar which is hardly seen because of its opacity
+ */
 public class HardlyVisible extends Bar {
 
-    /**
-     * Holds the opacity of the bar, which will cause it to seen hardly
-     */
+
 	private final int IMAGE_NUM = 3;
 
     /**

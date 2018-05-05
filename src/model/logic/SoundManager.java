@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class SoundManager {
+    public static final double DEFAULT_VOLUME = 0.5;
     private int currentsong;
     private double currentvolume;
     private ArrayList<Media> sounds;
@@ -14,14 +15,21 @@ public class SoundManager {
 
     private static SoundManager soundManager;
 
+    /**
+     * Constructor for SoundManager, loads the mp3 files for songs, and sets the default volume.
+     */
     private SoundManager() {
         sounds = new ArrayList<>();
         for (int no = 0; no < SOUND_NO; no++) {
             sounds.add(new Media(Paths.get("music/audio" + no + ".mp3").toUri().toString()));
         }
-        currentvolume = 0.5;
+        currentvolume = DEFAULT_VOLUME;
     }
 
+    /**
+     * Singleton SoundManager object
+     * @return this
+     */
     public static SoundManager getInstance() {
         if (soundManager == null) {
             soundManager = new SoundManager();
@@ -50,6 +58,7 @@ public class SoundManager {
     public void setSong(int song) {
         currentsong = song;
     }
+
     public int getSong(){
         return currentsong;
     }
