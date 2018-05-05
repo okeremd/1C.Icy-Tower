@@ -8,7 +8,7 @@ import model.entity.Map;
 public class MapGenerator {
 
     public static final int BARS_TO_BE_CREATED = 30;
-    public static final double BONUS_CREATING_RANDOM = 0.2;
+    public static final double BONUS_CREATING_RANDOM = 0.1;
     private Map map;
 
     public MapGenerator(Map map) {
