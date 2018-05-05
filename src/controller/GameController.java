@@ -4,6 +4,9 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import model.logic.GameEngine;
 
+/**
+ * Controller for user inputs for character
+ */
 public class GameController{
 	Scene sc;
 	GameEngine gameEngine;

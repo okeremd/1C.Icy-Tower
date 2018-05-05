@@ -5,6 +5,9 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Controller for regulating all the menus for game
+ */
 public class MainController {
 
     private static Scene mainMenuScene;
@@ -13,9 +16,7 @@ public class MainController {
     private static Scene settingsScene;
     private static Scene creditsScene;
     private static Scene exitScene;
-    private static Scene startScene;
     private static Scene difficultyScene;
-    private static Scene gameOverScene;
     // Setting scenes
     private static Scene soundSettingsScene;
     private static Scene buttonSettingsScene;

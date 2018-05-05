@@ -28,9 +28,9 @@
             <Image url="@/images/character1_0.gif" />
          </image>
       </ImageView>
-      <ImageView fitHeight="89.0" fitWidth="79.0" layoutX="472.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="89.0" fitWidth="72.0" layoutX="472.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@/images/character1_0.gif" />
+            <Image url="@/images/character3_0.gif" />
          </image>
       </ImageView>
       <ImageView fitHeight="89.0" fitWidth="79.0" layoutX="387.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">

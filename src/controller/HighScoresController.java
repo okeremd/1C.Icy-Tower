@@ -6,7 +6,9 @@ import javafx.scene.text.Text;
 import model.logic.FileManager;
 import java.io.IOException;
 
-
+/**
+ * Controller for high score list
+ */
 public class HighScoresController extends MainController {
 
     public HighScoresController(){
