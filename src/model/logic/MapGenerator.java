@@ -23,7 +23,7 @@ public class MapGenerator {
      */
 	public void createNextGameObjects(){
         for(int i = 0; i < 30; i++){
-           if(Math.random() < 0.2){
+           if(Math.random() < 0.1){
                 map.createCollectible();
             }
             map.setLevel(map.getLevel() + 1);
