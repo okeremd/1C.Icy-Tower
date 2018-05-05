@@ -14,7 +14,7 @@ import java.util.Random;
  */
 public class Map {
 
-	private static final int GAME_BOTTOM_LIMIT = -60;
+	private static final int GAME_BOTTOM_LIMIT = -120;
     private static final int GRAVITY_INITIAL = 2;
 	private static final int ALTITUDE_INITIAL = 0;
 	private static final int LEVEL_INITIAL = 0;
@@ -22,9 +22,8 @@ public class Map {
 	public static final double SCORE_MULTIPLIER_DEFAULT = 0.09;
     public static final int INCREMENT_SPEED = 3;
     public static final int DECREMENT_SPEED = 2;
-
-
-
+	public static final int GAME_OVER_LEFT_LIMIT = 780;
+	public static final int GAME_OVER_RIGHT_LIMIT = 780;
 
 
 	private enum BarType {
@@ -361,6 +360,7 @@ public class Map {
 	}
 
 	public void jump(){
+		gameCharacter.setCurrentAccelleration(Character.getACCELERATION());
 		if(gameCharacter.isStanding()){
 			if(Math.abs(gameCharacter.getHorizontalVelocity()) > 15){
 				gameCharacter.setComboJumping(true);
@@ -379,7 +379,7 @@ public class Map {
 	 * @return whether the game ended
 	 */
 	public boolean gameOver(){
-		return gameCharacter.getPosY() < GAME_BOTTOM_LIMIT || gameCharacter.getPosX() < GAME_LEFT_LIMIT || gameCharacter.getPosX() > GAME_RIGHT_LIMIT;
+		return gameCharacter.getPosY() < GAME_BOTTOM_LIMIT || gameCharacter.getPosX() < GAME_LEFT_LIMIT || gameCharacter.getPosX() > GAME_OVER_RIGHT_LIMIT;
 	}
 
 	public int getPassedLevel() {
@@ -434,20 +434,20 @@ public class Map {
         getGameCharacter().setScore(getGameCharacter().getScore()+500);
     }
     public void deActivateBonus(){
-	    if(speedIncreaseBonusTaken && collisionManager.getPrevBarId() > speedBonusActivatedBar + 4)
+	    if(speedIncreaseBonusTaken && CollisionManager.getPrevBarId() > speedBonusActivatedBar + 4)
         {
             speedIncreaseBonusTaken = false;
             speedBonusActivatedBar = 0;
             setDifficulty((getDifficulty() - INCREMENT_SPEED));
         }
 
-        if(slowIncreaseBonusTaken && collisionManager.getPrevBarId() > slowBonusActivatedBar + 4)
+        if(slowIncreaseBonusTaken && CollisionManager.getPrevBarId() > slowBonusActivatedBar + 4)
         {
             slowIncreaseBonusTaken = false;
             slowBonusActivatedBar = 0;
             setDifficulty((getDifficulty() * DECREMENT_SPEED));
         }
-		if(barExtendTaken && collisionManager.getPrevBarId() > barExtendTakenBar + 10)
+		if(barExtendTaken && CollisionManager.getPrevBarId() > barExtendTakenBar + 10)
 		{
 			barExtendTaken = false;
 			barExtendTakenBar = -1;
