@@ -12,6 +12,9 @@ import view.GameFrame;
 
 import java.io.IOException;
 
+/**
+ * Controller for main menu
+ */
 public class MainMenuController extends MainController {
 
     /**

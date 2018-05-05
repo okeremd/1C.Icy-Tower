@@ -10,6 +10,9 @@ import javafx.scene.media.Media;
 import model.logic.SoundManager;
 import java.util.ArrayList;
 
+/**
+ * Controller for Sound Settings Menu
+ */
 public class SoundSettingsController extends SettingsController  {
 
     public static final double SLIDERLIMIT = 200.0;
