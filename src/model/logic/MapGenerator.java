@@ -2,34 +2,29 @@ package model.logic;
 
 import model.entity.Map;
 
-import javafx.scene.image.Image;
-
+/**
+ * Generates a map and creates bars and collectibles
+ */
 public class MapGenerator {
 
-	private Map map;
-	private int difficulty;
-
-
-    public MapGenerator() {
-        // TODO - implement MapGenerator.MapGenerator
-        throw new UnsupportedOperationException();
-    }
-
+    public static final int BARS_TO_BE_CREATED = 30;
+    public static final double BONUS_CREATING_RANDOM = 0.1;
+    private Map map;
 
     public MapGenerator(Map map) {
         this.map = map;
     }
 
-	public void createNextLevels(){
-        map.setPassedLevel(map.getPassedLevel());
-        for(int i = 0; i < 30; i++){
+    /**
+     * Creates next 30 bars and some collectibles
+     */
+	public void createNextGameObjects(){
+        for(int i = 0; i < BARS_TO_BE_CREATED; i++){
+           if(Math.random() < BONUS_CREATING_RANDOM){
+                map.createCollectible();
+            }
             map.setLevel(map.getLevel() + 1);
-            map.createNextAltitudeObjects(1);
+            map.createNextBar();
         }
     }
-
-    public Map getMap(){
-        return map;
-    }
-
 }

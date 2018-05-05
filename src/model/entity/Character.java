@@ -1,37 +1,72 @@
 package model.entity;
 
-import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 
-import java.awt.*;
-
+/**
+ * Character of the game which has images, moves and score
+ */
 public class Character extends GameObject {
 
-	private int verticalVelocity, horizontalVelocity;
-	private int jumpPower;
-	private final int IMAGE_NO = 6;
-	private boolean movingLeft, movingRight, standing;
+    public static final int JUMP_POWER = 30;
+    public static final double ACCELERATION = 1;
+
+    /**
+     * the horizontal and vertical velocities of the character
+     */
+    private double verticalVelocity, horizontalVelocity;
+
+    /**
+     * Holds the jump power of the character
+     */
+    private int jumpPower;
+
+    /**
+     * Holds the score of the character
+     */
+    private int score;
+    /**
+     * Hold the current situation of the character
+     */
+	private boolean movingLeft, movingRight, standing, comboJumping;
+	private static Character character;
+
+    /**
+     * Holds the current acceleration of the character
+     */
+	private double currentAccelleration;
 
 	public Character(){
-	    jumpPower = 30;
+	    jumpPower = JUMP_POWER;
 	    horizontalVelocity = 1;
 	    movingLeft = false;
 	    movingRight = false;
 	    standing = true;
+	    comboJumping = false;
+	    score=0;
+	    currentAccelleration = ACCELERATION;
     }
 
     public Character(Image[] images) {
 	    super(images);
-        jumpPower = 30;
+        jumpPower = JUMP_POWER;
         horizontalVelocity = 10;
         movingLeft = false;
         movingRight = false;
+        comboJumping = false;
+        score=0;
+
     }
 
+    /**
+     * According to the character's moves, returns the proper image
+     * @return image
+     */
     public Image getCurrentImage(){
-	    if(!isStanding() && isMovingRight())
+	    if(isComboJumping()){
+	        return getImages()[6];
+        }
+	    else if(!isStanding() && isMovingRight())
         {
-            System.out.println("1");
             return getImages()[4];
         }
         else if(!isStanding() && isMovingLeft())
@@ -52,11 +87,29 @@ public class Character extends GameObject {
         }
     }
 
-    public int getVerticalVelocity() {
+    /**
+     * Singleton method
+     * @return this
+     */
+    public static Character getInstance(){
+        if(character== null)
+            character = new Character();
+        return character;
+    }
+
+    public boolean isComboJumping() {
+        return comboJumping;
+    }
+
+    public void setComboJumping(boolean comboJumping) {
+        this.comboJumping = comboJumping;
+    }
+
+    public double getVerticalVelocity() {
         return verticalVelocity;
     }
 
-    public void setVerticalVelocity(int verticalVelocity) {
+    public void setVerticalVelocity(double verticalVelocity) {
         this.verticalVelocity = verticalVelocity;
     }
 
@@ -66,10 +119,6 @@ public class Character extends GameObject {
 
     public void setJumpPower(int jumpPower) {
         this.jumpPower = jumpPower;
-    }
-
-    public int getIMAGE_NO() {
-        return IMAGE_NO;
     }
 
     public void setStanding(boolean standing){
@@ -96,11 +145,40 @@ public class Character extends GameObject {
         this.movingRight = movingRight;
     }
 
-    public int getHorizontalVelocity() {
+    public double getHorizontalVelocity() {
         return horizontalVelocity;
     }
 
-    public void setHorizontalVelocity(int horizontalVelocity) {
+    public void setHorizontalVelocity(double horizontalVelocity) {
         this.horizontalVelocity = horizontalVelocity;
+    }
+
+    public int getScore() { return score; }
+
+    public void setScore(int score) { this.score = score; }
+
+    public static double getACCELERATION() {
+        return ACCELERATION;
+    }
+
+    public double getCurrentAccelleration() {
+        return currentAccelleration;
+    }
+
+    public void setCurrentAccelleration(double currentAccelleration) {
+        this.currentAccelleration = currentAccelleration;
+    }
+
+    public void accelerate(){
+	    if(isMovingRight() && isMovingLeft()){
+	        setHorizontalVelocity(0);
+        }
+	    else if(isMovingRight()){
+	        setHorizontalVelocity(horizontalVelocity + currentAccelleration);
+        }
+        else if(isMovingLeft()){
+	        setHorizontalVelocity(horizontalVelocity - currentAccelleration);
+        }
+
     }
 }
